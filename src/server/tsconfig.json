@@ -1,0 +1,17 @@
+﻿{
+  "compilerOptions": {
+    "outDir": "./out",
+    "sourceMap": true,
+    "target": "es5"
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "out",
+    "other-ts-goodies"
+  ],
+  "include": [
+    "src/server/**/*.ts",
+    "./typings/globals/**/*.ts"
+  ]
+}
