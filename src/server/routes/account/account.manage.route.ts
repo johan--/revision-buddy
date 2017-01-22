@@ -61,6 +61,23 @@ export class AccountController {
             });
         });
 
+        router.post("/login", function (req, res, next) {
+            passport.authenticate('local',
+                function (err, user, info) {
+                    if (err) {
+                        next(err);
+                    }
+
+                    if (!user) {
+                        return res.status(401).send("Invalid username or password");
+                    }
+
+                    let jwt = require('jsonwebtoken');
+                    let token = jwt.sign({ data: user }, 'skiploop'); //todo :: configure secret to read from buffer (https://github.com/auth0/node-jsonwebtoken)
+                    return res.status(200).send({ 'token': token });
+                })(req, res, next);
+        });
+
         return router;
     }
 }

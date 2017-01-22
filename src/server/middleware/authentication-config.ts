@@ -2,14 +2,21 @@
 import * as passportlocal from "passport-local";
 import {User as User} from "./../model/user/userDocumentSchema";
 
+import {logger as logger} from "./../utils/logger";
+
 export class AuthenticationConfigManager {
 
     public static configure() {
-        var Strategy = passportlocal.Strategy;
+        let Strategy = passportlocal.Strategy;
 
-        passport.use(new Strategy(
+        passport.use(new Strategy({
+            usernameField: 'user_name',
+            passwordField: 'password',
+        },
+
             function (username, password, done) {
-                User.findOne({ 'userName': username }, function (err, user) {
+
+                User.findOne({ 'user_name': username }, function (err, user) {
                     if (err) {
                         return done(err);
                     }
@@ -29,8 +36,8 @@ export class AuthenticationConfigManager {
             })
         );
 
-        passport.serializeUser(function (user, cb) {
-            cb(null, user);
-        });
+        //passport.serializeUser(function (user, cb) {
+        //    cb(null, user["_id"]);
+        //});
     }
 }

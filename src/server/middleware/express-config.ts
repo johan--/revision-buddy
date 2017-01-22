@@ -6,11 +6,12 @@ import * as unless from "express-unless";
 import {Config as Config} from "./../config";
 var boom = require('express-boom');
 var cors = require("cors");
+import * as passport from "passport";
 
 export class ExpressConfigManager {
     public static configure(app: express.Application): express.Application {
         console.log("initializing express");
-
+        
         app.use(bodyParser.json());
         app.use(bodyParser.urlencoded({ extended: true }));
         app.use(cookieParser());

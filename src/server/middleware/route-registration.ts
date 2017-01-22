@@ -6,5 +6,7 @@ export class RouteRegistration {
         let guard = require('express-jwt-permissions')();
 
         app.use("/api/account", AccountController.routes(app));
+
+        
     }
 }
