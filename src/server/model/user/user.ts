@@ -6,5 +6,6 @@
     email: string,
     email_confirmed: boolean,
     phone_number: string,
-    phone_number_confirmed: boolean
+    phone_number_confirmed: boolean,
+    active: boolean
 }

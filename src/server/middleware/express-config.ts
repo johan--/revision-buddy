@@ -19,7 +19,7 @@ export class ExpressConfigManager {
             .unless(
             {
                 path: [
-                    new RegExp('/api/parent.*/', 'i'),
+                    new RegExp('/api/account.*/', 'i'),
                     //new RegExp('/api/tutor/profile/recommend.*/', 'i')
                 ]
             }));
