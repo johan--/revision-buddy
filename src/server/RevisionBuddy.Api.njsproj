@@ -12,6 +12,9 @@
     <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <EnableTypeScript>true</EnableTypeScript>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
@@ -26,24 +29,74 @@
     <Content Include="typings.json" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="data\" />
+    <Folder Include="middleware\" />
+    <Folder Include="utils\" />
+    <Folder Include="routes\" />
     <Folder Include="typings\" />
     <Folder Include="typings\globals\" />
+    <Folder Include="typings\globals\automapper-ts\" />
+    <Folder Include="typings\globals\body-parser\" />
+    <Folder Include="typings\globals\cookie-parser\" />
+    <Folder Include="typings\globals\dotenv\" />
+    <Folder Include="typings\globals\es6-promise\" />
+    <Folder Include="typings\globals\express-jwt\" />
+    <Folder Include="typings\globals\express-serve-static-core\" />
     <Folder Include="typings\globals\express-session\" />
+    <Folder Include="typings\globals\express-unless\" />
+    <Folder Include="typings\globals\express\" />
+    <Folder Include="typings\globals\form-data\" />
+    <Folder Include="typings\globals\joi\" />
+    <Folder Include="typings\globals\mime\" />
     <Folder Include="typings\globals\moment\" />
+    <Folder Include="typings\globals\mongodb\" />
     <Folder Include="typings\globals\mongoose\" />
     <Folder Include="typings\globals\node\" />
+    <Folder Include="typings\globals\request-promise\" />
+    <Folder Include="typings\globals\request\" />
+    <Folder Include="typings\globals\serve-static\" />
+    <Folder Include="typings\globals\typescript\" />
     <Folder Include="typings\globals\underscore\" />
+    <Folder Include="typings\globals\winston\" />
     <Folder Include="typings\modules\" />
+    <Folder Include="typings\modules\bluebird\" />
     <Folder Include="typings\modules\express\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="config.ts" />
+    <TypeScriptCompile Include="data\db.ts" />
+    <TypeScriptCompile Include="middleware\config-base.ts" />
+    <TypeScriptCompile Include="middleware\error-handler.ts" />
+    <TypeScriptCompile Include="middleware\express-config.ts" />
+    <TypeScriptCompile Include="middleware\route-registration.ts" />
+    <TypeScriptCompile Include="server.ts" />
+    <TypeScriptCompile Include="typings\globals\automapper-ts\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\body-parser\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\cookie-parser\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\dotenv\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\es6-promise\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\express-jwt\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\express-serve-static-core\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\express-session\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\express-unless\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\express\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\form-data\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\joi\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\mime\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\moment\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\mongodb\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\mongoose\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\node\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\request-promise\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\request\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\serve-static\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\typescript\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\underscore\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\winston\index.d.ts" />
     <TypeScriptCompile Include="typings\index.d.ts" />
+    <TypeScriptCompile Include="typings\modules\bluebird\index.d.ts" />
     <TypeScriptCompile Include="typings\modules\express\index.d.ts" />
+    <TypeScriptCompile Include="utils\logger.ts" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gulpfile.js" />
