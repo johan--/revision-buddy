@@ -4,7 +4,11 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "preinstall": "typings install",
+    "start": "node ./out/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./out/server.js",
+    "debug": "nodemon --debug ./out/server.js"
   },
   "author": "",
   "license": "ISC",
