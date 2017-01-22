@@ -5,7 +5,7 @@
     sourcemaps = require("gulp-sourcemaps");
 del = require('del');
 
-const TYPE_SCRIPT_FILES = ["src/server/**/*.ts"];
+const TYPE_SCRIPT_FILES = ["./**/*.ts"];
 const LIBRARY_TYPE_SCRIPT_DEFINITION = './typings/globals/**/*.ts';
 
 gulp.task('ts-lint', function () {

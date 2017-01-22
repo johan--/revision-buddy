@@ -11,7 +11,7 @@
     "other-ts-goodies"
   ],
   "include": [
-    "src/server/**/*.ts",
+    "./**/*.ts",
     "./typings/globals/**/*.ts"
   ]
 }
