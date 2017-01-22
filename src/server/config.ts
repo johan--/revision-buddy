@@ -14,4 +14,20 @@
     public static get webtokenSignatureSecretKey(): string {
         return process.env.WEBTOKEN_SECRETKEY;
     }
+
+    public static get aws_AccessKey(): string {
+        return process.env.AWS_ACCESSKEY;
+    }
+
+    public static get aws_SecretKey(): string {
+        return process.env.AWS_SECRET_ACCESSKEY;
+    }
+
+    public static get aws_S3_Region(): string {
+        return process.env.AWS_S3_REGION;
+    }
+
+    public static get revisionContentStore_S3BucketName(): string {
+        return process.env.AWS_S3_BUCKET_NAME_REVISIONCONTENT_STORE;
+    }
 }
