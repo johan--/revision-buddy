@@ -8,6 +8,7 @@ import * as _ from "underscore";
 
 import {logger as logger} from "./../../utils/logger";
 import {User as User} from "./../../model/user/userDocumentSchema";
+import {Config as Config} from "./../../config";
 
 export class AccountController {
 
@@ -73,7 +74,7 @@ export class AccountController {
                     }
 
                     let jwt = require('jsonwebtoken');
-                    let token = jwt.sign({ data: user }, 'skiploop'); //todo :: configure secret to read from buffer (https://github.com/auth0/node-jsonwebtoken)
+                    let token = jwt.sign({ data: user }, Config.webtokenSignatureSecretKey); 
                     return res.status(200).send({ 'token': token });
                 })(req, res, next);
         });

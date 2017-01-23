@@ -27,7 +27,7 @@ export class AuthenticationConfigManager {
 
                     let bcrypt = require("bcrypt");
                     if (bcrypt.compareSync(password, user.password_hash)) {
-                        return done(null, user);
+                        return done(null, user._id);
                     }
                     else {
                         return done(null, false);

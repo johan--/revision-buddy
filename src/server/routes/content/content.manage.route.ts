@@ -13,21 +13,83 @@ export class ContentController {
     public static routes(app: express.Application) {
         let router = express.Router();
         
-        router.get("/toc/board/:boardname/class/:classname/subject/:subjectname", function (req, res, next) {
-            let boardName = req.params.boardname;
-            let className = req.params.classname;
-            let subjectName = req.params.subjectname;
+        router.get("/toc/course/:courseid", function (req, res, next) {
+            let courseId = req.params.courseid;
 
-            Course.find("", function (err, toc) {
+            let query = { "course_id": courseId };
+            Course.findOne(query, function (err, courseDoc) {
                 if (err)
                     next(err);
 
-                if (toc == null)
-                    return res.status(500).send();
+                if (courseDoc == null)
+                    return res["boom"].notFound("Course with specified id is not available");
 
-                return res.status(200).send(toc);
+                return res.status(200).send(courseDoc);
             });
         });
+
+        router.post("/info", function (req, res, next) {
+
+            let boardName = req.body.board;
+            let className = req.body.class;
+            let subjectName = req.body.subject;
+
+            let query = { "board": boardName, "class": className, "subject": subjectName };
+
+            Course.findOne(query, function (err, courseDoc) {
+                if (err)
+                    next(err);
+
+                if (courseDoc != null)
+                    return res["boom"].badRequest("Course already exists");
+
+                let tempCourse = new Course();
+                tempCourse.board = boardName;
+                tempCourse.class = className;
+                tempCourse.subject = subjectName;
+
+                tempCourse.content = req.body.content;
+
+                logger.info("here");
+
+                tempCourse.save(function (err, result) {
+                    if (err)
+                        next(err);
+
+                    return res.status(200).send(result);
+                });
+            });
+        });
+
+        router.put("/coursecontent", function (req, res, next) {
+
+            let course = req.body.course;
+
+            let boardName = course.board;
+            let className = course.class;
+            let subjectName = course.subject;
+
+            let query = { "board": boardName, "class": className, "subject": subjectName };
+
+            Course.findOne(query, function (err, courseDoc) {
+                if (err)
+                    next(err);
+
+                if (courseDoc == null)
+                    return res["boom"].badRequest("Course does not exist");
+                
+                courseDoc.content = course.content;
+
+                courseDoc.update(courseDoc, function (err, result) {
+                    if (err)
+                        next(err);
+
+                    return res.status(200).send(result);
+                });
+            });
+
+        });
+
 
         router.get("/s3uploadrequest/sign", function (req, res, next) {
 
