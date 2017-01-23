@@ -1,6 +1,6 @@
 ﻿import * as express from "express";
 import {AccountController as AccountController} from "./../routes/account/account.manage.route";
-import {RevisionContentController as RevisionContentController} from "./../routes/revisionContent/revisionContent.manage.route";
+import {ContentController as ContentController} from "./../routes/content/content.manage.route";
 
 export class RouteRegistration {
     static configure(app: express.Application) {
@@ -8,6 +8,6 @@ export class RouteRegistration {
 
         app.use("/api/account", AccountController.routes(app));
 
-        app.use("/api/revisioncontent", RevisionContentController.routes(app));
+        app.use("/api/content", ContentController.routes(app));
     }
 }

@@ -7,7 +7,7 @@ import {Config as Config} from "./../../config";
 import {AwsConfigManager as AwsConfigManager} from "./../../aws-config"
 import {logger as logger} from "./../../utils/logger";
 
-export class RevisionContentController {
+export class ContentController {
 
     public static routes(app: express.Application) {
         let router = express.Router();
