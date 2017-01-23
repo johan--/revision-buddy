@@ -12,9 +12,7 @@
     parent_name: string,
     course_subscriptions: [
         {
-            board: string,
-            class: string,
-            subject: string,
+            course_id: string,
             tutor_id: string
         }
     ]

@@ -8,6 +8,6 @@ export class RouteRegistration {
 
         app.use("/api/account", AccountController.routes(app));
 
-        app.use("/api/content", ContentController.routes(app));
+        app.use("/api/course", ContentController.routes(app));
     }
 }

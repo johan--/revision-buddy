@@ -1,8 +1,8 @@
 ﻿import * as mongoose from "mongoose";
-import {IContent as IContent} from "./content";
-import {IContentDocument as IContentDocument} from "./contentDocument";
+import {ICourse as ICourse} from "./course";
+import {ICourseDocument as ICourseDocument} from "./courseDocument";
 
-let contentSchema = new mongoose.Schema({
+let courseSchema = new mongoose.Schema({
     board: String,
     class: String,
     subject: String,
@@ -19,4 +19,4 @@ let contentSchema = new mongoose.Schema({
         timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }
     });
 
-export let User: mongoose.Model<IContentDocument> = mongoose.model<IContentDocument>("content", contentSchema);
+export let Course: mongoose.Model<ICourseDocument> = mongoose.model<ICourseDocument>("course", courseSchema);

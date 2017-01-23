@@ -17,9 +17,7 @@ let userSchema = new mongoose.Schema({
     parent_name: String,
     course_subscriptions: [
         {
-            board: String,
-            class: String,
-            subject: String,
+            course_id: String,
             tutor_id: String
         }
     ]

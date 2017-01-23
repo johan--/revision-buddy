@@ -1,8 +1,8 @@
-﻿export interface IContent {
+﻿export interface ICourse {
     board : string,
     class : string,
     subject: string,
-    name: string,
+    package_name: string,
     content: [{
         node_name: string,
         parent_node_id: string,

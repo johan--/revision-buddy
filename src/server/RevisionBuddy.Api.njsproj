@@ -32,7 +32,7 @@
     <Folder Include="data\" />
     <Folder Include="middleware\" />
     <Folder Include="model\" />
-    <Folder Include="model\content\" />
+    <Folder Include="model\course\" />
     <Folder Include="model\user\" />
     <Folder Include="routes\account\" />
     <Folder Include="routes\content\" />
@@ -76,9 +76,9 @@
     <TypeScriptCompile Include="middleware\error-handler.ts" />
     <TypeScriptCompile Include="middleware\express-config.ts" />
     <TypeScriptCompile Include="middleware\route-registration.ts" />
-    <TypeScriptCompile Include="model\content\content.ts" />
-    <TypeScriptCompile Include="model\content\contentDocument.ts" />
-    <TypeScriptCompile Include="model\content\contentDocumentSchema.ts" />
+    <TypeScriptCompile Include="model\course\course.ts" />
+    <TypeScriptCompile Include="model\course\courseDocument.ts" />
+    <TypeScriptCompile Include="model\course\courseDocumentSchema.ts" />
     <TypeScriptCompile Include="model\user\user.ts" />
     <TypeScriptCompile Include="model\user\userDocument.ts" />
     <TypeScriptCompile Include="model\user\userDocumentSchema.ts" />
