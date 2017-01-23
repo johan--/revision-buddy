@@ -7,5 +7,15 @@
     email_confirmed: boolean,
     phone_number: string,
     phone_number_confirmed: boolean,
-    active: boolean
+    active: boolean,
+    parent_lead_id: string,
+    parent_name: string,
+    course_subscriptions: [
+        {
+            board: string,
+            class: string,
+            subject: string,
+            tutor_id: string
+        }
+    ]
 }

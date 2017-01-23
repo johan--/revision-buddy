@@ -12,8 +12,17 @@ let userSchema = new mongoose.Schema({
     lastname: String,
     email_confirmed: { type: Boolean, default: false },
     phone_number_confirmed: { type: Boolean, default: false },
-    active: { type: Boolean, default: true }
-    
+    active: { type: Boolean, default: true },
+    parent_lead_id: String,
+    parent_name: String,
+    course_subscriptions: [
+        {
+            board: String,
+            class: String,
+            subject: String,
+            tutor_id: String
+        }
+    ]
 },
     {
         timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }
