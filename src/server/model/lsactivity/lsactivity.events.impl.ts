@@ -11,6 +11,9 @@ export class LSActivityEventsImpl implements LSActivityEvents {
     AccountActivated: number;
     ProfileReviewed: number;
 
+    RevisionBuddyUserCreated: number;
+    RevisionBuddyNewPackSubscribed: number;
+
     constructor() {
         if (process.env.NODE_ENV === "DEVELOPMENT") {
             this.AccountCreated = 219;
@@ -22,6 +25,9 @@ export class LSActivityEventsImpl implements LSActivityEvents {
             this.UnderProcess = 229;
             this.AccountActivated = 0;
             this.ProfileReviewed = 230;
+
+            this.RevisionBuddyUserCreated = 219;
+            this.RevisionBuddyNewPackSubscribed = 219;
         }
         else {
             this.AccountCreated = 229;
@@ -33,6 +39,9 @@ export class LSActivityEventsImpl implements LSActivityEvents {
             this.UnderProcess = 235;
             this.AccountActivated = 0;
             this.ProfileReviewed = 236;
+
+            this.RevisionBuddyUserCreated = 229;
+            this.RevisionBuddyNewPackSubscribed = 229;
         }
     }
 }

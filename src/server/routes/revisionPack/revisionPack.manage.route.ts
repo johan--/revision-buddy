@@ -15,6 +15,7 @@ import {User as User} from "./../../model/user/userDocumentSchema";
 import {UserService as UserService}  from "./../../services/userService";
 import {RevisionPackService as RevisionPackService}  from "./../../services/revisionPackService";
 import {LeadSquaredManager as LeadSquaredManager} from "./../../services/leadsquaredManager";
+import RevisionPackEventEmitter from './../../eventEmitter';
 
 export class RevisionPackController {
 
@@ -189,8 +190,10 @@ export class RevisionPackController {
                                         reject(err);
 
                                     //Raise events -- The event should send email to student/parent with username and password
-                                    else if (savedUser != null)
+                                    else if (savedUser != null) {
+                                        RevisionPackEventEmitter.event("newUserCreated").emit(savedUser);
                                         resolve(newUser);
+                                    }
                                 });
                             }
                             else {
@@ -202,8 +205,10 @@ export class RevisionPackController {
                                         if (err)
                                             reject(err);
 
-                                        if (result != null)
+                                        if (result != null) {
+                                            RevisionPackEventEmitter.event("newRevisionPackSubscribed").emit(user, result);
                                             resolve(result);
+                                        }
                                     });
                                 }
                                 else

@@ -73,6 +73,7 @@
     <TypeScriptCompile Include="aws-config.ts" />
     <TypeScriptCompile Include="config.ts" />
     <TypeScriptCompile Include="data\db.ts" />
+    <TypeScriptCompile Include="eventEmitter.ts" />
     <TypeScriptCompile Include="services\leadsquaredManager.ts" />
     <TypeScriptCompile Include="model\lsactivity\lsactivity.events.definition.ts" />
     <TypeScriptCompile Include="model\lsactivity\lsactivity.events.impl.ts" />
