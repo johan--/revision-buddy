@@ -4,7 +4,7 @@ import {IUserDocument as IUserDocument} from "./userDocument";
 
 let userSchema = new mongoose.Schema({
     user_name: { type: String, unique: true, index: true },
-    phone_number: { type: Number, unique: true, index: true },
+    phone_number: { type: String, unique: true, index: true },
     email: { type: String, unique: true },
 
     password_hash: String,
@@ -15,7 +15,8 @@ let userSchema = new mongoose.Schema({
     active: { type: Boolean, default: true },
     parent_lead_id: String,
     parent_name: String,
-    course_subscriptions: [
+    lead_id: String,
+    revisionpack_subscriptions: [
         {
             course_id: String,
             tutor_id: String

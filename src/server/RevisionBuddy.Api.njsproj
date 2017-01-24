@@ -30,10 +30,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="data\" />
+    <Folder Include="model\lsactivity\" />
     <Folder Include="middleware\" />
     <Folder Include="model\" />
     <Folder Include="model\revisionPack\" />
     <Folder Include="model\user\" />
+    <Folder Include="services\" />
     <Folder Include="routes\account\" />
     <Folder Include="routes\revisionPack\" />
     <Folder Include="utils\" />
@@ -71,6 +73,9 @@
     <TypeScriptCompile Include="aws-config.ts" />
     <TypeScriptCompile Include="config.ts" />
     <TypeScriptCompile Include="data\db.ts" />
+    <TypeScriptCompile Include="services\leadsquaredManager.ts" />
+    <TypeScriptCompile Include="model\lsactivity\lsactivity.events.definition.ts" />
+    <TypeScriptCompile Include="model\lsactivity\lsactivity.events.impl.ts" />
     <TypeScriptCompile Include="middleware\authentication-config.ts" />
     <TypeScriptCompile Include="middleware\config-base.ts" />
     <TypeScriptCompile Include="middleware\error-handler.ts" />
@@ -85,6 +90,8 @@
     <TypeScriptCompile Include="routes\account\account.manage.route.ts" />
     <TypeScriptCompile Include="routes\revisionPack\revisionPack.manage.route.ts" />
     <TypeScriptCompile Include="server.ts" />
+    <TypeScriptCompile Include="services\revisionPackService.ts" />
+    <TypeScriptCompile Include="services\userService.ts" />
     <TypeScriptCompile Include="typings\globals\automapper-ts\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\body-parser\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\cookie-parser\index.d.ts" />
