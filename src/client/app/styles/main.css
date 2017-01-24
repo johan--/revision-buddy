@@ -7,7 +7,11 @@ body {
     margin: 0 auto;
     height: 80px;
 }
-
+.vnlogo-header  {
+    margin: 0 auto;
+    height: 50px;
+    margin-top: 0.5em;
+}
 .drop-shadow {
       -webkit-box-shadow: 0 0 5px 2px rgba(0, 0, 0, .5);
       box-shadow: 0 0 5px 2px rgba(0, 0, 0, .5);
@@ -49,3 +53,244 @@ body {
   font-size: 200%;
   text-align: center;
 }
+.main-container{
+  margin-top: 9em;
+}
+.footer{
+  position: fixed;
+  bottom: 0px;
+  background: white;
+  width: 100%;
+  height: 3em;
+  text-align: center;
+  font-size: 120%;
+  font-weight: 600;
+  padding: 1em;
+    z-index: 1050;
+}
+.header{
+  position: fixed;
+  top: 0px;
+  background: white;
+  width: 98%;
+  height: 5em;
+  z-index: 1050;
+}
+.header-dropdown{
+  margin-top: 1.1em;
+    text-align: center;
+}
+.header-dropdown-btn{
+    background: white;
+    border-color: rgba(0, 0, 0, 0.15);
+}
+.glyphicon.glyphicon-one-fine-dot:before {
+    content: "\25cf";
+    font-size: 1.5em;
+}
+
+/** css for side course coursenav bar **/
+.coursenav {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  line-height: 1;
+}
+
+.coursenav ul,
+.coursenav ul li,
+.coursenav ul ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.coursenav ul {
+  position: relative;
+  z-index: 500;
+  float: left;
+}
+
+.coursenav ul li {
+  float: left;
+  min-height: 0.05em;
+  line-height: 1em;
+  vertical-align: middle;
+  position: relative;
+}
+
+.coursenav ul li.hover,
+.coursenav ul li:hover {
+  position: relative;
+  z-index: 510;
+  cursor: default;
+}
+
+.coursenav ul ul {
+  visibility: hidden;
+  position: absolute;
+  top: 100%;
+  left: 0px;
+  z-index: 520;
+  width: 100%;
+}
+
+.coursenav ul ul li { float: none; }
+
+.coursenav ul ul ul {
+  top: 0;
+  right: 0;
+}
+
+.coursenav ul li:hover > ul { visibility: visible; }
+
+.coursenav ul ul {
+  top: 0;
+  left: 99%;
+}
+
+.coursenav ul li { float: none; }
+
+.coursenav ul ul { margin-top: 0.05em; }
+
+.coursenav {
+  width: 26em;
+  background: #333333;
+  font-family: 'roboto', Tahoma, Arial, sans-serif;
+  zoom: 1;
+}
+
+.coursenav:before {
+  content: '';
+  display: block;
+}
+
+.coursenav:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.coursenav a, .coursenav div  {
+  display: block;
+  padding: 1em 1.3em;
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.coursenav > ul { width: 26em; }
+
+.coursenav ul ul { width: 26em; }
+
+.coursenav > ul > li > a, .coursenav > ul > li > div {
+  border-right: 0.3em solid #34A65F;
+  color: #ffffff;
+}
+
+.coursenav > ul > li > a:hover { color: #ffffff; }
+
+.coursenav > ul > li a:hover,.coursenav > ul > li div:hover,
+.coursenav > ul > li:hover div,
+.coursenav > ul > li:hover a { background: #34A65F; }
+
+.coursenav li { position: relative; }
+
+.coursenav ul li.has-sub > a:after,.coursenav ul li.has-sub > div:after {
+  content: '»';
+  position: absolute;
+  right: 1em;
+}
+
+.coursenav ul ul li.first {
+  -webkit-border-radius: 0 3px 0 0;
+  -moz-border-radius: 0 3px 0 0;
+  border-radius: 0 3px 0 0;
+}
+
+.coursenav ul ul li.last {
+  -webkit-border-radius: 0 0 3px 0;
+  -moz-border-radius: 0 0 3px 0;
+  border-radius: 0 0 3px 0;
+  border-bottom: 0;
+}
+
+.coursenav ul ul {
+  -webkit-border-radius: 0 3px 3px 0;
+  -moz-border-radius: 0 3px 3px 0;
+  border-radius: 0 3px 3px 0;
+}
+
+.coursenav ul ul { border: 1px solid #34A65F; }
+
+.coursenav ul ul a, .coursenav ul ul div { color: #ffffff; }
+
+.coursenav ul ul a:hover, .coursenav ul ul div:hover { color: #ffffff; }
+
+
+.coursenav ul ul li { border-bottom: 1px solid #0F8A5F; }
+
+.coursenav ul ul li:hover > a, .coursenav ul ul li:hover > div {
+  background: #4eb1ff;
+  color: #ffffff;
+}
+
+.coursenav.align-right > ul > li > a , .coursenav.align-right > ul > li > div {
+  border-left: 0.3em solid #34A65F;
+  border-right: none;
+}
+
+.coursenav.align-right { float: right; }
+
+.coursenav.align-right li { text-align: right; }
+
+.coursenav.align-right ul li.has-sub > a:before, 
+.coursenav.align-right ul li.has-sub > div:before {
+  content: '+';
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  margin-top: -6px;
+}
+
+.coursenav.align-right ul li.has-sub > a:after,
+.coursenav.align-right ul li.has-sub > div:after 
+{ content: none; }
+
+.coursenav.align-right ul ul {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: -100%;
+  z-index: 598;
+  width: 100%;
+}
+
+.coursenav.align-right ul ul li.first {
+  -webkit-border-radius: 3px 0 0 0;
+  -moz-border-radius: 3px 0 0 0;
+  border-radius: 3px 0 0 0;
+}
+
+.coursenav.align-right ul ul li.last {
+  -webkit-border-radius: 0 0 0 3px;
+  -moz-border-radius: 0 0 0 3px;
+  border-radius: 0 0 0 3px;
+}
+
+.coursenav.align-right ul ul {
+  -webkit-border-radius: 3px 0 0 3px;
+  -moz-border-radius: 3px 0 0 3px;
+  border-radius: 3px 0 0 3px;
+}
+.coursenav-tile{
+  text-align: center;
+}
+.coursenav-download{
+  cursor: pointer;
+  float:right;
+}
+.coursenav-download :hover{
+  background: #F2F2F2;
+}
+/** css for side nav ends **/

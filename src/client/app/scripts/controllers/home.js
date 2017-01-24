@@ -8,7 +8,7 @@
  * Controller of the revisionbuddyApp
  */
 angular.module('revisionbuddyApp')
-  .controller('HomeCtrl', function ($scope,$location,buddyapi) {
+  .controller('HomeCtrl', function ($scope,$location,buddyapi,courseViewService) {
     $scope.revisionPackData = {}
     $scope.rowWiseRevisionPackas = {};
     buddyapi.getRevisionPackData()
@@ -40,6 +40,11 @@ angular.module('revisionbuddyApp')
         return "/images/maths.png";
       }
     }
+    $scope.selectSubject = function(subject){
+      console.log(subject);
+      courseViewService.selectRevisionPack(subject);
+      $location.path("/courseview");
+    }
     /**
      * board : "CBSE",
       class : "10",
@@ -48,10 +53,10 @@ angular.module('revisionbuddyApp')
 
 
   var chunk = function(arr, size) {
-    var newArr = [];
-      for (var i=0; i<arr.length; i+=size) {
-          newArr.push(arr.slice(i, i+size));
-      }
-    return newArr;
-};
+      var newArr = [];
+        for (var i=0; i<arr.length; i+=size) {
+            newArr.push(arr.slice(i, i+size));
+        }
+      return newArr;
+    };
   });

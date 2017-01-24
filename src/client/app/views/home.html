@@ -1,9 +1,8 @@
 
-<div class="container-fluid">
-    <div class="row">
-        <span>Some Header <here></here></span>
-    </div>
-    <div class="row">
+<header></header>
+<div class="container-fluid main-container">
+    <div class="row col-md-10 col-md-offset-1">
+        <div class="row">
         <div class="select-course">
             <span> Select a Course</span>
         </div>
@@ -11,8 +10,9 @@
     <div class="row" ng-repeat="subjects in rowWiseRevisionPackas">
         <div class="col-md-3 letter-box" ng-repeat="subject in subjects">
             <div class="container-fluid">
-                <div class="subject-icon">
-                    <img class="img-responsive img-circle" src="{{getSubjectIcon(subject)}}" alt="subject.name"/>
+                <div class="subject-icon" >
+                    <img class="img-responsive img-circle" src="{{getSubjectIcon(subject)}}" alt="subject.name"
+                        ng-click="selectSubject(subject)" />
                 </div>
                 <div class="subject-title">
                     <span>{{subject.board}} {{subject.class}}</span> 
@@ -21,5 +21,6 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </div>

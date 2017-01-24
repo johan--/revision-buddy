@@ -1,0 +1,37 @@
+<div class="header">
+    <div class="container">
+        <div class="col-lg-3 col-md-3 col-sm-3">
+            <img class="img-responsive vnlogo-header" src="/images/vidyanext-logo.png"/>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3">
+            <!--conditinal display for subject select-->
+            <div ng-if="!isHome" class="header-dropdown">
+                <div class="dropdown">
+                    <button class="header-dropdown-btn" type="button" data-toggle="dropdown">
+                        <div>
+                            <span class="glyphicon glyphicon-one-fine-dot" 
+                                    style="color:{{getSubColor(selectedCourse.subject)}}"></span>
+                            {{selectedCourse.board}} {{selectedCourse.subject}}
+                            <span class="caret"></span>
+                        </div>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li ng-repeat="course in courseList">
+                            <a href=""> {{course.board}} {{course.subject}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="row" style="display: initial;margin-top: 1.5em;">
+                <div class="col-md-6">Luke Skywalker</div>
+                <div class="col-md-6">
+                    <span><a>home</a></span>|
+                    <span ng-if="!isHome"><a>Tutor Info</a></span>|
+                    <span><a> logout </a></span>
+                </div>
+            </div>                        
+        </div>
+    </div>
+<div>
