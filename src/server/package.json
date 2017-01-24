@@ -31,8 +31,12 @@
     "moment": "^2.17.1",
     "mongodb": "^2.2.21",
     "mongoose": "^4.7.7",
+    "nodemailer": "^2.7.2",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
+    "request": "^2.79.0",
+    "request-promise": "^4.1.1",
+    "ts-eventemitter": "^0.1.0",
     "underscore": "^1.8.3",
     "winston": "^2.3.1",
     "winston-daily-rotate-file": "^1.4.3"

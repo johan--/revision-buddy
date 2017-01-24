@@ -30,4 +30,29 @@
     public static get revisionContentStore_S3BucketName(): string {
         return process.env.AWS_S3_BUCKET_NAME_REVISIONCONTENT_STORE;
     }
+
+    public static get revisionBuddy_ApiKey(): string {
+        return process.env.REVISIONBUDDY_API_KEY;
+    }
+
+    public static get identity_ApiKey(): string {
+        return process.env.IDENTITY_API_KEY;
+    }
+
+    public static get tutorProfile_Ops_ApiKey(): string {
+        return process.env.TUTORPROFILE_OPS_API_KEY;
+    }
+
+    public static get identityEndPoint(): string {
+        return process.env.IDENTITY_ENDPOINT;
+    }
+
+    public static get tutorProfileManage_EndPoint(): string {
+        return process.env.TUTOR_PROFILESTORE_ENDPOINT;
+    }
+
+    public static get lsGateway_APIEndPoint_BaseUrl(): string {
+        return process.env.LS_GATEWAY_ENDPOINT_BASEURL.replace("/\/$/", "");
+
+    }
 }

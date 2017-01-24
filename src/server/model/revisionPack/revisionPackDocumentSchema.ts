@@ -21,4 +21,4 @@ let revisionPackSchema = new mongoose.Schema({
         timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }
     });
 
-export let Course: mongoose.Model<IRevisionPackDocument> = mongoose.model<IRevisionPackDocument>("revisionPack", revisionPackSchema);
+export let RevisionPack: mongoose.Model<IRevisionPackDocument> = mongoose.model<IRevisionPackDocument>("revisionPack", revisionPackSchema);

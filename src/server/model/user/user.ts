@@ -10,7 +10,8 @@
     active: boolean,
     parent_lead_id: string,
     parent_name: string,
-    course_subscriptions: [
+    lead_id:string,
+    revisionpack_subscriptions: [
         {
             course_id: string,
             tutor_id: string
