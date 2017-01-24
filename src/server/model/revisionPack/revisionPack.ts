@@ -1,4 +1,4 @@
-﻿export interface ICourse {
+﻿export interface IRevisionPack {
     board : string,
     class : string,
     subject: string,

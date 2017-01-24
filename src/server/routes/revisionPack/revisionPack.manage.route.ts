@@ -6,9 +6,9 @@ var jwt = require('express-jwt');
 import {Config as Config} from "./../../config";
 import {AwsConfigManager as AwsConfigManager} from "./../../aws-config"
 import {logger as logger} from "./../../utils/logger";
-import {Course as Course} from "./../../model/course/courseDocumentSchema";
+import {Course as Course} from "./../../model/revisionPack/revisionPackDocumentSchema";
 
-export class CourseController {
+export class RevisionPackController {
 
     public static routes(app: express.Application) {
         let router = express.Router();

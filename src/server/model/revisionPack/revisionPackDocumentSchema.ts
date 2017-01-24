@@ -1,8 +1,8 @@
 ﻿import * as mongoose from "mongoose";
-import {ICourse as ICourse} from "./course";
-import {ICourseDocument as ICourseDocument} from "./courseDocument";
+import {IRevisionPack as IRevisionPack} from "./revisionPack";
+import {IRevisionPackDocument as IRevisionPackDocument} from "./revisionPackDocument";
 
-let courseSchema = new mongoose.Schema({
+let revisionPackSchema = new mongoose.Schema({
     board: String,
     class: String,
     subject: String,
@@ -21,4 +21,4 @@ let courseSchema = new mongoose.Schema({
         timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }
     });
 
-export let Course: mongoose.Model<ICourseDocument> = mongoose.model<ICourseDocument>("course", courseSchema);
+export let Course: mongoose.Model<IRevisionPackDocument> = mongoose.model<IRevisionPackDocument>("revisionPack", revisionPackSchema);
