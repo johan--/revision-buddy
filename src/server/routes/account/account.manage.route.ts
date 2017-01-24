@@ -21,6 +21,8 @@ export class AccountController {
 
         router.post("/register", function (req, res, next) {
 
+            logger.info("enters");
+
             let userName = req.body.user_name;
             User.findOne({ "user_name": userName }, function (err, result) {
 

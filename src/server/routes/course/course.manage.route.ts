@@ -8,12 +8,13 @@ import {AwsConfigManager as AwsConfigManager} from "./../../aws-config"
 import {logger as logger} from "./../../utils/logger";
 import {Course as Course} from "./../../model/course/courseDocumentSchema";
 
-export class ContentController {
+export class CourseController {
 
     public static routes(app: express.Application) {
         let router = express.Router();
         
         router.get("/toc/course/:courseid", function (req, res, next) {
+            let userId = req["user"]["_id"];
             let courseId = req.params.courseid;
 
             let query = { "course_id": courseId };
@@ -28,7 +29,7 @@ export class ContentController {
             });
         });
 
-        router.post("/info", function (req, res, next) {
+        router.post("/create", function (req, res, next) {
 
             let boardName = req.body.board;
             let className = req.body.class;
@@ -49,9 +50,7 @@ export class ContentController {
                 tempCourse.subject = subjectName;
 
                 tempCourse.content = req.body.content;
-
-                logger.info("here");
-
+                
                 tempCourse.save(function (err, result) {
                     if (err)
                         next(err);
@@ -61,7 +60,7 @@ export class ContentController {
             });
         });
 
-        router.put("/coursecontent", function (req, res, next) {
+        router.put("/content", function (req, res, next) {
 
             let course = req.body.course;
 
@@ -89,8 +88,7 @@ export class ContentController {
             });
 
         });
-
-
+        
         router.get("/s3uploadrequest/sign", function (req, res, next) {
 
         });
