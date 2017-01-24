@@ -53,6 +53,17 @@
 
     public static get lsGateway_APIEndPoint_BaseUrl(): string {
         return process.env.LS_GATEWAY_ENDPOINT_BASEURL.replace("/\/$/", "");
+    }
 
+    public static get smtp_UserName(): string {
+        return process.env.SMTP_USER_NAME;
+    }
+
+    public static get smtp_Password(): string {
+        return process.env.SMTP_PASSWORD;
+    }
+
+    public static get default_FromAddress(): string {
+        return process.env.DEFAULT_FROM_ADDRESS;
     }
 }

@@ -91,6 +91,7 @@
     <TypeScriptCompile Include="routes\account\account.manage.route.ts" />
     <TypeScriptCompile Include="routes\revisionPack\revisionPack.manage.route.ts" />
     <TypeScriptCompile Include="server.ts" />
+    <TypeScriptCompile Include="services\mailService.ts" />
     <TypeScriptCompile Include="services\revisionPackService.ts" />
     <TypeScriptCompile Include="services\userService.ts" />
     <TypeScriptCompile Include="typings\globals\automapper-ts\index.d.ts" />

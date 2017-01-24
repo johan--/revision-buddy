@@ -176,10 +176,11 @@ export class RevisionPackController {
                             if (user == null) {
                                 //student not found, create student
                                 let bcrypt = require("bcrypt");
+                                let randomPassword = "vidyanext";
 
                                 let newUser = new User();
                                 newUser.user_name = parentLeadDetails.EmailAddress;
-                                newUser.password_hash = bcrypt.hashSync("vidyanext", 10);
+                                newUser.password_hash = bcrypt.hashSync(randomPassword, 10);
                                 newUser.phone_number = parentLeadDetails.Phone;
                                 newUser.email = parentLeadDetails.EmailAddress;
 
@@ -191,7 +192,7 @@ export class RevisionPackController {
 
                                     //Raise events -- The event should send email to student/parent with username and password
                                     else if (savedUser != null) {
-                                        RevisionPackEventEmitter.event("newUserCreated").emit(savedUser);
+                                        RevisionPackEventEmitter.event("newUserCreated").emit(savedUser, randomPassword);
                                         resolve(newUser);
                                     }
                                 });

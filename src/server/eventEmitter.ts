@@ -4,6 +4,7 @@ import {logger as logger} from "./utils/logger";
 import {Config as Config} from "./config";
 
 import {LeadSquaredManager as LeadSquaredManager} from "./services/leadsquaredManager";
+import {MailService as MailService} from "./services/mailService";
 //import {TutorProfileStoreStatus as TutorProfileStoreStatus} from  "./constants";
 
 export interface RevisionPackEventEmitter extends TsEventEmitter {
@@ -15,7 +16,7 @@ export interface RevisionPackEventEmitter extends TsEventEmitter {
 const RevisionPackEventEmitter: any = TsEventEmitter.create();
 export default RevisionPackEventEmitter;
 
-RevisionPackEventEmitter.event("newUserCreated").on((user) => {
+RevisionPackEventEmitter.event("newUserCreated").on((user, password) => {
 
     logger.info("Writing a custom acitivity on LS. This will be deprecated later");
     logger.info("Event :: newUserCreated");
@@ -29,6 +30,12 @@ RevisionPackEventEmitter.event("newUserCreated").on((user) => {
         if (!err && res.statusCode == 200)
             logger.info("Activity for new user created in revisio buddy is updated on LS");
     });
+
+    MailService.sendMailForNewUserCreated(user, password).then(
+        logger.info("mail sent successfully")).catch(function (err) {
+        logger.error(err);
+    });
+
 });
 
 
