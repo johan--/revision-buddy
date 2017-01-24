@@ -15,7 +15,8 @@ angular
     'ngMessages',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'angular.filter'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -28,6 +29,11 @@ angular
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
         controllerAs: 'login'
+      })
+      .when('/courseview', {
+        templateUrl: 'views/courseview.html',
+        controller: 'CourseviewCtrl',
+        controllerAs: 'courseview'
       })
       .otherwise({
         redirectTo: '/'

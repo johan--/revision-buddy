@@ -1,1 +1,25 @@
-<p>This is the home view.</p>
+
+<div class="container-fluid">
+    <div class="row">
+        <span>Some Header <here></here></span>
+    </div>
+    <div class="row">
+        <div class="select-course">
+            <span> Select a Course</span>
+        </div>
+    </div>
+    <div class="row" ng-repeat="subjects in rowWiseRevisionPackas">
+        <div class="col-md-3 letter-box" ng-repeat="subject in subjects">
+            <div class="container-fluid">
+                <div class="subject-icon">
+                    <img class="img-responsive img-circle" src="{{getSubjectIcon(subject)}}" alt="subject.name"/>
+                </div>
+                <div class="subject-title">
+                    <span>{{subject.board}} {{subject.class}}</span> 
+                    <br>
+                    <span>{{subject.subject}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

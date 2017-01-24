@@ -24,15 +24,17 @@
     <div class="header">
     </div>
 
-    <div class="container">
-    <div ng-view=""></div>
+    <div class="container-fluid">
+      <div class=" row col-md-10 col-md-offset-1">
+        <div ng-view=""></div>
+      </div>
     </div>
 
-    <div class="footer">
+    <!--<div class="footer">
       <div class="container">
         <p><span></span> Facing issues? Email us at support@vidyanext.com</p>
       </div>
-    </div>
+    </div>-->
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -57,6 +59,7 @@
 	<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
 	<script src="bower_components/angular-touch/angular-touch.js"></script>
   <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="bower_components/angular-filter/dist/angular-filter.min.js"></script>
 
   <script src="bower_components/toastr/toastr.js"></script>
   <script src="bower_components/angular-cookies/angular-cookies.js"></script>
@@ -67,10 +70,11 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/login.js"></script>
         <script src="scripts/controllers/home.js"></script>
         <script src="scripts/services/buddyapiservice.js"></script>
+        <script src="scripts/controllers/courseview.js"></script>
+        <script src="scripts/services/courseviewservice.js"></script>
         <!-- endbuild -->
 </body>
 </html>

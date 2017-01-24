@@ -31,3 +31,21 @@ body {
 .login-btn{
   background: #F58635;
 }
+.subject-icon{
+  width: 60%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+.subject-icon :hover{
+  -webkit-box-shadow: 0px 0px 18px 6px rgba(0, 0, 0, .5);
+      box-shadow: 0px 0px 18px 6px rgba(0, 0, 0, .5);
+}
+.subject-title{
+  font-size: 120%;
+  text-align: center;
+  font-weight: 600;
+}
+.select-course{
+  font-size: 200%;
+  text-align: center;
+}
