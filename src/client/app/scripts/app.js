@@ -35,6 +35,11 @@ angular
         controller: 'CourseviewCtrl',
         controllerAs: 'courseview'
       })
+      .when('/tutorinfo', {
+        templateUrl: 'views/tutorinfo.html',
+        controller: 'TutorinfoCtrl',
+        controllerAs: 'tutorinfo'
+      })
       .otherwise({
         redirectTo: '/'
       });
