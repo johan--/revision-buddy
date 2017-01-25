@@ -113,7 +113,7 @@ body {
     height: 100%;
     left: 0;
     top: 0;
-    z-index: 1000000;
+    z-index: 300;
     background: url("/images/loader.gif") no-repeat 50% 50%;
     background-color: rgba(0, 0, 0, 0.15);
 }
@@ -250,7 +250,7 @@ body {
 .coursenav li { position: relative; }
 
 .coursenav ul li.has-sub > a:after,.coursenav ul li.has-sub > div:after {
-  content: '»';
+  content: '>';
   position: absolute;
   right: 1em;
 }
