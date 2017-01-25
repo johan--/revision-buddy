@@ -32,10 +32,10 @@ RevisionPackEventEmitter.event("newUserCreated").on((user, password) => {
             logger.info("Activity for new user created in revisio buddy is updated on LS");
     });
 
-    //MailService.sendMailForNewUserCreated(user, password).then(
-    //    logger.info("mail sent successfully")).catch(function (err) {
-    //    logger.error(err);
-    //});
+    MailService.sendMailForNewUserCreated(user, password).then(
+        logger.info("mail sent successfully")).catch(function (err) {
+        logger.error(err);
+    });
 
 });
 
@@ -63,9 +63,9 @@ RevisionPackEventEmitter.event("passwordReset").on((user, password) => {
     logger.info("Writing a custom acitivity on LS. This will be deprecated later");
     logger.info("Event :: passwordReset");
     
-    //MailService.sendMailForNewUserCreated(user, password).then(
-    //    logger.info("mail sent successfully")).catch(function (err) {
-    //    logger.error(err);
-    //});
+    MailService.sendMailForPasswordReset(user, password).then(
+        logger.info("mail sent successfully")).catch(function (err) {
+        logger.error(err);
+    });
 
 });
