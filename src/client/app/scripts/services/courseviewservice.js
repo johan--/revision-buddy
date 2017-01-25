@@ -29,5 +29,5 @@ angular.module('revisionbuddyApp')
     this.getSelectedRevisionPack = function(){
       return this.selectedPack;
     }
-
+    
   });

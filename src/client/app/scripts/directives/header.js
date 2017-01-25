@@ -13,7 +13,6 @@ angular.module('revisionbuddyApp')
       restrict: 'E',
       link: function postLink(scope, element, attrs) {
         scope.isHome = $location.url() === "/home" || $location.url() === "/";
-        console.log(scope.isHome);
         if(!scope.isHome){
           scope.courseList =[];
           scope.selectedCourse = courseViewService.selectedPack;
@@ -22,6 +21,7 @@ angular.module('revisionbuddyApp')
                scope.courseList = rPack;
             });
         }
+        scope.userObj = buddyapi.getLoggedInUser();
         scope.changeCourse = function(course){
             courseViewService.selectRevisionPack(course);
             scope.selectedCourse = courseViewService.selectedPack;

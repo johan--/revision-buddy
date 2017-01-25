@@ -12,14 +12,14 @@ angular.module('revisionbuddyApp')
     $scope.revisionPackData = {}
     $scope.rowWiseRevisionPackas = {};
     buddyapi.getRevisionPackData()
-    .then(function(data){
-      $scope.revisionPackData = data;
-      $scope.rowWiseRevisionPackas = chunk(data,4);
-      console.log($scope.revisionPackData)
-    },function(err){
-      //handle error
-      console.log(err);
-    });
+      .then(function(data){
+        $scope.revisionPackData = data;
+        $scope.rowWiseRevisionPackas = chunk(data,4);
+        console.log($scope.revisionPackData)
+      },function(err){
+        //handle error
+        console.log(err);
+      });
     //onload fetch courseDetails from api
     $scope.getSubjectIcon = function(subject){
       var _sbuName = subject.subject.toLowerCase();
