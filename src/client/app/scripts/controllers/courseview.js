@@ -18,6 +18,21 @@ angular.module('revisionbuddyApp')
       $scope.toggleCollapseCourseNav = function(){
           $scope.showCollapseCourseNav = !$scope.showCollapseCourseNav;
       }
+      $scope.downloadpdf = function(){
+        buddyapi.getTOCContentUrl($scope.contentNode.file_name)
+            .then(function(pdfUrl){
+                var link = document.createElement('a');
+                link.href = pdfUrl;
+                link.targer = "_self";
+                link.download = $scope.contentNode.file_name+".pdf";
+                document.body.appendChild(link);
+                console.log(link);
+                link.click();
+              },
+              function(err){
+
+              });
+      }
       $rootScope.$on('revisionPackageChanged', function () {
         //update rev package this trigger course nav redraw
         $scope.revisionCourse = courseViewService.selectedPack;
@@ -32,6 +47,7 @@ angular.module('revisionbuddyApp')
           $scope.contentNode = data.node;
           $scope.contentTitle = $scope.contentNode.node_name; 
           $scope.showGView = true;
+          $scope.showCollapseCourseNav = false;
       });
 
       $window.pdfLoaded=function(){
