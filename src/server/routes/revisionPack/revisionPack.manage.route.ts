@@ -6,6 +6,7 @@ import * as request from "request";
 var jwt = require('express-jwt');
 var url = require("url");
 var _ = require("lodash");
+var passwordGenerator = require('generate-password');
 
 import {Config as Config} from "./../../config";
 import {AwsConfigManager as AwsConfigManager} from "./../../aws-config"
@@ -16,6 +17,7 @@ import {UserService as UserService}  from "./../../services/userService";
 import {RevisionPackService as RevisionPackService}  from "./../../services/revisionPackService";
 import {LeadSquaredManager as LeadSquaredManager} from "./../../services/leadsquaredManager";
 import RevisionPackEventEmitter from './../../eventEmitter';
+
 
 export class RevisionPackController {
 
@@ -176,24 +178,39 @@ export class RevisionPackController {
                             if (user == null) {
                                 //student not found, create student
                                 let bcrypt = require("bcrypt");
-                                let randomPassword = "vidyanext";
+                                let randomPassword = passwordGenerator.generate({
+                                    length: 10,
+                                    numbers: false
+                                }); //"vidyanext";
+
+                                logger.info(randomPassword);
 
                                 let newUser = new User();
                                 newUser.user_name = parentLeadDetails.EmailAddress;
                                 newUser.password_hash = bcrypt.hashSync(randomPassword, 10);
                                 newUser.phone_number = parentLeadDetails.Phone;
                                 newUser.email = parentLeadDetails.EmailAddress;
-
-                                newUser.revisionpack_subscriptions = [{ course_id: courseDetails._id, tutor_id: tutorDetails._id }];
+                                newUser.lead_id = parentLeadId;
+                                newUser.parent_lead_id = parentLeadId;
 
                                 newUser.save(function (err, savedUser) {
                                     if (err)
                                         reject(err);
 
-                                    //Raise events -- The event should send email to student/parent with username and password
                                     else if (savedUser != null) {
                                         RevisionPackEventEmitter.event("newUserCreated").emit(savedUser, randomPassword);
-                                        resolve(newUser);
+                                        
+                                        savedUser.revisionpack_subscriptions = [{ course_id: courseDetails._id, tutor_id: tutorDetails._id }];
+
+                                        User.findByIdAndUpdate(savedUser._id, savedUser, function (err, updatedUser) {
+                                            if (err)
+                                                reject(err)
+
+                                            if (updatedUser != null) {
+                                                RevisionPackEventEmitter.event("newRevisionPackSubscribed").emit(savedUser, { board: boardName, class: className, subject: subjectName });
+                                                resolve(newUser);
+                                            }
+                                        });
                                     }
                                 });
                             }
@@ -207,7 +224,7 @@ export class RevisionPackController {
                                             reject(err);
 
                                         if (result != null) {
-                                            RevisionPackEventEmitter.event("newRevisionPackSubscribed").emit(user, result);
+                                            RevisionPackEventEmitter.event("newRevisionPackSubscribed").emit(user, { board: boardName, className: className, subject: subjectName });
                                             resolve(result);
                                         }
                                     });
@@ -224,8 +241,8 @@ export class RevisionPackController {
             });
 
             Promise.all(requests).then(function (results) {
-                logger.info(" The results are ", results);
-                res.status(200).send(results)
+                logger.info(" Processed all the requests");
+                res.status(200).send("Processing completed successfully");
             }).catch(function (err) {
                 next(err);
             });

@@ -21,7 +21,8 @@ export class ExpressConfigManager {
             {
                 path: [
                     new RegExp('/api/account.*/', 'i'),
-                    new RegExp('/api/revisionpack.*/', 'i'),
+                    new RegExp('/api/revisionpack/salecompleted.*/', 'i'),
+                    //new RegExp('/api/revisionpack.*/', 'i'),
                     //new RegExp('/api/tutor/profile/recommend.*/', 'i')
                 ]
             }));

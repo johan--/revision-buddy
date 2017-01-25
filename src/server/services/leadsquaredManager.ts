@@ -27,7 +27,7 @@ export class LeadSquaredManager {
     public createActivity(user: IUserDocument, activityNote : string, activityEvent: number, next): any {
 
         let options = {
-            url: this.lsGatewayEndPointBaseUrl + "/api/v2/LeadManagement/Tutor/CreateActivity",
+            url: this.lsGatewayEndPointBaseUrl + "/api/v2/LeadManagement/Parent/CreateActivity",
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

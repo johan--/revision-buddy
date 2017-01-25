@@ -8,6 +8,6 @@
     UnderProcess: number;
     AccountActivated: number;
     ProfileReviewed: number;
-    RevisionBuddyUserCreated: number;
-    RevisionBuddyNewPackSubscribed: number;
+    RevisionPackAcccountCreated: number;
+    RevisionPackNewPackSubscribed: number;
 }

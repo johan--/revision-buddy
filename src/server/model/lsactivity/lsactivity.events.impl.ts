@@ -11,8 +11,8 @@ export class LSActivityEventsImpl implements LSActivityEvents {
     AccountActivated: number;
     ProfileReviewed: number;
 
-    RevisionBuddyUserCreated: number;
-    RevisionBuddyNewPackSubscribed: number;
+    RevisionPackAcccountCreated: number;
+    RevisionPackNewPackSubscribed: number;
 
     constructor() {
         if (process.env.NODE_ENV === "DEVELOPMENT") {
@@ -26,8 +26,8 @@ export class LSActivityEventsImpl implements LSActivityEvents {
             this.AccountActivated = 0;
             this.ProfileReviewed = 230;
 
-            this.RevisionBuddyUserCreated = 219;
-            this.RevisionBuddyNewPackSubscribed = 219;
+            this.RevisionPackAcccountCreated = 218;
+            this.RevisionPackNewPackSubscribed = 217;
         }
         else {
             this.AccountCreated = 229;
@@ -40,8 +40,8 @@ export class LSActivityEventsImpl implements LSActivityEvents {
             this.AccountActivated = 0;
             this.ProfileReviewed = 236;
 
-            this.RevisionBuddyUserCreated = 229;
-            this.RevisionBuddyNewPackSubscribed = 229;
+            this.RevisionPackAcccountCreated = 216;
+            this.RevisionPackNewPackSubscribed = 217;
         }
     }
 }

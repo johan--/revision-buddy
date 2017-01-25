@@ -23,7 +23,7 @@ RevisionPackEventEmitter.event("newUserCreated").on((user, password) => {
 
     let lsManager = new LeadSquaredManager();
 
-    lsManager.createActivity(user, "New user created in the revision buddy", lsManager.activityEventConstants.RevisionBuddyUserCreated, function (err, res) {
+    lsManager.createActivity(user, "New account created revision buddy", lsManager.activityEventConstants.RevisionPackAcccountCreated, function (err, res) {
         if (err)
             logger.error("Unable to create an activity on leadsqaured for the new user created in revision buddy");
 
@@ -31,10 +31,10 @@ RevisionPackEventEmitter.event("newUserCreated").on((user, password) => {
             logger.info("Activity for new user created in revisio buddy is updated on LS");
     });
 
-    MailService.sendMailForNewUserCreated(user, password).then(
-        logger.info("mail sent successfully")).catch(function (err) {
-        logger.error(err);
-    });
+    //MailService.sendMailForNewUserCreated(user, password).then(
+    //    logger.info("mail sent successfully")).catch(function (err) {
+    //    logger.error(err);
+    //});
 
 });
 
@@ -46,7 +46,8 @@ RevisionPackEventEmitter.event("newRevisionPackSubscribed").on((user, revisionPa
 
     let lsManager = new LeadSquaredManager();
 
-    lsManager.createActivity(user, "New user created in the revision buddy", lsManager.activityEventConstants.RevisionBuddyNewPackSubscribed, function (err, res) {
+    lsManager.createActivity(user, "New revision pack  for Board: " + revisionPackSubscribed.board + ", Class: " + revisionPackSubscribed.class + ", Subject: " + revisionPackSubscribed.subject +
+        " added for the user", lsManager.activityEventConstants.RevisionPackNewPackSubscribed, function (err, res) {
         if (err)
             logger.error("Unable to create an activity on leadsqaured for the new subscription pack subscribed by user in revision buddy");
 
