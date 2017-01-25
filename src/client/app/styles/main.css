@@ -131,9 +131,9 @@ body {
 .pdfWait{
     position: absolute;
     width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
+    height: 450px;
+    left: 0px;
+    top: 90px;
     z-index: 300;
     background: url("/images/loader.gif") no-repeat 50% 50%;
     background-color: rgba(0, 0, 0, 0.15);
@@ -170,6 +170,7 @@ body {
   margin: 0;
   border: 0;
   line-height: 1;
+  z-index: 500;
 }
 
 .coursenav ul,
@@ -270,7 +271,12 @@ body {
 
 .coursenav > ul > li a:hover,.coursenav > ul > li div:hover,
 .coursenav > ul > li:hover div,
-.coursenav > ul > li:hover a { background:#29ABE2; color: white }
+.coursenav > ul > li:hover a { 
+    background:#29ABE2; 
+    color: white;
+    display: block;
+    overflow-wrap: break-word; 
+  }
 
 .coursenav li { position: relative; }
 
@@ -450,6 +456,19 @@ select:-webkit-autofill:focus{
 /** css for side nav ends **/
 
 /** media queries **/
+.coursenav-menu-collapse{
+  visibility: hidden;
+  width: 0px;
+  height: 0px;
+}
+.coursenav-menu-collapse-container{
+  visibility: hidden;
+  width: 0px;
+  height: 0px;
+}
+.pdf-container{
+  width:100%; height:450px;
+}
 @media screen and (max-width: 768px) {
   #coursenav-container{
     visibility: hidden;
@@ -460,5 +479,41 @@ select:-webkit-autofill:focus{
     visibility: hidden;
     width: 0px;
     height: 0px;
+  }
+  .courseview-title{
+    position: fixed;
+    top: 80px;
+    width: 90%;
+    left: 70px;
+
+    height: 50px;
+    background: white;
+    vertical-align: middle;
+    line-height: 50px;
+    display: flex;
+    margin-bottom: 10px;
+  }
+  .coursenav-menu-collapse{
+    visibility: visible;
+    position: fixed;
+    top: 84px;
+    left: 14px;
+    font-size: 250%;
+  }
+  .coursenav-menu-collapse-container{
+    visibility: visible;
+    position: fixed;
+    z-index: 600;
+    top: 120px;
+    left: 14px;
+    font-size: 250%;
+    width: 40%;
+  }
+  .pdf-container{
+    width: 100%;
+    height: 450px;
+    position: absolute;
+    top: 50px;
+    left: 0px;
   }
 }

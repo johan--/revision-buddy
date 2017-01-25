@@ -13,6 +13,11 @@ angular.module('revisionbuddyApp')
       $scope.revisionCourse = courseViewService.selectedPack;
       $scope.frameUrl = "/views/selectcourse.html";
       $scope.showGView = false;
+      $scope.showCollapseCourseNav = false;
+      
+      $scope.toggleCollapseCourseNav = function(){
+          $scope.showCollapseCourseNav = !$scope.showCollapseCourseNav;
+      }
       $rootScope.$on('revisionPackageChanged', function () {
         //update rev package this trigger course nav redraw
         $scope.revisionCourse = courseViewService.selectedPack;
