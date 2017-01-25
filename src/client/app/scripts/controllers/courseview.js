@@ -8,12 +8,11 @@
  * Controller of the revisionbuddyApp
  */
 angular.module('revisionbuddyApp')
-  .controller('CourseviewCtrl', function ($scope,buddyapi,courseViewService) {
+  .controller('CourseviewCtrl', function ($scope,$rootScope,buddyapi,courseViewService) {
       // see if there is course selected by user
       $scope.revisionCourse = courseViewService.selectedPack;
-      $scope.$watch('revisionCourse', function (newVal, oldVal, scope) {
-        if(newVal){
-          $scope.revisionCourse = newVal;
-        }  
-      });
+      $rootScope.$on('revisionPackageChanged', function () {
+        //update rev package this trigger course nav redraw
+        $scope.revisionCourse = courseViewService.selectedPack;
+      })
   });

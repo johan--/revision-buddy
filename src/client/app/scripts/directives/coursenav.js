@@ -16,14 +16,15 @@ angular.module('revisionbuddyApp')
         courseContent: '=content'
       },
       controller: function($scope) {
-       console.log($scope.courseContent);
-       $scope.triggerDownload = function(child){
-         alert(child.node_name);
-       }
-       $scope.triggerContentView = function(child){
-         alert(child.node_name);
-       }
-    },
+        console.log($scope.courseContent);
+        //$scope.courseContent = courseViewService.getSelectedRevisionPack();
+        $scope.triggerDownload = function(child){
+          alert(child.node_name);
+        }
+        $scope.triggerContentView = function(child){
+          alert(child.node_name);
+        }
+      },
       link: function postLink(scope, element, attrs) {
       }
     };

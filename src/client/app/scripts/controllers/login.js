@@ -14,9 +14,9 @@ angular.module('revisionbuddyApp')
       'AngularJS',
       'Karma'
     ];
-    var userLoginDeatails = $scope.userLoginDeatails = {};
+    $scope.userLoginDeatails = {"user_name":"",password:""};
     $scope.doLogin = function(){
-      buddyapi.loginWithUserName(userLoginDeatails)
+      buddyapi.loginWithUserName($scope.userLoginDeatails)
         .then(function(){
           //login successful go to home page
           $location.path("/home");
@@ -24,6 +24,7 @@ angular.module('revisionbuddyApp')
         function(err){
           //handle error
           console.log(err);
+          toastr.error("login failed");
         })
     }
   });

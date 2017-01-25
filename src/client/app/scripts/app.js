@@ -38,4 +38,12 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  });
+  })
+  .run(function($rootScope,$location,buddyapi){
+      // register listener to watch route changes
+      $rootScope.$on( "$routeChangeStart", function(event, next, current) {   
+        if(!buddyapi.getLoggedInUser()){
+          $location.path('/login')
+        }
+    });
+  });;

@@ -16,12 +16,15 @@ angular.module('revisionbuddyApp')
         console.log(scope.isHome);
         if(!scope.isHome){
           scope.courseList =[];
-          scope.courseTitles = []
           scope.selectedCourse = courseViewService.selectedPack;
           buddyapi.getRevisionPackData()
             .then(function(rPack){
                scope.courseList = rPack;
             });
+        }
+        scope.changeCourse = function(course){
+            courseViewService.selectRevisionPack(course);
+            scope.selectedCourse = courseViewService.selectedPack;
         }
         scope.getSubColor = function(sub){
           console.log("get sub color "+sub);
