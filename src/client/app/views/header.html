@@ -15,9 +15,10 @@
                             <span class="caret"></span>
                         </div>
                     </button>
-                    <ul class="dropdown-menu">
-                        <li ng-repeat="course in courseList">
-                            <a href=""> {{course.board}} {{course.subject}}</a>
+                    <ul class="dropdown-menu dropdown-menu-left header-dropdown-list">
+                        <li ng-repeat="course in courseList" ng-click="changeCourse(course)">
+                            <!--<a href=""> {{course.board}} {{course.subject}}</a>-->
+                            <div class="tile">{{course.board}} {{course.subject}}</div>
                         </li>
                     </ul>
                 </div>

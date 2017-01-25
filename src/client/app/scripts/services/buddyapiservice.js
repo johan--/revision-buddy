@@ -8,35 +8,12 @@
  * Service in the revisionbuddyApp.
  */ 
 angular.module('revisionbuddyApp')
-  .service('buddyapi', function ($http,$location,$q,courseViewService) {
+  .service('buddyapi', function ($rootScope,$http,$location,$q,$cookies,myConfig,courseViewService) {
     // AngularJS will instantiate a singleton by calling "new" on this function
     /**
      * details of logged in user if any
      */
     var userDetails = null;
-
-    var mocked_user = {user_name: "luke",
-                        firstname: "luke",
-                        lastname: "skywalker",
-                        email: "luke_skywalker@starfleet.com",
-                        email_confirmed: true,
-                        phone_number: "1234567890",
-                        phone_number_confirmed: true,
-                        active: true,
-                        parent_lead_id: "",
-                        parent_name: "darth vader",
-                        course_subscriptions: [
-                            {
-                                course_id: "CBSE X MATHS",
-                                tutor_id: "obi-wan"
-                            },
-                            {
-                                course_id: "CBSE X MATHS",
-                                tutor_id: "obi-wan"
-                            }
-                          ]
-                        }
-
     var mockedRevisionPacks = [
                             {
                               board : "CBSE",
@@ -167,32 +144,90 @@ angular.module('revisionbuddyApp')
                               }]
                           }
                           ]
+    var service = this;
     this.getLoggedInUser = function(){
-      return userDetails;
+      if (service.token) {
+                return service.userOtpObj;
+            } else {
+                var token = $cookies.get('_st');
+                if (token) {
+                  service.validateUser(token).then(function(result){
+                      return result;
+                  }, function(err){
+                      console.log("Error : ", err);
+                  });
+                }
+            }
+            return null;
     }
+    service.validateUser = function(token) {
+            var deferred = $q.defer();
+
+            $http.get(myConfig.accountValidationUrl(token),{cache: false})
+                .then(function(response) {
+                    console.log(response);
+                    if (response.data == "Invalid Token") {
+                        deferred.reject();
+                    }
+                    service.user_name = response.data.token.user_name;
+                    //service.setLoggedInUser(token, response.data.token);
+                    deferred.resolve(response);
+                }, function(err) {
+                    console.log("Error : ", err);
+                    deferred.reject(err);
+                });
+            return deferred.promise;
+        }
     /**
-     * accepts token validates against local token and agaisnt api
+     * var userData = {"user_name":"","password": $scope.loginPassword }
      */
-    this.validateUser = function(token){
-      //do api call to validate the user token
-      var userDetails = mocked_user;
-      getTocContents();
-      defer.resolve(userDetails);
-      return defer.promise;
+    service.loginWithUserName = function(userLoginData){
+    //   var defer = $q.defer();
+    //   //do api call to loign
+    //   //make call to getTocContents
+    //   //for now mocking
+    //   var userDetails = mocked_user;
+    //   getTocContents();
+    //   defer.resolve(userDetails);
+    //   return defer.promise;
+    //make a call to identity login API
+            var deferred = $q.defer();
+            service.userLoginData = userLoginData;
+            console.log("logging with");
+            console.log(service.userLoginData);
+            $http({
+                method: 'POST',
+                url: myConfig.loginWithUserNameUrl(),
+                data: service.userLoginData,
+                headers: { 'Content-Type': 'application/json' }
+            })
+                .then(function (response) {
+                    //service.user_name = response.data.user.user_name;
+                    console.log(response.data.user);
+                    service.hideNavbar = false;
+                    service.setLoggedInUser(response.data.token, userLoginData);
+                    console.log("user login successful with username and password");
+                    deferred.resolve(response);
+                },
+                function (err) {
+                    console.log("Error : ", err);
+                    service.otpError = true;
+                    deferred.reject(err);
+                });
+
+            return deferred.promise;
     }
-    /**
-     * var userData = {"username":"","password": $scope.loginPassword }
-     */
-    this.loginWithUserName = function(userLoginDetails){
-      var defer = $q.defer();
-      //do api call to loign
-      //make call to getTocContents
-      //for now mocking
-      var userDetails = mocked_user;
-      getTocContents();
-      defer.resolve(userDetails);
-      return defer.promise;
-    }
+    service.setLoggedInUser = function(token, userObj) {
+            if (service.token != token) {
+                service.token = token;
+                service.userOtpObj = userObj;
+                $cookies.put('_st', service.token);
+                $cookies.putObject('_ttrobj', service.userOtpObj);
+                $rootScope.$emit('userChanged', {
+                    data: userObj
+                });
+            }
+        };
     /**
      * iterates over course_ids in userData 
      * and fetches courseDetails 
@@ -204,7 +239,7 @@ angular.module('revisionbuddyApp')
       courseViewService.updateRevisionPackList(mockedRevisionPacks);
     }
 
-    this.getRevisionPackData = function(){
+    service.getRevisionPackData = function(){
       var defer = $q.defer();
       //do api call to fetch revsion packs 
       //for now mocking

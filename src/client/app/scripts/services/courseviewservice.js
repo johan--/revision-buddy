@@ -8,7 +8,7 @@
  * Service in the revisionbuddyApp.
  */
 angular.module('revisionbuddyApp')
-  .service('courseViewService', function ($filter) {
+  .service('courseViewService', function ($rootScope, $filter) {
     // see if there is course selected by user
     var revisionPacks = [];
     this.selectedPack = {};
@@ -21,16 +21,13 @@ angular.module('revisionbuddyApp')
     }
     //TODO: figure out how to select a course
     this.selectRevisionPack = function(revisionPack){
-      
-          // var found = $filter('filter')(revisionPacks, {course_id: course_id}, true);
-          // if (found.length) { 
-          //     selectedPack = found[0];
-          // } else {
-          //     toastr.error("Revision package for course_id "+course_id+" not available.");
-          // }
+          console.log("pack changed");
+          console.log(revisionPack);
           this.selectedPack = revisionPack;
+          $rootScope.$broadcast('revisionPackageChanged');
     }
     this.getSelectedRevisionPack = function(){
       return this.selectedPack;
     }
+
   });
