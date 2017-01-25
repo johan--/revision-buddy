@@ -21,7 +21,29 @@ angular.module('revisionbuddyApp')
         //$scope.courseContent = courseViewService.getSelectedRevisionPack();
         $scope.triggerDownload = function(child){
           console.log(child);
-          
+          buddyapi.getTOCContentUrl(child.file_name)
+            .then(function(pdfUrl){
+                var link = document.createElement('a');
+                link.href = pdfUrl;
+                link.targer = "_self";
+                var fname = trim(child.node_name,'"');
+                link.download = fname+".pdf";
+                document.body.appendChild(link);
+                console.log(link);
+                link.click();
+              },
+              function(err){
+
+              });
+        }
+        function trim(s, mask) {
+            while (~mask.indexOf(s[0])) {
+                s = s.slice(1);
+            }
+            while (~mask.indexOf(s[s.length - 1])) {
+                s = s.slice(0, -1);
+            }
+            return s;
         }
         $scope.triggerContentView = function(child){
           buddyapi.getTOCContentUrl(child.file_name)
