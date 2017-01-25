@@ -92,6 +92,34 @@ export class AccountController {
                 })(req, res, next);
         });
 
+        router.get("/user/username/:username", function (req, res, next) {
+            let userName = req.params.username;
+
+            User.findOne({ "user_name": userName }, function (err, doc) {
+                if (err)
+                    next(err);
+
+                if (doc == null)
+                    return res["boom"].notFound("Username not found");
+
+                return res.status(200).send();
+            });
+        });
+
+        router.get("/user/useremail/:email", function (req, res, next) {
+            let userEmail = req.params.email;
+
+            User.findOne({ "email": userEmail }, function (err, doc) {
+                if (err)
+                    next(err);
+
+                if (doc == null)
+                    return res["boom"].notFound("User not found");
+
+                return res.status(200).send();
+            });
+        });
+
         router.post("/forgotpassword/username/:username", function (req, res, next) {
 
             let userName = req.params.username;
