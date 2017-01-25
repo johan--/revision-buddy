@@ -85,15 +85,19 @@ body {
     background: white;
     border-color: rgba(0, 0, 0, 0.15);
     width: 200px;
+    text-align: left;
+    font-size: 120%;
 }
 .header-dropdown-list{
   width: 200px;
 }
 .tile{
   background: white;
-  height: 20px;
+  height: 35px;
   font-size: 120%;
   text-align: left;
+  cursor: pointer;
+   padding-left: 5px;
 }
 .tile:hover{
   background: gray;
