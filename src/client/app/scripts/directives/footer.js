@@ -9,7 +9,7 @@
 angular.module('revisionbuddyApp')
   .directive('footer', function () {
     return {
-      template: 
+      template:
         '<div class="footer">Facing issues? Email us at <a href="mailto:support@vidyanext.com">support@vidyanext.com</a></div>',
       restrict: 'E',
       link: function postLink(scope, element, attrs) {
