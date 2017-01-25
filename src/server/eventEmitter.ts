@@ -10,6 +10,7 @@ import {MailService as MailService} from "./services/mailService";
 export interface RevisionPackEventEmitter extends TsEventEmitter {
     event(name: 'newUserCreated'): TsEventEmitter.Event1<this, Object>;
     event(name: 'newRevisionPackSubscribed'): TsEventEmitter.Event1<this, Object>;
+    event(name: 'passwordReset'): TsEventEmitter.Event1<this, Object>;
     event(name: string): TsEventEmitter.Event;
 }
 
@@ -54,4 +55,17 @@ RevisionPackEventEmitter.event("newRevisionPackSubscribed").on((user, revisionPa
         if (!err && res.statusCode == 200)
             logger.info("Activity for new revision pack subscribed for user in revision buddy is updated on LS");
     });
+});
+
+
+RevisionPackEventEmitter.event("passwordReset").on((user, password) => {
+
+    logger.info("Writing a custom acitivity on LS. This will be deprecated later");
+    logger.info("Event :: passwordReset");
+    
+    //MailService.sendMailForNewUserCreated(user, password).then(
+    //    logger.info("mail sent successfully")).catch(function (err) {
+    //    logger.error(err);
+    //});
+
 });

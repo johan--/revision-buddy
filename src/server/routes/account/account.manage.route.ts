@@ -5,10 +5,12 @@ import * as Joi from "joi"
 import * as http from "request";
 import * as jwt from "express-jwt";
 import * as _ from "underscore";
+var passwordGenerator = require('generate-password');
 
 import {logger as logger} from "./../../utils/logger";
 import {User as User} from "./../../model/user/userDocumentSchema";
 import {Config as Config} from "./../../config";
+import RevisionPackEventEmitter from './../../eventEmitter';
 
 export class AccountController {
 
@@ -79,6 +81,74 @@ export class AccountController {
                     let token = jwt.sign({ data: user }, Config.webtokenSignatureSecretKey); 
                     return res.status(200).send({ 'token': token });
                 })(req, res, next);
+        });
+
+        router.post("/forgotpassword/username/:username", function (req, res, next) {
+
+            let userName = req.params.username;
+
+            User.findOne({ user_name: userName }, function (err, userDoc) {
+                if (err) {
+                    next(err);
+                }
+
+                if (userDoc == null) {
+                    return res["boom"].notFound("Username not found");
+                }
+
+                let bcrypt = require("bcrypt");
+                let randomPassword = passwordGenerator.generate({
+                    length: 10,
+                    numbers: false
+                }); 
+
+                logger.info(randomPassword);
+                userDoc.password_hash = bcrypt.hashSync(randomPassword, 10);
+
+                User.findByIdAndUpdate(userDoc._id, userDoc, function (err, updatedUser) {
+                    if (err)
+                        next(err);
+                    
+                    RevisionPackEventEmitter.event("passwordReset").emit(updatedUser, randomPassword);
+                    return res.status(200).send(updatedUser._id);
+
+
+                });
+            });
+
+        });
+
+        router.post("/forgotpassword/useremail/:email", function (req, res, next) {
+
+            let userEmail = req.params.email;
+
+            User.findOne({ email: userEmail }, function (err, userDoc) {
+                if (err) {
+                    next(err);
+                }
+
+                if (userDoc == null) {
+                    return res["boom"].notFound("User not found");
+                }
+
+                let bcrypt = require("bcrypt");
+                let randomPassword = passwordGenerator.generate({
+                    length: 10,
+                    numbers: false
+                });
+
+                logger.info(randomPassword);
+                userDoc.password_hash = bcrypt.hashSync(randomPassword, 10);
+
+                User.findByIdAndUpdate(userDoc._id, userDoc, function (err, updatedUser) {
+                    if (err)
+                        next(err);
+
+                    RevisionPackEventEmitter.event("passwordReset").emit(updatedUser, randomPassword);
+                    return res.status(200).send(updatedUser._id);
+                });
+            });
+
         });
 
         return router;
