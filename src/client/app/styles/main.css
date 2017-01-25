@@ -172,7 +172,7 @@ body {
 .coursenav ul ul { margin-top: 0.05em; }
 
 .coursenav {
-  width: 26em;
+  width: 20em;
   background: #333333;
   font-family: 'roboto', Tahoma, Arial, sans-serif;
   zoom: 1;
@@ -197,9 +197,9 @@ body {
   text-transform: uppercase;
 }
 
-.coursenav > ul { width: 26em; }
+.coursenav > ul { width: 20em; }
 
-.coursenav ul ul { width: 26em; }
+.coursenav ul ul { width: 20em; }
 
 .coursenav > ul > li > a, .coursenav > ul > li > div {
   border-right: 0.3em solid #34A65F;

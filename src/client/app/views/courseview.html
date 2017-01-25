@@ -1,8 +1,15 @@
 <header></header>
 <div class="container-fluid main-container">
-    <div class="row col-md-10 col-md-offset-1">
+    <div>
         <div class="row">
-            <coursenav content="revisionCourse.content"></coursenav>
+            <div class="col-md-3">
+                <coursenav content="revisionCourse.content"></coursenav>
+            </div>
+            <div class="col-md-9">
+                <div ng-if="showGView">
+                    <iframe ng-src="{{gViewUrl | trusted}}"
+                        style="width:100%; height:450px;" frameborder="0"></iframe>    
+                </div>
         </div>
     </div>
 </div>

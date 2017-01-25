@@ -14,137 +14,8 @@ angular.module('revisionbuddyApp')
      * details of logged in user if any
      */
     var userDetails = null;
-    var mockedRevisionPacks = [
-                            {
-                              board : "CBSE",
-                              class : "10",
-                              subject: "Maths",
-                              course_id:"maths_cbse_10",
-                              content: [{
-                                  node_name: "Unit-1",
-                                  file_name: "someguid",
-                                  file_type: "pdf",
-                                  children: [
-                                    {
-                                          node_name: "Revision Notes - chapter 1",
-                                          file_name: "someGuid",
-                                          file_type: "pdf"
-                                      },
-                                      {
-                                          node_name: "Revision Notes - chapter 2",
-                                          file_name: "someGuid",
-                                          file_type: "pdf"
-                                      }
-                                    ]
-                              },
-                              {
-                                  node_name: "Unit-2",
-                                  file_name: "someguid",
-                                  file_type: "pdf",
-                                  children: [
-                                    {
-                                          node_name: "Revision Notes - chapter 1",
-                                          file_name: "someGuid",
-                                          file_type: "pdf"
-                                      },
-                                      {
-                                          node_name: "Revision Notes - chapter 2",
-                                          file_name: "someGuid",
-                                          file_type: "pdf"
-                                      }
-                                    ]
-                              }
-                              ]
-                          },
-                          {
-                              board : "CBSE",
-                              class : "10",
-                              subject: "Physics",
-                              course_id:"phy_cbse_10",
-                              content: [{
-                                  node_name: "Unit-1",
-                                  file_name: "someguid",
-                                  file_type: "pdf",
-                                  children: [
-                                    {
-                                          node_name: "Revision Notes - chapter 1",
-                                          file_name: "someGuid",
-                                          file_type: "pdf"
-                                      },
-                                      {
-                                          node_name: "Revision Notes - chapter 2",
-                                          file_name: "someGuid",
-                                          file_type: "pdf"
-                                      }
-                                    ]
-                              },
-                              {
-                                  node_name: "Unit-2",
-                                  file_name: "someguid",
-                                  file_type: "pdf",
-                                  children: [
-                                    {
-                                          node_name: "Revision Notes - chapter 1",
-                                          file_name: "someGuid",
-                                          file_type: "pdf"
-                                      },
-                                      {
-                                          node_name: "Revision Notes - chapter 2",
-                                          file_name: "someGuid",
-                                          file_type: "pdf"
-                                      }
-                                    ]
-                              }
-                              ]
-                          },
-                          {
-                              board : "CBSE",
-                              class : "10",
-                              subject: "Chemistry",
-                              course_id:"chem_cbse_10",                              
-                              content: [{
-                                  node_name: "Unit-1",
-                                  file_name: "someguid",
-                                  file_type: "pdf",
-                                  children: [
-                                {
-                                      node_name: "Revision Notes - chapter 1",
-                                      file_name: "someGuid",
-                                      file_type: "pdf"
-                                  },
-                              {
-                                      node_name: "Revision Notes - chapter 2",
-                                      file_name: "someGuid",
-                                      file_type: "pdf"
-                                  }
-                                    ]
-                              }]
-                          },
-                          {
-                              board : "CBSE",
-                              class : "10",
-                              subject: "Biology",
-                              course_id:"bio_cbse_10",                              
-                              content: [{
-                                  node_name: "Unit-1",
-                                  file_name: "someguid",
-                                  file_type: "pdf",
-                                  children: [
-                                {
-                                      node_name: "Revision Notes - chapter 1",
-                                      file_name: "someGuid",
-                                      file_type: "pdf"
-                                  },
-                              {
-                                      node_name: "Revision Notes - chapter 2",
-                                      file_name: "someGuid",
-                                      file_type: "pdf"
-                                  }
-                                    ]
-                              }]
-                          }
-                          ]
     var service = this;
+    service.revisionpacks = [];
     this.getLoggedInUser = function(){
       if (service.token) {
                 return service.userOtpObj;
@@ -182,19 +53,8 @@ angular.module('revisionbuddyApp')
      * var userData = {"user_name":"","password": $scope.loginPassword }
      */
     service.loginWithUserName = function(userLoginData){
-    //   var defer = $q.defer();
-    //   //do api call to loign
-    //   //make call to getTocContents
-    //   //for now mocking
-    //   var userDetails = mocked_user;
-    //   getTocContents();
-    //   defer.resolve(userDetails);
-    //   return defer.promise;
-    //make a call to identity login API
             var deferred = $q.defer();
             service.userLoginData = userLoginData;
-            console.log("logging with");
-            console.log(service.userLoginData);
             $http({
                 method: 'POST',
                 url: myConfig.loginWithUserNameUrl(),
@@ -202,10 +62,17 @@ angular.module('revisionbuddyApp')
                 headers: { 'Content-Type': 'application/json' }
             })
                 .then(function (response) {
-                    //service.user_name = response.data.user.user_name;
+                    service.username = response.data.user.user_name;
+                    service.firstname =response.data.user.firstname;
+                    service.lastname = response.data.user.lastname;
+                    service.revisionpack_subscriptions = response.data.user.revisionpack_subscriptions
                     console.log(response.data.user);
-                    service.hideNavbar = false;
-                    service.setLoggedInUser(response.data.token, userLoginData);
+                    var userObj = {};
+                    userObj['username'] = service.username;
+                    userObj['firstname'] = service.firstname;
+                    userObj['lastname']  = service.lastname;
+                    service.setLoggedInUser(response.data.token, userObj);
+                    getTocContents();
                     console.log("user login successful with username and password");
                     deferred.resolve(response);
                 },
@@ -234,17 +101,75 @@ angular.module('revisionbuddyApp')
      * used as one time activity will be called by validate and login  functions
      */
     var getTocContents = function(){
-      //makes call to api server to get course Deatils
-      //update course list here and in courseViewService
-      courseViewService.updateRevisionPackList(mockedRevisionPacks);
+    //   //makes call to api server to get course Deatils
+    //   //update course list here and in courseViewService
+        var tocPromiseChain = service.revisionpack_subscriptions.map(getTocPromise)
+        console.log("promise chain");
+        console.log(tocPromiseChain);
+        var defer = $q.defer();
+        $q.all(tocPromiseChain).then(function(data) {
+            console.log("ALL INITIAL PROMISES RESOLVED");
+            console.log(data);
+            defer.resolve(data);
+        });
+        return defer.promise;
     }
-
+    var getTocPromise = function(rObj){
+        var defer = $q.defer();
+        $http({
+                    method: 'GET',
+                    url: myConfig.getTocUrl(rObj.course_id),
+                    headers: {
+                        'Authorization': 'Bearer ' + service.token
+                    }
+                })
+                .then(function(response){
+                    console.log("revision packs");
+                    console.log(response.data);
+                    service.revisionpacks.push(response.data);
+                    defer.resolve(response.data);
+                },function(err){
+                    defer.reject();
+                    console.log("error fetching TOC");
+                });
+        return defer.promise;
+    }
     service.getRevisionPackData = function(){
-      var defer = $q.defer();
-      //do api call to fetch revsion packs 
-      //for now mocking
-      
-      defer.resolve(mockedRevisionPacks);
-      return defer.promise;
+      return getTocContents();
+    }
+    service.getTOCContentUrl = function(filename){
+        var defer = $q.defer();
+         $http({
+                    method: 'GET',
+                    url: myConfig.getTocpdfUrl(filename),
+                    headers: {
+                        'Authorization': 'Bearer ' + service.token
+                    }
+                })
+                .then(function(response){
+                    console.log("get pdf url");
+                    console.log(response.data);
+                    defer.resolve(response.data.signed_request);
+                },function(err){
+                    defer.reject();
+                    console.log("error fetching TOC");
+                });
+        return defer.promise;
+    }
+    service.getContentPDF = function(pdfurl){
+        var defer = $q.defer();
+        console.log("request url --> "+pdfurl);
+         $http({
+                    method: 'GET',
+                    url: pdfurl
+                })
+                .then(function(response){
+                    console.log("PDF blob");
+                    console.log(response);
+                },function(err){
+                    defer.reject();
+                    console.log("error fetching TOC PDF");
+                });
+        return defer.promise;
     }
   });

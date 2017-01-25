@@ -7,7 +7,7 @@
  * # coursenav
  */
 angular.module('revisionbuddyApp')
-  .directive('coursenav', function (courseViewService) {
+  .directive('coursenav', function ($rootScope,buddyapi,courseViewService) {
     return {
       // template: `<div class="coursenav"></div>`,
       templateUrl:"/views/coursenav.html",
@@ -17,12 +17,22 @@ angular.module('revisionbuddyApp')
       },
       controller: function($scope) {
         console.log($scope.courseContent);
+        $scope.showGView = false;
         //$scope.courseContent = courseViewService.getSelectedRevisionPack();
         $scope.triggerDownload = function(child){
-          alert(child.node_name);
+          console.log(child);
+          
         }
         $scope.triggerContentView = function(child){
-          alert(child.node_name);
+          buddyapi.getTOCContentUrl(child.file_name)
+            .then(function(pdfUrl){
+                $scope.gViewUrl = "http://docs.google.com/viewer?url="+encodeURIComponent(pdfUrl)+"&embedded=true";
+                console.log($scope.gViewUrl);
+                $rootScope.$broadcast('pdfViewChanged',{'gViewUrl':$scope.gViewUrl});
+              },
+              function(err){
+
+              });
         }
       },
       link: function postLink(scope, element, attrs) {
