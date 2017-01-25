@@ -173,7 +173,7 @@ body {
 
 .coursenav {
   width: 20em;
-  background: #333333;
+  background:white;
   font-family: 'roboto', Tahoma, Arial, sans-serif;
   zoom: 1;
 }
@@ -192,7 +192,7 @@ body {
 .coursenav a, .coursenav div  {
   display: block;
   padding: 1em 1.3em;
-  color: #ffffff;
+  color: black;
   text-decoration: none;
   text-transform: uppercase;
 }
@@ -202,15 +202,15 @@ body {
 .coursenav ul ul { width: 20em; }
 
 .coursenav > ul > li > a, .coursenav > ul > li > div {
-  border-right: 0.3em solid #34A65F;
-  color: #ffffff;
+  border-right: 0.3em solid #F58635;
+  color: black;
 }
 
 .coursenav > ul > li > a:hover { color: #ffffff; }
 
 .coursenav > ul > li a:hover,.coursenav > ul > li div:hover,
 .coursenav > ul > li:hover div,
-.coursenav > ul > li:hover a { background: #34A65F; }
+.coursenav > ul > li:hover a { background:#29EBE2; }
 
 .coursenav li { position: relative; }
 
@@ -239,17 +239,17 @@ body {
   border-radius: 0 3px 3px 0;
 }
 
-.coursenav ul ul { border: 1px solid #34A65F; }
+.coursenav ul ul { border: 1px solid #F58635; }
 
 .coursenav ul ul a, .coursenav ul ul div { color: #ffffff; }
 
-.coursenav ul ul a:hover, .coursenav ul ul div:hover { color: #ffffff; }
+.coursenav ul ul a:hover, .coursenav ul ul div:hover { color: #29EBE2; }
 
 
-.coursenav ul ul li { border-bottom: 1px solid #0F8A5F; }
+.coursenav ul ul li { border-bottom: 1px solid #F58635; }
 
 .coursenav ul ul li:hover > a, .coursenav ul ul li:hover > div {
-  background: #4eb1ff;
+  background: #29EBE2;
   color: #ffffff;
 }
 

@@ -34,6 +34,18 @@ angular.module('revisionbuddyApp')
 
               });
         }
+        $scope.outerContentView = function(course){
+           if(!(course.children && course.children.length > 0)){
+            console.log("will download "+course.file_name);
+            console.log(course);
+            if(course.file_name){
+              $scope.triggerContentView(course);
+            }
+            else{
+              toastr.error("No PDf content Available for this node.")
+            }
+           }
+        }
       },
       link: function postLink(scope, element, attrs) {
       }
