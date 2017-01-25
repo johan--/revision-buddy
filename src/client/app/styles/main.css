@@ -124,7 +124,10 @@ body {
     content: "\25cf";
     font-size: 1.5em;
 }
-
+.header-username{
+  font-size: 120%;
+  font-weight: 600;
+}
 .pdfWait{
     position: absolute;
     width: 100%;
@@ -154,6 +157,7 @@ body {
   vertical-align: middle;
   line-height: 50px;
   display: flex;
+  margin-bottom: 10px;
 }
 .heading{
   font-size: 120%;
@@ -271,7 +275,7 @@ body {
 .coursenav li { position: relative; }
 
 .coursenav ul li.has-sub > a:after,.coursenav ul li.has-sub > div:after {
-  content: '>';
+  /*content: '>';*/
 
   position: absolute;
   right: 1em;
@@ -441,4 +445,20 @@ select:-webkit-autofill:focus{
 .myarrow {
   float:right;
   color: #C7C7C7;
+}
+
+/** css for side nav ends **/
+
+/** media queries **/
+@media screen and (max-width: 768px) {
+  #coursenav-container{
+    visibility: hidden;
+    width: 0px;
+    height: 0px;
+  }
+  #headernav-container{
+    visibility: hidden;
+    width: 0px;
+    height: 0px;
+  }
 }
