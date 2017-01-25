@@ -70,7 +70,7 @@ body {
   text-align: center;
 }
 .main-container{
-  margin-top: 9em;
+  margin-top: 90px;
 }
 .footer{
   position: fixed;
@@ -89,7 +89,7 @@ body {
   top: 0px;
   background: white;
   width: 98%;
-  height: 5em;
+  height: 70px;
   z-index: 1050;
 }
 .header-dropdown{
@@ -125,6 +125,41 @@ body {
     font-size: 1.5em;
 }
 
+.pdfWait{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 300;
+    background: url("/images/loader.gif") no-repeat 50% 50%;
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+.download-icon{
+    width: 25px;
+    height: 25px;
+    padding: 4px;
+}
+.download-icon:hover{
+    background: rgba(158, 158, 158, 0.89);
+    border-radius: 15px;
+    width: 25px;
+    height: 25px;
+    padding: 4px;
+}
+.courseview-title{
+  height: 50px;
+  background: white;
+  vertical-align: middle;
+  line-height: 50px;
+  display: flex;
+}
+.heading{
+  font-size: 120%;
+  font-weight: 600;
+  width: 95%;
+}
 /** css for side course coursenav bar **/
 .coursenav {
   padding: 0;
@@ -191,7 +226,7 @@ body {
 /*.coursenav ul ul { margin-top: 0.05em; }*/
 
 .coursenav {
-  width: 20em;
+  width: 100%;
   background:white;
   font-family: 'roboto', Tahoma, Arial, sans-serif;
   zoom: 1;
@@ -216,9 +251,9 @@ body {
   text-transform: uppercase;
 }
 
-.coursenav > ul { width: 20em; }
+.coursenav > ul { width: 100%; }
 
-.coursenav ul ul { width: 20em; }
+.coursenav ul ul { width: 100%; }
 
 .coursenav > ul > li > a, .coursenav > ul > li > div {
   /*border-right: 0.3em solid white;*/
@@ -236,7 +271,8 @@ body {
 .coursenav li { position: relative; }
 
 .coursenav ul li.has-sub > a:after,.coursenav ul li.has-sub > div:after {
-  /*content: '»';*/
+  content: '>';
+
   position: absolute;
   right: 1em;
 }
@@ -326,9 +362,14 @@ body {
   text-align: left;
   font-size: 12px;
 }
+.coursenav-tile >span{
+  overflow: wrap;
+  max-width: 80%;
+}
 .coursenav-download{
   cursor: pointer;
   float:right;
+  line-height: inherit;
 }
 .coursenav-download :hover{
   background: #F2F2F2;

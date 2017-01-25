@@ -6,10 +6,28 @@
                 <coursenav content="revisionCourse.content"></coursenav>
             </div>
             <div class="col-md-9">
+                <div ng-class="{'pdfWait':loadingpdf}"></div>
                 <div ng-if="showGView">
-                    <iframe ng-src="{{gViewUrl | trusted}}"
+                    <div class="row courseview-title">
+                        <div class="heading"> {{contentTitle}}</div>
+                        <div>
+                            <span class="glyphicon glyphicon-download-alt coursenav-download "
+                                ng-click="triggerDownload(child);$event.stopPropagation();">
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <iframe ng-src="{{gViewUrl | trusted}}"
+                            style="width:100%; height:450px;" frameborder="0"
+                            onload="pdfLoaded()">
+                        </iframe>
+                    </div>
+                </div>
+                <div ng-if="!showGView">
+                    <iframe ng-src="{{frameUrl | trusted}}"
                         style="width:100%; height:450px;" frameborder="0"></iframe>    
                 </div>
+            </div>
         </div>
     </div>
 </div>
