@@ -50,7 +50,7 @@ angular.module('revisionbuddyApp')
             .then(function(pdfUrl){
                 $scope.gViewUrl = "http://docs.google.com/viewer?url="+encodeURIComponent(pdfUrl)+"&embedded=true";
                 console.log($scope.gViewUrl);
-                $rootScope.$broadcast('pdfViewChanged',{'gViewUrl':$scope.gViewUrl});
+                $rootScope.$broadcast('pdfViewChanged',{'gViewUrl':$scope.gViewUrl,'node':child});
               },
               function(err){
 

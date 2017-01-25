@@ -1,4 +1,5 @@
-var rbuddy_baseurl = "http://35.154.115.164:2222";
+// var rbuddy_baseurl = "http://35.154.115.164:2222";
+var rbuddy_baseurl = "http://localhost:2222";
 angular.module('revisionbuddyApp')
   .constant('myConfig', {
       getAccountValidationUrl:function(){

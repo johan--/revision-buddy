@@ -7,7 +7,8 @@
         <li ng-class="{'has-sub':course.children && course.children.length > 0}">
             <div class="coursenav-tile" ng-click="outerContentView(course);;$event.stopPropagation();">
                 {{course.node_name}}
-                <span ng-if="!course.children || course.children.length == 0" class="glyphicon glyphicon-download-alt coursenav-download"
+                <span ng-if="!course.children || course.children.length == 0" 
+                            class="glyphicon glyphicon-download-alt coursenav-download download-icon"
                             ng-click="triggerDownload(course);$event.stopPropagation();">
                 </span>
                 <!--build a tile with other icons here like download-->
@@ -16,7 +17,7 @@
                 <li ng-repeat="child in course.children">
                     <div class="coursenav-tile" ng-click="triggerContentView(child);$event.stopPropagation();">
                         <span>{{child.node_name}}</span>
-                        <span class="glyphicon glyphicon-download-alt coursenav-download"
+                        <span class="glyphicon glyphicon-download-alt coursenav-download download-icon"
                             ng-click="triggerDownload(child);$event.stopPropagation();"></span>
                     </div>
                     
