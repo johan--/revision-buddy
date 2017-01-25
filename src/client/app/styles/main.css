@@ -5,7 +5,8 @@ body {
 
 .vnlogo-center  {
     margin: 0 auto;
-    height: 80px;
+    height: 50px;
+    margin-top: 10px;
 }
 .vnlogo-header  {
     margin: 0 auto;
@@ -34,6 +35,21 @@ body {
 }
 .login-btn{
   background: #F58635;
+  color: white;
+  padding: 10px 26px;
+  border-radius: 3px;
+}
+.login-btn:hover {
+  background-color: #F58635;
+  color: white;
+}
+.login-btn:focus {
+  background-color: #F58635;
+  color: white;
+}
+.login-btn:active {
+  background-color: #F58635;
+  color: white;
 }
 .subject-icon{
   width: 60%;
@@ -84,9 +100,11 @@ body {
 .header-dropdown-btn{
     background: white;
     border-color: rgba(0, 0, 0, 0.15);
-    width: 200px;
     text-align: left;
     font-size: 120%;
+    padding: 0 10px 5px 5px;
+
+    border-radius: 3px;
 }
 .header-dropdown-list{
   width: 200px;
@@ -170,6 +188,7 @@ body {
   line-height: 1em;
   vertical-align: middle;
   position: relative;
+  border-left: 1px solid #cccccc;
 }
 
 .coursenav ul li.hover,
@@ -204,7 +223,7 @@ body {
 
 .coursenav ul li { float: none; }
 
-.coursenav ul ul { margin-top: 0.05em; }
+/*.coursenav ul ul { margin-top: 0.05em; }*/
 
 .coursenav {
   width: 100%;
@@ -237,20 +256,23 @@ body {
 .coursenav ul ul { width: 100%; }
 
 .coursenav > ul > li > a, .coursenav > ul > li > div {
-  border-right: 0.3em solid #F58635;
+  /*border-right: 0.3em solid white;*/
   color: black;
+  border-bottom:1px solid #e8e8e8;
+  border-right:1px solid #e8e8e8;
 }
 
 .coursenav > ul > li > a:hover { color: #ffffff; }
 
 .coursenav > ul > li a:hover,.coursenav > ul > li div:hover,
 .coursenav > ul > li:hover div,
-.coursenav > ul > li:hover a { background:#29EBE2; }
+.coursenav > ul > li:hover a { background:#29ABE2; color: white }
 
 .coursenav li { position: relative; }
 
 .coursenav ul li.has-sub > a:after,.coursenav ul li.has-sub > div:after {
   content: '>';
+
   position: absolute;
   right: 1em;
 }
@@ -274,19 +296,19 @@ body {
   border-radius: 0 3px 3px 0;
 }
 
-.coursenav ul ul { border: 1px solid #F58635; }
+/*.coursenav ul ul { border: 1px solid #F58635; }*/
 
 .coursenav ul ul a, .coursenav ul ul div { color: #ffffff; }
 
-.coursenav ul ul a:hover, .coursenav ul ul div:hover { color: #29EBE2; }
+.coursenav ul ul a:hover, .coursenav ul ul div:hover { color: white; }
 
 
-.coursenav ul ul li { border-bottom: 1px solid #F58635; }
+/*.coursenav ul ul li { border-bottom: 1px solid #F58635; }*/
 
-.coursenav ul ul li:hover > a, .coursenav ul ul li:hover > div {
-  background: #29EBE2;
+/*.coursenav ul ul li:hover > a, .coursenav ul ul li:hover > div {
+  background: #29ABE2;
   color: #ffffff;
-}
+}*/
 
 .coursenav.align-right > ul > li > a , .coursenav.align-right > ul > li > div {
   border-left: 0.3em solid #34A65F;
@@ -297,7 +319,7 @@ body {
 
 .coursenav.align-right li { text-align: right; }
 
-.coursenav.align-right ul li.has-sub > a:before, 
+.coursenav.align-right ul li.has-sub > a:before,
 .coursenav.align-right ul li.has-sub > div:before {
   content: '+';
   position: absolute;
@@ -307,7 +329,7 @@ body {
 }
 
 .coursenav.align-right ul li.has-sub > a:after,
-.coursenav.align-right ul li.has-sub > div:after 
+.coursenav.align-right ul li.has-sub > div:after
 { content: none; }
 
 .coursenav.align-right ul ul {
@@ -337,7 +359,8 @@ body {
   border-radius: 3px 0 0 3px;
 }
 .coursenav-tile{
-  text-align: center;
+  text-align: left;
+  font-size: 12px;
 }
 .coursenav-tile >span{
   overflow: wrap;
@@ -352,3 +375,70 @@ body {
   background: #F2F2F2;
 }
 /** css for side nav ends **/
+
+.bg-white {
+  background-color: white;
+}
+
+.illustration {
+  max-height: 350px;
+  max-width:100%
+}
+.custom-input {
+  border-radius: 2px;
+  max-width: 350px;
+}
+
+@media only screen and (max-width: 768px) {
+.illustration {
+  height: 150px;
+}
+}
+
+input[type=checkbox].css-checkbox {
+  position:absolute; z-index:-1000; left:-1000px; overflow: hidden; clip: rect(0 0 0 0); height:1px; width:1px; margin:-1px; padding:0; border:0;
+}
+
+input[type=checkbox].css-checkbox + label.css-label {
+  padding-left:30px;
+  height:20px;
+  display:inline-block;
+  line-height:20px;
+  background-repeat:no-repeat;
+  background-position: 0 0;
+  font-size:14px;
+  vertical-align:middle;
+  cursor:pointer;
+
+}
+
+input[type=checkbox].css-checkbox:checked + label.css-label {
+  background-position: 0 -20px;
+}
+label.css-label {
+  background-image:url(http://csscheckbox.com/checkboxes/u/csscheckbox_490b7ac6598bb6e25d0681c50e958cda.png);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus{
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+.myarrow {
+  float:right;
+  color: #C7C7C7;
+}
