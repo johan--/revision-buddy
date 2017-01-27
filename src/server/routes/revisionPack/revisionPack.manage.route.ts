@@ -182,9 +182,7 @@ export class RevisionPackController {
                                     length: 10,
                                     numbers: false
                                 }); 
-
-                                logger.info(randomPassword);
-
+                                
                                 let newUser = new User();
                                 newUser.user_name = parentLeadDetails.EmailAddress;
                                 newUser.password_hash = bcrypt.hashSync(randomPassword, 10);

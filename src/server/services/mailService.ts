@@ -27,12 +27,7 @@ export class MailService {
                     logger.error(err);
                     reject(err);
                 }
-
-                logger.info(result.html);
-                logger.info(result.text);
-                logger.info(result.subject);
-
-
+                
                 let send = gmailSend({
                     user: Config.smtp_UserName, // Your GMail account used to send emails 
                     pass: Config.smtp_Password, // Application-specific password 
@@ -79,11 +74,7 @@ export class MailService {
                     reject(err);
                 }
 
-                logger.info(result.html);
-                logger.info(result.text);
-                logger.info(result.subject);
-
-
+               
                 let send = gmailSend({
                     user: Config.smtp_UserName, // Your GMail account used to send emails 
                     pass: Config.smtp_Password, // Application-specific password 
