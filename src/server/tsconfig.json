@@ -12,6 +12,8 @@
   ],
   "include": [
     "./**/*.ts",
-    "./typings/globals/**/*.ts"
+    "./typings/globals/**/*.ts",
+    "./email-templates/**/*"
+
   ]
 }

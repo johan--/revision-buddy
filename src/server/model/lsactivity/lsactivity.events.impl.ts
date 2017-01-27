@@ -40,7 +40,7 @@ export class LSActivityEventsImpl implements LSActivityEvents {
             this.AccountActivated = 0;
             this.ProfileReviewed = 236;
 
-            this.RevisionPackAcccountCreated = 216;
+            this.RevisionPackAcccountCreated = 218;
             this.RevisionPackNewPackSubscribed = 217;
         }
     }
