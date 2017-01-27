@@ -45,7 +45,6 @@ angular.module('revisionbuddyApp')
               });
       }
       $scope.showAnswers = function(){
-        alert($scope.contentNode.solution_file);
         buddyapi.getTOCContentUrl($scope.contentNode.solution_file)
           .then(function(answerPdfUrl){
               $scope.gViewUrl = "http://docs.google.com/viewer?url="+encodeURIComponent(answerPdfUrl)+"&embedded=true";
