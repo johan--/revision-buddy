@@ -9,7 +9,7 @@
         <div ng-if="!isHome" class="header-dropdown center-block">
           <div class="dropdown">
             <button class="header-dropdown-btn" type="button" data-toggle="dropdown">
-              <div>
+              <div style="font-size:15px">
                                 <span class="glyphicon glyphicon-one-fine-dot"
                                       style="color:{{getSubColor(selectedCourse.subject)}}"></span>
                 {{selectedCourse.board}} {{selectedCourse.class | romanize}} {{selectedCourse.subject}}
@@ -19,7 +19,7 @@
             <ul class="dropdown-menu dropdown-menu-left header-dropdown-list">
               <li ng-repeat="course in courseList" ng-click="changeCourse(course)">
                 <!--<a href=""> {{course.board}} {{course.subject}}</a>-->
-                <div class="tile">
+                <div class="tile" style="font-size:15px">
                                     <span class="glyphicon glyphicon-one-fine-dot"
                                           style="color:{{getSubColor(course.subject)}}"></span>
                   {{course.board}} {{course.class | romanize}} {{course.subject}}
@@ -32,7 +32,7 @@
       <div class="col-lg-4 col-md-4 col-sm-4 hidden-sm hidden-xs">
         <div class="row" style="display: initial;margin-top: 1.5em;">
           <div class="pull-right">
-          <span style="padding-right:15px">{{userObj.firstname}} {{userObj.lastname}}</span>
+            <span style="padding-right:15px">{{userObj.firstname}} {{userObj.lastname}}</span>
             <span>
               <span class="underline"><a class="nav-item" href="/#!/home">Home</a></span>|
               <span class="underline" ng-if="!isHome"><a class="nav-item" href="/#!/tutorinfo">Tutor Info </a></span>
@@ -44,18 +44,19 @@
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 hidden-lg hidden-md" style="margin-top:17px;padding:0px">
         <div class="pull-right">
-        <div class="btn-group">
-          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="glyphicon glyphicon-user"></span> <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu pull-right">
-            <li><a style="text-decoration: none">{{userObj.firstname}} {{userObj.lastname}}</a></li>
-            <li><a href="/#!/home">Home</a></li>
-            <li><a href="/#!/tutorinfo">Tutor Info</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="/#!/login">Log out</a></li>
-          </ul>
-        </div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+              <span class="glyphicon glyphicon-user"></span> <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu pull-right">
+              <li><a style="text-decoration: none">{{userObj.firstname}} {{userObj.lastname}}</a></li>
+              <li><a href="/#!/home">Home</a></li>
+              <li><a href="/#!/tutorinfo">Tutor Info</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="/#!/login">Log out</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
