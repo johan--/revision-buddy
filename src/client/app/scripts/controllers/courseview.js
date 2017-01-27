@@ -20,6 +20,16 @@ angular.module('revisionbuddyApp')
           $scope.showCollapseCourseNav = !$scope.showCollapseCourseNav;
       }
       $scope.downloadpdf = function(){
+        dataLayer.push({
+                    'event': 'contentDownloaded',
+                    'contenttype': $scope.contentNode.node_type,
+                    'contentname': $scope.contentNode.node_name,
+                    'rawfile_id': $scope.contentNode.rawfile_id,
+                    'board': $scope.revisionCourse.board,
+                    'class': $scope.revisionCourse.class,
+                    'course_id': $scope.revisionCourse.course_id,
+                    'subject':$scope.revisionCourse.subject
+                });
         buddyapi.getTOCContentUrl($scope.contentNode.file_name)
             .then(function(pdfUrl){
                 var link = document.createElement('a');
@@ -41,6 +51,13 @@ angular.module('revisionbuddyApp')
         $scope.loadingpdf = false;
         console.log("package changed")
         console.log($scope.revisionCourse);
+        dataLayer.push({
+                    'event': 'courseSelected',
+                    'board': courseViewService.selectedPack.board,
+                    'class': courseViewService.selectedPack.class,
+                    'course_id': courseViewService.selectedPack.course_id,
+                    'subject':courseViewService.selectedPack.subject
+                });
       });
       $rootScope.$on('pdfViewChanged', function (event,data) {
           $scope.loadingpdf = true;
@@ -49,6 +66,16 @@ angular.module('revisionbuddyApp')
           $scope.contentTitle = $scope.contentNode.node_name;
           $scope.showGView = true;
           $scope.showCollapseCourseNav = false;
+          dataLayer.push({
+                    'event': 'contentOpened',
+                    'contenttype': data.node.node_type,
+                    'contentname': data.node.node_name,
+                    'rawfile_id': data.node.rawfile_id,
+                    'board': courseViewService.selectedPack.board,
+                    'class': courseViewService.selectedPack.class,
+                    'course_id': courseViewService.selectedPack.course_id,
+                    'subject':courseViewService.selectedPack.subject
+                });
       });
 
       $window.pdfLoaded=function(){
