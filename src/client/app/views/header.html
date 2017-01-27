@@ -1,46 +1,46 @@
 <div class="header">
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                <img class="img-responsive vnlogo-header" src="/images/vidyanext-logo.png"/>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-5">
-                <!--conditinal display for subject select-->
-                <div ng-if="!isHome" class="header-dropdown">
-                    <div class="dropdown">
-                        <button class="header-dropdown-btn" type="button" data-toggle="dropdown">
-                            <div>
-                                <span class="glyphicon glyphicon-one-fine-dot" 
-                                        style="color:{{getSubColor(selectedCourse.subject)}}"></span>
-                                {{selectedCourse.board}} {{selectedCourse.subject}}
-                                <span class="caret"></span>
-                            </div>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-left header-dropdown-list">
-                            <li ng-repeat="course in courseList" ng-click="changeCourse(course)">
-                                <!--<a href=""> {{course.board}} {{course.subject}}</a>-->
-                                <div class="tile">
-                                    <span class="glyphicon glyphicon-one-fine-dot" 
-                                        style="color:{{getSubColor(course.subject)}}"></span>
-                                    {{course.board}} {{course.subject}}
-                                    </div>
-                            </li>
-                        </ul>
-                    </div>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <img class="img-responsive vnlogo-header" src="/images/vidyanext-logo.png"/>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-5">
+        <!--conditinal display for subject select-->
+        <div ng-if="!isHome" class="header-dropdown">
+          <div class="dropdown">
+            <button class="header-dropdown-btn" type="button" data-toggle="dropdown">
+              <div>
+                                <span class="glyphicon glyphicon-one-fine-dot"
+                                      style="color:{{getSubColor(selectedCourse.subject)}}"></span>
+                {{selectedCourse.board}} {{selectedCourse.subject}}
+                <span class="caret"></span>
+              </div>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-left header-dropdown-list">
+              <li ng-repeat="course in courseList" ng-click="changeCourse(course)">
+                <!--<a href=""> {{course.board}} {{course.subject}}</a>-->
+                <div class="tile">
+                                    <span class="glyphicon glyphicon-one-fine-dot"
+                                          style="color:{{getSubColor(course.subject)}}"></span>
+                  {{course.board}} {{course.subject}}
                 </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4">
-                <div class="row" style="display: initial;margin-top: 1.5em;">
-                    <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12 header-username">
-                        {{userObj.firstname}} {{userObj.lastname}}
-                    </div>
-                    <div id="headernav-container" class="col-lg-6 col-md-6 col-sm-8 col-xs-6">
-                        <span><a href="/#!/home">home</a></span>|
-                        <span ng-if="!isHome"><a href="/#!/tutorinfo">Tutor Info</a> |</span>
-                        <span><a href="/#!/login"> logout </a></span>
-                    </div>
-                </div>                        
-            </div>
+              </li>
+            </ul>
+          </div>
         </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4">
+        <div class="row" style="display: initial;margin-top: 1.5em;">
+          <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12 header-username">
+            {{userObj.firstname}} {{userObj.lastname}}
+          </div>
+          <div id="headernav-container" class="col-lg-6 col-md-6 col-sm-8 col-xs-6">
+            <span><a href="/#!/home">home</a></span>|
+            <span ng-if="!isHome"><a href="/#!/tutorinfo">Tutor Info</a> |</span>
+            <span><a href="/#!/login"> logout </a></span>
+          </div>
+        </div>
+      </div>
     </div>
-<div>
+  </div>
+  <div>

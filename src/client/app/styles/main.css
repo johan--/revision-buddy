@@ -157,7 +157,7 @@ body {
     width: 25px;
     height: 25px;
     padding-left: 12px;
-    color: #4D4D4D;   
+    color: #4D4D4D;
 }
 .courseview-title{
   height: 50px;
@@ -241,7 +241,7 @@ body {
 .coursenav {
   width: 100%;
   background:white;
-  font-family: 'roboto', Tahoma, Arial, sans-serif;
+  font-family: 'Noto Sans', Tahoma, Arial, sans-serif;
   zoom: 1;
 }
 
@@ -270,7 +270,7 @@ body {
 
 .coursenav > ul > li > a, .coursenav > ul > li > div {
   /*border-right: 0.3em solid white;*/
-  color: black;
+  color: #3d3d3d;
   border-bottom:1px solid #e8e8e8;
   border-right:1px solid #e8e8e8;
 }
@@ -279,11 +279,11 @@ body {
 
 .coursenav > ul > li a:hover,.coursenav > ul > li div:hover,
 .coursenav > ul > li:hover div,
-.coursenav > ul > li:hover a { 
-    background:#29ABE2; 
+.coursenav > ul > li:hover a {
+    background:#29ABE2;
     color: white;
     display: block;
-    overflow-wrap: break-word; 
+    overflow-wrap: break-word;
   }
 
 .coursenav li { position: relative; }
@@ -527,4 +527,12 @@ select:-webkit-autofill:focus{
     top: 50px;
     left: 0px;
   }
+}
+.myicon { transition: all .2s ease-in-out; }
+.myicon:hover {
+  transform: scale(1.4);
+}
+
+.click {
+  cursor: pointer;
 }
