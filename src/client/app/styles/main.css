@@ -177,6 +177,28 @@ body {
   font-weight: 600;
   width: 95%;
 }
+.show-answers{
+  margin: 0px 10px 5px 10px;
+}
+
+.modal {
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) { 
+  .modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
 /** css for side course coursenav bar **/
 .coursenav {
   padding: 0;

@@ -16,7 +16,14 @@
                 <div ng-if="showGView">
                     <div class="row courseview-title">
                         <div class="heading"> {{contentTitle}}</div>
-                        <div>
+                        <div class="show-answers">
+                            <div class="btn btn-info" ng-class="{'disabled':!contentNode.solution_file}"
+                                    ng-click="showAnswerAcceptPopup()"
+                                    data-toggle="modal" data-target="#showAnswersModal">
+                                    Show Answers
+                            </div>
+                        </div>
+                        <div style="margin-right:20px ">
                             <span class="glyphicon glyphicon-download-alt coursenav-download "
                                 ng-click="downloadpdf();$event.stopPropagation();">
                             </span>
@@ -38,3 +45,24 @@
     </div>
 </div>
 <footer></footer>
+<!-- Modal -->
+<div id="showAnswersModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Confirm - Show Answers</h4>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to reveal answers for <strong>{{contentTitle}}?</strong></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info" data-dismiss="modal" ng-click="showAnswers()">Ok</button>
+        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
