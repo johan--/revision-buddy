@@ -5,23 +5,23 @@ body {
 }
 
 .vnlogo-center  {
-    margin: 0 auto;
-    height: 50px;
-    margin-top: 10px;
+  margin: 0 auto;
+  height: 50px;
+  margin-top: 10px;
 }
 .vnlogo-header  {
-    /*margin: 0 auto;*/
-    height: 50px;
-    margin-top: 0.5em;
+  /*margin: 0 auto;*/
+  height: 50px;
+  margin-top: 0.5em;
 }
 .drop-shadow {
-      -webkit-box-shadow: 0 0 5px 2px rgba(0, 0, 0, .5);
-      box-shadow: 0 0 5px 2px rgba(0, 0, 0, .5);
-  }
-  .container.drop-shadow {
-      padding-left:0;
-      padding-right:0;
-  }
+  -webkit-box-shadow: 0 0 5px 2px rgba(0, 0, 0, .5);
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, .5);
+}
+.container.drop-shadow {
+  padding-left:0;
+  padding-right:0;
+}
 .img-illustration{
   height: 400px;
   margin: 50px;
@@ -59,7 +59,7 @@ body {
 }
 .subject-icon :hover{
   -webkit-box-shadow: 0px 0px 18px 6px rgba(0, 0, 0, .5);
-      box-shadow: 0px 0px 18px 6px rgba(0, 0, 0, .5);
+  box-shadow: 0px 0px 18px 6px rgba(0, 0, 0, .5);
 }
 .subject-title{
   font-size: 120%;
@@ -74,19 +74,21 @@ body {
   margin-top: 90px;
   min-height: calc(100vh - 120px);
 }
-.footer{
-  position: fixed;
-  bottom: 0px;
-  left:0px;
+
+.footer {
+  position: relative;
+  /* bottom: 0px; */
+  /* left: 0px; */
   background: white;
-  width: 100%;
+  width: 100vw;
   height: 30px;
   line-height: 30px;
   text-align: center;
-  font-size: 120%;
+  /* font-size: 120%; */
   z-index: 1050;
   -webkit-box-shadow: 0 0 5px 2px rgba(0, 0, 0, .5);
   box-shadow: 0 0 5px 2px rgba(0, 0, 0, .5);
+  margin-left: -15px;
 }
 .header{
   position: fixed;
@@ -105,13 +107,13 @@ body {
   width: 200px;
 }
 .header-dropdown-btn{
-    background: white;
-    border-color: rgba(0, 0, 0, 0.15);
-    text-align: left;
-    font-size: 120%;
-    padding: 0 10px 5px 5px;
+  background: white;
+  border-color: rgba(0, 0, 0, 0.15);
+  text-align: left;
+  font-size: 120%;
+  padding: 0 10px 5px 5px;
 
-    border-radius: 3px;
+  border-radius: 3px;
 }
 .header-dropdown-list{
   width: 200px;
@@ -122,43 +124,43 @@ body {
   font-size: 120%;
   text-align: left;
   cursor: pointer;
-   padding-left: 5px;
+  padding-left: 5px;
 }
 .tile:hover{
   background: gray;
 }
 .glyphicon.glyphicon-one-fine-dot:before {
-    content: "\25cf";
-    font-size: 1.5em;
+  content: "\25cf";
+  font-size: 1.5em;
 }
 .header-username{
   font-size: 120%;
   font-weight: 600;
 }
 .pdfWait{
-    position: absolute;
-    width: 100%;
-    height: 450px;
-    left: 0px;
-    top: 60px;
-    z-index: 300;
-    background: url("/images/loader.gif") no-repeat 50% 50%;
-    background-color: rgba(0, 0, 0, 0.15);
+  position: absolute;
+  width: 100%;
+  height: 450px;
+  left: 0px;
+  top: 60px;
+  z-index: 300;
+  background: url("/images/loader.gif") no-repeat 50% 50%;
+  background-color: rgba(0, 0, 0, 0.15);
 }
 
 .download-icon{
-    width: 25px;
-    height: 25px;
-    padding-left: 12px;
-    color:#C7C7C7;
+  width: 25px;
+  height: 25px;
+  padding-left: 12px;
+  color:#C7C7C7;
 }
 .download-icon:hover{
-    /*background: rgba(158, 158, 158, 0.89);
-    border-radius: 15px;*/
-    width: 25px;
-    height: 25px;
-    padding-left: 12px;
-    color: #4D4D4D;
+  /*background: rgba(158, 158, 158, 0.89);
+  border-radius: 15px;*/
+  width: 25px;
+  height: 25px;
+  padding-left: 12px;
+  color: #4D4D4D;
 }
 .courseview-title{
   height: 50px;
@@ -283,11 +285,12 @@ body {
 .coursenav > ul > li a:hover,.coursenav > ul > li div:hover,
 .coursenav > ul > li:hover div,
 .coursenav > ul > li:hover a {
-    background:#29ABE2;
-    color: white;
-    display: block;
-    overflow-wrap: break-word;
-  }
+  background:#29ABE2;
+  color: white;
+  display: block;
+  overflow-wrap: break-word;
+}
+
 .coursenav li { position: relative; }
 
 .coursenav ul li.has-sub > a:after,.coursenav ul li.has-sub > div:after {
@@ -410,16 +413,16 @@ body {
 }
 
 @media only screen and (max-width: 768px) {
-.illustration {
-  height: 150px;
-}
+  .illustration {
+    height: 150px;
+  }
   .nopadding {
     padding: 0;
   }
   .dropdown-font {
-    font-size: 14px;
+    font-size: 14px !important;
   }
- }
+}
 
 input[type=checkbox].css-checkbox {
   position:absolute; z-index:-1000; left:-1000px; overflow: hidden; clip: rect(0 0 0 0); height:1px; width:1px; margin:-1px; padding:0; border:0;
@@ -559,7 +562,6 @@ select:-webkit-autofill:focus{
 .profile-dropdown {
   position: relative;
 }
-
 .dropdown-font {
   font-size: 15px;
 }
