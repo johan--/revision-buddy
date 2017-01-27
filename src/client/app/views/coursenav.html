@@ -16,7 +16,7 @@
       </div>
       <ul ng-if="course.children && course.children.length > 0">
         <li ng-repeat="child in course.children">
-          <div class="coursenav-tile click" ng-click="triggerContentView(child);$event.stopPropagation();">
+          <div class="coursenav-tile click custom-child" ng-click="triggerContentView(child);$event.stopPropagation();">
             <span>{{child.node_name}}</span>
             <span class="glyphicon glyphicon-download-alt coursenav-download pull-right myicon"
                   ng-click="triggerDownload(child);$event.stopPropagation();">
