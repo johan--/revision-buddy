@@ -9,7 +9,7 @@
         <div ng-if="!isHome" class="header-dropdown center-block">
           <div class="dropdown">
             <button class="header-dropdown-btn" type="button" data-toggle="dropdown">
-              <div style="font-size:15px">
+              <div class="dropdown-font">
                                 <span class="glyphicon glyphicon-one-fine-dot"
                                       style="color:{{getSubColor(selectedCourse.subject)}}"></span>
                 {{selectedCourse.board}} {{selectedCourse.class | romanize}} {{selectedCourse.subject}}
@@ -19,7 +19,7 @@
             <ul class="dropdown-menu dropdown-menu-left header-dropdown-list">
               <li ng-repeat="course in courseList" ng-click="changeCourse(course)">
                 <!--<a href=""> {{course.board}} {{course.subject}}</a>-->
-                <div class="tile" style="font-size:15px">
+                <div class="tile dropdown-font">
                                     <span class="glyphicon glyphicon-one-fine-dot"
                                           style="color:{{getSubColor(course.subject)}}"></span>
                   {{course.board}} {{course.class | romanize}} {{course.subject}}

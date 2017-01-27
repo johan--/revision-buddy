@@ -416,7 +416,10 @@ body {
   .nopadding {
     padding: 0;
   }
-}
+  .dropdown-font {
+    font-size: 14px;
+  }
+ }
 
 input[type=checkbox].css-checkbox {
   position:absolute; z-index:-1000; left:-1000px; overflow: hidden; clip: rect(0 0 0 0); height:1px; width:1px; margin:-1px; padding:0; border:0;
@@ -555,4 +558,8 @@ select:-webkit-autofill:focus{
 
 .profile-dropdown {
   position: relative;
+}
+
+.dropdown-font {
+  font-size: 15px;
 }
