@@ -565,3 +565,12 @@ select:-webkit-autofill:focus{
 .dropdown-font {
   font-size: 15px;
 }
+
+.custom-child {
+  color: black !important;
+  background-color: white !important;
+}
+.custom-child:hover {
+  background-color: #29ABE2 !important;
+  color: white !important;
+}
