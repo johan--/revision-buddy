@@ -3,6 +3,7 @@ import {IRevisionPack as IRevisionPack} from "./revisionPack";
 import {IRevisionPackDocument as IRevisionPackDocument} from "./revisionPackDocument";
 
 let revisionPackSchema = new mongoose.Schema({
+    course_id: String,
     board: String,
     class: String,
     subject: String,

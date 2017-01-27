@@ -181,7 +181,7 @@ export class RevisionPackController {
                                 let randomPassword = passwordGenerator.generate({
                                     length: 10,
                                     numbers: false
-                                }); //"vidyanext";
+                                }); 
 
                                 logger.info(randomPassword);
 
@@ -200,7 +200,7 @@ export class RevisionPackController {
                                     else if (savedUser != null) {
                                         RevisionPackEventEmitter.event("newUserCreated").emit(savedUser, randomPassword);
                                         
-                                        savedUser.revisionpack_subscriptions = [{ course_id: courseDetails._id, tutor_id: tutorDetails._id }];
+                                        savedUser.revisionpack_subscriptions = [{ course_id: courseDetails.course_id, tutor_id: tutorDetails._id }];
 
                                         User.findByIdAndUpdate(savedUser._id, savedUser, function (err, updatedUser) {
                                             if (err)
@@ -215,9 +215,13 @@ export class RevisionPackController {
                                 });
                             }
                             else {
-                                let currentRevisionPackSubscription = _.find(user.revisionpack_subscriptions, function (o) { return (o.course_id == courseDetails._id && o.tutor_id == tutorDetails._id) });
+
+                                let currentRevisionPackSubscription = _.find(user.revisionpack_subscriptions, function (o) {
+                                    return (o.course_id == courseDetails.course_id && o.tutor_id == tutorDetails._id)
+                                });
+
                                 if (currentRevisionPackSubscription == null) {
-                                    user.revisionpack_subscriptions.push({ course_id: courseDetails._id, tutor_id: tutorDetails._id });
+                                    user.revisionpack_subscriptions.push({ course_id: courseDetails.course_id, tutor_id: tutorDetails._id });
 
                                     User.findByIdAndUpdate(user._id, user, function (err, result) {
                                         if (err)

@@ -1,6 +1,7 @@
 ﻿export interface IRevisionPack {
-    board : string,
-    class : string,
+    course_id: string,
+    board: string,
+    class: string,
     subject: string,
     content: [{
         node_name: string,

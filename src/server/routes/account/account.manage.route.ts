@@ -80,15 +80,15 @@ export class AccountController {
                     let jwt = require('jsonwebtoken');
                     let token = jwt.sign({ data: user }, Config.webtokenSignatureSecretKey);
                     User.findOne({ "_id": user })
-                    .then(function(userObj){
-                        var userToReturn = {
-                            "lastname": userObj.lastname,
-                            "firstname": userObj.firstname,
-                            "user_name": userObj.user_name,
-                            "revisionpack_subscriptions": userObj.revisionpack_subscriptions
-                        }
-                        return res.status(200).send({ 'token': token,'user':userToReturn });    
-                    }) 
+                        .then(function (userObj) {
+                            var userToReturn = {
+                                "lastname": userObj.lastname,
+                                "firstname": userObj.firstname,
+                                "user_name": userObj.user_name,
+                                "revisionpack_subscriptions": userObj.revisionpack_subscriptions
+                            }
+                            return res.status(200).send({ 'token': token, 'user': userToReturn });
+                        })
                 })(req, res, next);
         });
 
