@@ -28,7 +28,7 @@ export class RevisionPackController {
             //let userId = req["user"]["_id"];
             let courseId = req.params.courseid;
             
-            RevisionPack.findById(courseId, function (err, courseDoc) {
+            RevisionPack.findOne({ "course_id": courseId} , function (err, courseDoc) {
                 if (err)
                     next(err);
 
@@ -55,6 +55,7 @@ export class RevisionPackController {
                     return res["boom"].badRequest("Course already exists");
 
                 let tempCourse = new RevisionPack();
+                tempCourse.course_id = req.body.course_id;
                 tempCourse.board = boardName;
                 tempCourse.class = className;
                 tempCourse.subject = subjectName;
