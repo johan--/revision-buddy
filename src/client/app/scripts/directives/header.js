@@ -51,3 +51,22 @@ angular.module('revisionbuddyApp')
       }
     };
   });
+
+angular.module('revisionbuddyApp').filter('romanize', function() {
+
+  // In the return function, we must pass in a single parameter which will be the data we will work on.
+  // We have the ability to support multiple other parameters that can be passed into the filter optionally
+  return function(num) {
+    if (!+num)
+      return false;
+    var digits = String(+num).split(""),
+      key = ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM",
+        "","X","XX","XXX","XL","L","LX","LXX","LXXX","XC",
+        "","I","II","III","IV","V","VI","VII","VIII","IX"],
+      roman = "",
+      i = 3;
+    while (i--)
+      roman = (key[+digits.pop() + (i * 10)] || "") + roman;
+    return Array(+digits.join("") + 1).join("M") + roman;
+  }
+});
