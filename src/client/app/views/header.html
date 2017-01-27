@@ -12,7 +12,7 @@
               <div>
                                 <span class="glyphicon glyphicon-one-fine-dot"
                                       style="color:{{getSubColor(selectedCourse.subject)}}"></span>
-                {{selectedCourse.board}} {{selectedCourse.subject}}
+                {{selectedCourse.board}} {{selectedCourse.class | romanize}} {{selectedCourse.subject}}
                 <span class="caret"></span>
               </div>
             </button>
@@ -22,7 +22,7 @@
                 <div class="tile">
                                     <span class="glyphicon glyphicon-one-fine-dot"
                                           style="color:{{getSubColor(course.subject)}}"></span>
-                  {{course.board}} {{course.subject}}
+                  {{course.board}} {{course.class | romanize}} {{course.subject}}
                 </div>
               </li>
             </ul>
