@@ -35,7 +35,7 @@ export class UserService {
                         resolve(doc);
                     else
                         reject(new Error("Unable to fetch the user information from identity"));
-                }).error(function (err) {
+                }).catch(function (err) {
                     reject(err);
                 });
             }

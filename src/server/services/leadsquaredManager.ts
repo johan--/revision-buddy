@@ -69,7 +69,7 @@ export class LeadSquaredManager {
 
             rp(optionsGetLeadDetails).then(function (doc) {
                 resolve(doc);
-            }).error(function (err) {
+            }).catch(function (err) {
                 reject(err);
             });
         });
