@@ -231,7 +231,7 @@ export class RevisionPackController {
                                             reject(err);
 
                                         if (result != null) {
-                                            RevisionPackEventEmitter.event("newRevisionPackSubscribed").emit(user, tutorDetails, { board: boardName, className: className, subject: subjectName });
+                                            RevisionPackEventEmitter.event("newRevisionPackSubscribed").emit(user, tutorDetails, { board: boardName, class: className, subject: subjectName });
                                             resolve(result);
                                         }
                                     });
