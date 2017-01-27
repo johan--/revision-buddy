@@ -9,8 +9,8 @@
                 {{course.node_name}}
 
               <span  ng-if="course.children.length > 0" class="glyphicon glyphicon-chevron-right myarrow"></span>
-                <span ng-if="!course.children || course.children.length == 0" class="glyphicon glyphicon-download-alt coursenav-download"
-                            ng-click="triggerDownload(course);$event.stopPropagation();" style="color:#C7C7C7" class="myarrow">
+                <span ng-if="!course.children || course.children.length == 0" class="glyphicon glyphicon-download-alt coursenav-download download-icon"
+                            ng-click="triggerDownload(course);$event.stopPropagation();" class="myarrow">
 
                 </span>
                 <!--build a tile with other icons here like download-->
