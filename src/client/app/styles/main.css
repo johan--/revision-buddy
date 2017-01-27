@@ -567,7 +567,7 @@ select:-webkit-autofill:focus{
 }
 
 .custom-child {
-  color: black !important;
+  color: #3d3d3d !important;
   background-color: white !important;
 }
 .custom-child:hover {
