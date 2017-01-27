@@ -11,10 +11,11 @@ angular.module('revisionbuddyApp')
   .controller('CourseviewCtrl', function ($scope,$rootScope,$window,buddyapi,courseViewService) {
       // see if there is course selected by user
       $scope.revisionCourse = courseViewService.selectedPack;
+      console.log($scope.revisionCourse);
       $scope.frameUrl = "/views/selectcourse.html";
       $scope.showGView = false;
       $scope.showCollapseCourseNav = false;
-      
+
       $scope.toggleCollapseCourseNav = function(){
           $scope.showCollapseCourseNav = !$scope.showCollapseCourseNav;
       }
@@ -45,7 +46,7 @@ angular.module('revisionbuddyApp')
           $scope.loadingpdf = true;
           $scope.gViewUrl = data.gViewUrl;
           $scope.contentNode = data.node;
-          $scope.contentTitle = $scope.contentNode.node_name; 
+          $scope.contentTitle = $scope.contentNode.node_name;
           $scope.showGView = true;
           $scope.showCollapseCourseNav = false;
       });

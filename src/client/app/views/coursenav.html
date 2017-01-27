@@ -1,31 +1,33 @@
 <div class="coursenav">
-    <!--<ul>
-        <li class="has-sub">
-            <div style="height: 50px;">Menu 1</div>
-    -->
-    <ul ng-repeat="course in courseContent">
-        <li ng-class="{'has-sub':course.children && course.children.length > 0}">
-            <div class="coursenav-tile" ng-click="outerContentView(course);;$event.stopPropagation();">
-                {{course.node_name}}
+  <!--<ul>
+      <li class="has-sub">
+          <div style="height: 50px;">Menu 1</div>
+  -->
+  <ul ng-repeat="course in courseContent">
+    <li ng-class="{'has-sub':course.children && course.children.length > 0}">
+      <div class="coursenav-tile" ng-click="outerContentView(course);;$event.stopPropagation();">
+        {{course.node_name}}
 
-              <span  ng-if="course.children.length > 0" class="glyphicon glyphicon-chevron-right myarrow"></span>
-                <span ng-if="!course.children || course.children.length == 0" class="glyphicon glyphicon-download-alt coursenav-download"
-                            ng-click="triggerDownload(course);$event.stopPropagation();" style="color:#C7C7C7" class="myarrow">
+        <span ng-if="course.children.length > 0" class="glyphicon glyphicon-hand-right pull-right"></span>
+        <span ng-if="!course.children || course.children.length == 0"
+              class="glyphicon glyphicon-download-alt coursenav-download myicon"
+              ng-click="triggerDownload(course);$event.stopPropagation();">
 
                 </span>
-                <!--build a tile with other icons here like download-->
-            </div>
-            <ul ng-if="course.children && course.children.length > 0">
-                <li ng-repeat="child in course.children">
-                    <div class="coursenav-tile" ng-click="triggerContentView(child);$event.stopPropagation();">
-                        <span>{{child.node_name}}</span>
-                        <span class="glyphicon glyphicon-download-alt coursenav-download download-icon"
-                            ng-click="triggerDownload(child);$event.stopPropagation();"></span>
-                    </div>
-                </li>
-            </ul>
+        <!--build a tile with other icons here like download-->
+      </div>
+      <ul ng-if="course.children && course.children.length > 0">
+        <li ng-repeat="child in course.children">
+          <div class="coursenav-tile" ng-click="triggerContentView(child);$event.stopPropagation();">
+            <span>{{child.node_name}}</span>
+            <span class="glyphicon glyphicon-download-alt coursenav-download pull-right myicon"
+                  ng-click="triggerDownload(child);$event.stopPropagation();">
+                </span>
+          </div>
         </li>
-    </ul>
+      </ul>
+    </li>
+  </ul>
 </div>
 
 
