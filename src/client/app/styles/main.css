@@ -72,20 +72,23 @@ body {
 }
 .main-container{
   margin-top: 90px;
+  min-height: calc(100vh - 120px);
 }
-.footer{
-  position: fixed;
-  bottom: 0px;
-  left:0px;
+
+.footer {
+  position: relative;
+  /* bottom: 0px; */
+  /* left: 0px; */
   background: white;
-  width: 100%;
+  width: 100vw;
   height: 30px;
   line-height: 30px;
   text-align: center;
-  font-size: 120%;
+  /* font-size: 120%; */
   z-index: 1050;
   -webkit-box-shadow: 0 0 5px 2px rgba(0, 0, 0, .5);
   box-shadow: 0 0 5px 2px rgba(0, 0, 0, .5);
+  margin-left: -15px;
 }
 .header{
   position: fixed;
