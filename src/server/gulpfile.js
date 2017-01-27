@@ -5,6 +5,7 @@
     sourcemaps = require("gulp-sourcemaps");
     
 del = require('del');
+var gulpSequence = require('gulp-sequence')
 
 const TYPE_SCRIPT_FILES = ["./**/*.ts"];
 const LIBRARY_TYPE_SCRIPT_DEFINITION = './typings/globals/**/*.ts';
@@ -36,13 +37,13 @@ gulp.task('compile-ts', function () {
 });
 
 gulp.task("copy-files", function () {
-    gulp.src('./email-templates/**/*/')
-        .pipe(gulp.dest('./out/email-templates'));
+    gulp.src('./email-templates/**/*')
+        .pipe(gulp.dest('./out/services/email-templates'));
 
     gulp.src('./.env.*')
         .pipe(gulp.dest('./out/'));
 });
 
 
-gulp.task('default', ['clean:out', 'compile-ts', 'copy-files']);
-gulp.task('ci', ['clean:out', 'ts-lint', 'compile-ts']);
+gulp.task('default', gulpSequence('clean:out', 'compile-ts', 'copy-files'));
+gulp.task('ci', gulpSequence('clean:out', 'ts-lint', 'compile-ts'));

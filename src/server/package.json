@@ -49,6 +49,7 @@
     "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-copy": "^1.0.0",
+    "gulp-sequence": "^0.4.6",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-tslint": "^6.1.2",
     "gulp-typescript": "^3.0.1",

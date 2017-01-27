@@ -6,14 +6,11 @@
   },
   "exclude": [
     "node_modules",
-    "dist",
-    "out",
-    "other-ts-goodies"
+    "out"
   ],
   "include": [
     "./**/*.ts",
     "./typings/globals/**/*.ts",
-    "./email-templates/**/*"
-
+    "./**/*."
   ]
 }

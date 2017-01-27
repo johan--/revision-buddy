@@ -6,16 +6,17 @@ import {Config as Config} from "./../config";
 
 export class MailService {
     
-    public static sendMailForNewUserCreated(user, password) {
+    public static sendMailForNewUserCreated(user, tutor, password) {
 
         let path = require("path")
-        let templateDir = path.join(__dirname, "templates", "welcome-email");
+        let templateDir = path.join(__dirname, "email-templates", "welcome-email");
 
         let EmailTemplate = require("email-templates").EmailTemplate
 
         let template = new EmailTemplate(templateDir);
         let detailsForMailTemplate = {
-            username: user.user_name,
+            user: user,
+            tutor: tutor,
             password: password
         }
 

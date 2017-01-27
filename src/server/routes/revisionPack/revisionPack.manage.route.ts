@@ -192,13 +192,15 @@ export class RevisionPackController {
                                 newUser.email = parentLeadDetails.EmailAddress;
                                 newUser.lead_id = parentLeadId;
                                 newUser.parent_lead_id = parentLeadId;
+                                newUser.firstname = parentLeadDetails.FirstName;
+                                newUser.lastname = parentLeadDetails.LastName;
 
                                 newUser.save(function (err, savedUser) {
                                     if (err)
                                         reject(err);
 
                                     else if (savedUser != null) {
-                                        RevisionPackEventEmitter.event("newUserCreated").emit(savedUser, randomPassword);
+                                        RevisionPackEventEmitter.event("newUserCreated").emit(savedUser, tutorDetails, randomPassword);
                                         
                                         savedUser.revisionpack_subscriptions = [{ course_id: courseDetails.course_id, tutor_id: tutorDetails._id }];
 
@@ -207,7 +209,10 @@ export class RevisionPackController {
                                                 reject(err)
 
                                             if (updatedUser != null) {
-                                                RevisionPackEventEmitter.event("newRevisionPackSubscribed").emit(savedUser, { board: boardName, class: className, subject: subjectName });
+                                                RevisionPackEventEmitter.event("newRevisionPackSubscribed").emit(savedUser,
+                                                    tutorDetails,
+                                                    { board: boardName, class: className, subject: subjectName });
+
                                                 resolve(newUser);
                                             }
                                         });
@@ -228,7 +233,7 @@ export class RevisionPackController {
                                             reject(err);
 
                                         if (result != null) {
-                                            RevisionPackEventEmitter.event("newRevisionPackSubscribed").emit(user, { board: boardName, className: className, subject: subjectName });
+                                            RevisionPackEventEmitter.event("newRevisionPackSubscribed").emit(user, tutorDetails, { board: boardName, className: className, subject: subjectName });
                                             resolve(result);
                                         }
                                     });

@@ -17,7 +17,7 @@ export interface RevisionPackEventEmitter extends TsEventEmitter {
 const RevisionPackEventEmitter: any = TsEventEmitter.create();
 export default RevisionPackEventEmitter;
 
-RevisionPackEventEmitter.event("newUserCreated").on((user, password) => {
+RevisionPackEventEmitter.event("newUserCreated").on((user, tutordetails, password) => {
 
     logger.info("Writing a custom acitivity on LS. This will be deprecated later");
     logger.info("Event :: newUserCreated");
@@ -29,10 +29,10 @@ RevisionPackEventEmitter.event("newUserCreated").on((user, password) => {
             logger.error("Unable to create an activity on leadsqaured for the new user created in revision buddy");
 
         if (!err && res.statusCode == 200)
-            logger.info("Activity for new user created in revisio buddy is updated on LS");
+            logger.info("Activity for new user created in revision buddy is updated on LS");
     });
 
-    MailService.sendMailForNewUserCreated(user, password).then(
+    MailService.sendMailForNewUserCreated(user, tutordetails, password).then(
         logger.info("mail sent successfully")).catch(function (err) {
         logger.error(err);
     });
@@ -40,7 +40,7 @@ RevisionPackEventEmitter.event("newUserCreated").on((user, password) => {
 });
 
 
-RevisionPackEventEmitter.event("newRevisionPackSubscribed").on((user, revisionPackSubscribed) => {
+RevisionPackEventEmitter.event("newRevisionPackSubscribed").on((user, tutordetails, revisionPackSubscribed) => {
 
     logger.info("Writing a custom acitivity on LS. This will be deprecated later");
     logger.info("Event :: newRevisionPackSubscribed");
