@@ -44,6 +44,18 @@ angular.module('revisionbuddyApp')
 
               });
       }
+      $scope.showAnswers = function(){
+        buddyapi.getTOCContentUrl($scope.contentNode.solution_file)
+          .then(function(answerPdfUrl){
+              $scope.gViewUrl = "http://docs.google.com/viewer?url="+encodeURIComponent(answerPdfUrl)+"&embedded=true";
+              $scope.loadingpdf = true;
+              $scope.contentTitle = "Answers for : " + $scope.contentNode.node_name;
+              $scope.showGView = true;
+            },
+            function(err){
+
+            }); 
+      }
       $rootScope.$on('revisionPackageChanged', function () {
         //update rev package this trigger course nav redraw
         $scope.revisionCourse = courseViewService.selectedPack;
