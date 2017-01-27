@@ -475,7 +475,7 @@ select:-webkit-autofill:focus{
   height: 0px;
 }
 .coursenav-menu-collapse-container{
-  visibility: hidden;
+  display: none;
   width: 0px;
   height: 0px;
 }
@@ -514,13 +514,13 @@ select:-webkit-autofill:focus{
     font-size: 250%;
   }
   .coursenav-menu-collapse-container{
-    visibility: visible;
-    position: fixed;
+    display: block;
+    position: relative;
     z-index: 600;
-    top: 120px;
-    left: 14px;
+    top: 35px;
+    right: 14px;
     font-size: 250%;
-    width: 40%;
+    width: 55%;
   }
   .coursenav ul li{
     line-height: 0.5em;
@@ -533,7 +533,7 @@ select:-webkit-autofill:focus{
     left: 0px;
   }
 }
-.myicon { transition: all .2s ease-in-out; }
+
 .myicon:hover {
   transform: scale(1.4);
 }
