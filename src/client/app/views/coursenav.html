@@ -7,12 +7,10 @@
     <li ng-class="{'has-sub':course.children && course.children.length > 0}">
       <div class="coursenav-tile" ng-click="outerContentView(course);;$event.stopPropagation();" ng-class="{'click': !course.children.length}">
         {{course.node_name}}
-
         <span ng-if="course.children.length > 0" class="glyphicon glyphicon-hand-right pull-right"></span>
         <span ng-if="!course.children || course.children.length == 0"
               class="glyphicon glyphicon-download-alt coursenav-download myicon"
               ng-click="triggerDownload(course);$event.stopPropagation();">
-
                 </span>
         <!--build a tile with other icons here like download-->
       </div>

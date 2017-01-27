@@ -18,7 +18,7 @@ export class UserService {
                 if (userEmail === null || userEmail === "")
                     reject(new Error("User email is empty"));
 
-                let getUserInformationUrl = url.resolve(Config.identityEndPoint, ("/api/account/user/email/" + userEmail + "/apikey/" + Config.identity_ApiKey));
+                let getUserInformationUrl = Config.identityEndPoint + "/api/account/user/email/" + userEmail + "/apikey/" + Config.identity_ApiKey;
                 logger.info("The base url for updating the user lead identifier is ", getUserInformationUrl);
 
                 let optionsGetUserInformation = {
