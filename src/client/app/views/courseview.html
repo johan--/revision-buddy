@@ -17,7 +17,7 @@
                     <div class="row courseview-title">
                         <div class="heading"> {{contentTitle}}</div>
                         <div class="show-answers">
-                            <div class="btn btn-info" ng-class="{'disabled':!contentNode.solution_file}"
+                            <div class="btn btn-info" ng-if="contentNode.solution_file && contentNode.solution_file!=''"
                                     ng-click="showAnswerAcceptPopup()"
                                     data-toggle="modal" data-target="#showAnswersModal">
                                     Show Answers
