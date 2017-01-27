@@ -25,6 +25,8 @@ angular.module('revisionbuddyApp')
         scope.changeCourse = function(course){
             courseViewService.selectRevisionPack(course);
             scope.selectedCourse = courseViewService.selectedPack;
+            //trigger state change to courseViewService
+            $location.path("/courseview")
         }
         scope.getSubColor = function(sub){
           console.log("get sub color "+sub);
