@@ -29,8 +29,9 @@
                     </div>
                 </div>
                 <div ng-if="!showGView">
-                    <iframe ng-src="{{frameUrl | trusted}}"
-                        class="pdf-container" frameborder="0"></iframe>    
+                  <div ng-include="frameUrl"></div>
+                    <!--<iframe ng-src="{{frameUrl | trusted}}"
+                        class="pdf-container" frameborder="0"></iframe>-->
                 </div>
             </div>
         </div>
