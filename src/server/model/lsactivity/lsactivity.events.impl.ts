@@ -27,7 +27,7 @@ export class LSActivityEventsImpl implements LSActivityEvents {
             this.ProfileReviewed = 230;
 
             this.RevisionPackAcccountCreated = 218;
-            this.RevisionPackNewPackSubscribed = 217;
+            this.RevisionPackNewPackSubscribed = 222;
         }
         else {
             this.AccountCreated = 229;
@@ -41,7 +41,7 @@ export class LSActivityEventsImpl implements LSActivityEvents {
             this.ProfileReviewed = 236;
 
             this.RevisionPackAcccountCreated = 218;
-            this.RevisionPackNewPackSubscribed = 217;
+            this.RevisionPackNewPackSubscribed = 222;
         }
     }
 }
