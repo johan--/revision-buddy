@@ -8,14 +8,14 @@
         </div>
     </div>
     <div class="row" ng-repeat="subjects in rowWiseRevisionPackas">
-        <div class="col-md-3 letter-box" ng-repeat="subject in subjects">
-            <div class="container-fluid">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 letter-box" ng-repeat="subject in subjects">
+            <div class="container-fluid" style="margin-bottom: 20px">
                 <div class="subject-icon" >
                     <img class="img-responsive img-circle" src="{{getSubjectIcon(subject)}}" alt="subject.name"
                         ng-click="selectSubject(subject)" />
                 </div>
                 <div class="subject-title">
-                    <span>{{subject.board}} {{subject.class}}</span>
+                    <span>{{subject.board}} {{subject.class | romanize}}</span>
                     <br>
                     <span>{{subject.subject}}</span>
                 </div>
