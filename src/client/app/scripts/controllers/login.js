@@ -20,7 +20,7 @@ angular.module('revisionbuddyApp')
         .then(function(){
           dataLayer.push({
                     'event': 'loginSuccess',
-                    'pincode': $scope.userLoginDeatails.user_name
+                    'username': $scope.userLoginDeatails.user_name
                 });
           //login successful go to home page
           $location.path("/home");
@@ -30,8 +30,8 @@ angular.module('revisionbuddyApp')
           console.log(err);
           dataLayer.push({
                     'event': 'loginFailed',
-                    'pincode': $scope.userLoginDeatails.user_name,
-                    'error':err
+                    'username': $scope.userLoginDeatails.user_name,
+                    'error':err.data
                 });
           toastr.error("login failed");
         })
