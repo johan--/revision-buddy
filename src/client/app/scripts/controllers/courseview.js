@@ -8,7 +8,7 @@
  * Controller of the revisionbuddyApp
  */
 angular.module('revisionbuddyApp')
-  .controller('CourseviewCtrl', function ($scope,$rootScope,$window,buddyapi,courseViewService) {
+  .controller('CourseviewCtrl', function ($scope,$rootScope,$window,$q,buddyapi,courseViewService) {
       // see if there is course selected by user
       $scope.revisionCourse = courseViewService.selectedPack;
       console.log($scope.revisionCourse);
@@ -44,17 +44,64 @@ angular.module('revisionbuddyApp')
 
               });
       }
+
+      $scope.showingAnswers = false;
+      function getAnswerButtonText(){
+        return $scope.showingAnswers ? "Back To Questions":"Show Answers";
+      }
+      $scope.answerText = getAnswerButtonText();
+
       $scope.showAnswers = function(){
-        buddyapi.getTOCContentUrl($scope.contentNode.solution_file)
+        
+        $scope.showingAnswers = !$scope.showingAnswers;
+
+         if(!$scope.showingAnswers){
+           loadContentPDF($scope.contentNode.file_name,$scope.contentNode.node_name)
+            .then(function(){
+              //stuff after pdf url resolveed
+              $scope.answerText = getAnswerButtonText();
+              addAnswerGTMTag('contentOpened',$scope.contentNode.node_name);
+            },function(err){
+              //stuff after pdf url resolve failed.
+            });
+         }
+         else {
+           loadContentPDF($scope.contentNode.solution_file,"Answers for : " + $scope.contentNode.node_name)
+            .then(function(){
+              //stuff after pdf url resolveed
+              $scope.answerText = getAnswerButtonText();
+              addAnswerGTMTag('contentOpened',$scope.contentNode.node_name +"_answers");
+            },function(err){
+              //stuff after pdf url resolve failed.
+            })
+         }
+      }
+      function addAnswerGTMTag(eventName,contentname){
+        dataLayer.push({
+                    'event': eventName,//'contentOpened',
+                    'contenttype': $scope.contentNode.node_type,
+                    'contentname': contentname,//data.node.node_name,
+                    'rawfile_id': $scope.contentNode.rawfile_id,
+                    'board': courseViewService.selectedPack.board,
+                    'class': courseViewService.selectedPack.class,
+                    'course_id': courseViewService.selectedPack.course_id,
+                    'subject':courseViewService.selectedPack.subject
+                });
+      }
+      function loadContentPDF(content_file_name,contentTitle){
+        var defer = $q.defer();
+        buddyapi.getTOCContentUrl(content_file_name)
           .then(function(answerPdfUrl){
               $scope.gViewUrl = "http://docs.google.com/viewer?url="+encodeURIComponent(answerPdfUrl)+"&embedded=true";
               $scope.loadingpdf = true;
-              $scope.contentTitle = "Answers for : " + $scope.contentNode.node_name;
+              $scope.contentTitle = contentTitle;//"Answers for : " + $scope.contentNode.node_name;
               $scope.showGView = true;
+              defer.resolve();
             },
             function(err){
-
-            }); 
+              defer.reject(err);
+            });
+            return defer.promise;
       }
       $rootScope.$on('revisionPackageChanged', function () {
         //update rev package this trigger course nav redraw
