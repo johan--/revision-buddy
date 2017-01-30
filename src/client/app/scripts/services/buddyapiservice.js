@@ -24,7 +24,7 @@ angular.module('revisionbuddyApp')
                 var token = $cookies.get('_st');
                 if (token) {
                   service.validateUser(token).then(function(result){
-                      defer.resove(result);
+                      defer.resolve(result);
                   }, function(err){
                       console.log("Error : ", err);
                       defer.reject(err);
