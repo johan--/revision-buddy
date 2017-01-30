@@ -532,6 +532,13 @@ select:-webkit-autofill:focus{
 .pdf-container{
   width:100%; height:calc(100vh - 200px);
 }
+.header-nav{
+  margin-top:17px;
+  padding:0px;
+  position: fixed;
+  top: 0px;
+  right:0px
+}
 @media screen and (max-width: 768px) {
   #coursenav-container{
     visibility: hidden;
@@ -545,9 +552,9 @@ select:-webkit-autofill:focus{
   }
   .courseview-title{
     position: fixed;
-    top: 80px;
-    width: 90%;
-    left: 70px;
+    top: 110px;
+    width: 98%;
+    left: 20px;
 
     height: 50px;
     background: white;
@@ -559,15 +566,16 @@ select:-webkit-autofill:focus{
   .coursenav-menu-collapse{
     visibility: visible;
     position: fixed;
-    top: 84px;
-    left: 14px;
+    top: 30px;
+    left: 15px;
     font-size: 250%;
+    z-index: 1500;
   }
   .coursenav-menu-collapse-container{
     display: block;
     position: relative;
     z-index: 600;
-    top: 35px;
+    /*top: 5px;*/
     right: 14px;
     font-size: 250%;
     width: 55%;
@@ -577,11 +585,31 @@ select:-webkit-autofill:focus{
   }
   .pdf-container{
     width: 100%;
-    height: 450px;
-    position: absolute;
-    top: 50px;
+    height: calc(100vh - 200px);
+    position: fixed;
+    top: 165px;
     left: 0px;
   }
+  .header{
+    height: 105px;
+  }
+  .header-nav{
+    visibility: visible;
+    position: fixed;
+    padding:0px;
+    top: 30px;
+    right: 10px;
+    z-index: 1500;
+  }
+  .vnlogo-header  {
+  /*margin: 0 auto;*/
+  height: 40px;
+  margin: 5px auto;
+  }
+  .main-container{
+    margin-top: 120px;
+    min-height: calc(100vh - 120px);
+}
 }
 
 .myicon:hover {
