@@ -107,6 +107,7 @@
     <TypeScriptCompile Include="server.ts" />
     <TypeScriptCompile Include="services\mailService.ts" />
     <TypeScriptCompile Include="services\revisionPackService.ts" />
+    <TypeScriptCompile Include="services\tutorProfileService.ts" />
     <TypeScriptCompile Include="services\userService.ts" />
     <TypeScriptCompile Include="typings\globals\automapper-ts\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\body-parser\index.d.ts" />

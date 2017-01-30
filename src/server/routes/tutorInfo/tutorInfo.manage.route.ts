@@ -8,6 +8,7 @@ import * as _ from "underscore";
 
 import {logger as logger} from "./../../utils/logger";
 import {UserService as UserService}  from "./../../services/userService";
+import {TutorProfileService as TutorProfileService}  from "./../../services/tutorProfileService";
 
 export class TutorInformationController {
 
@@ -16,21 +17,30 @@ export class TutorInformationController {
         let router = express.Router();
 
         router.get("/details/tutorid/:id", function (req, res, next) {
-
+            
             let userService = new UserService();
-            userService.getUserById(req.params.id).then(function (result) {
-                if (result != null)
-                    return res.status(200).send({
-                        user_id : result._id,
-                        firstname: result.firstname,
-                        phone_number: result.phone_number,
-                        email: result.email,
-                        user_name: result.user_name,
-						lastname : result.lastname
-                    });
+            let tutorProfileService = new TutorProfileService();
 
-                else if (result == null)
-                    return res["boom"].notFound("The tutor with the specified email id is not found");
+            let p2 = tutorProfileService.getTutorProfile(req.params.id);
+            let p1 = userService.getUserById(req.params.id);
+
+            Promise.all([p1, p2]).then(function (results) {
+                let userDetails = results[0];
+                let tutorProfileDetails = results[1];
+
+                if (userDetails == null)
+                    return res["boom"].notFound("The tutor with the specified id is not found");
+
+                return res.status(200).send({
+                    user_id: userDetails._id,
+                    firstname: userDetails.firstname,
+                    phone_number: userDetails.phone_number,
+                    email: userDetails.email,
+                    user_name: userDetails.user_name,
+                    lastname: userDetails.lastname,
+                    tutor_personaldetails : tutorProfileDetails
+                });
+
             }).catch(function (err) {
                 next(err);
             });
