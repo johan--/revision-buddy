@@ -130,6 +130,8 @@ angular.module('revisionbuddyApp')
           $scope.gViewUrl = data.gViewUrl;
           $scope.contentNode = data.node;
           $scope.contentTitle = $scope.contentNode.node_name;
+          $scope.showingAnswers = false;
+          $scope.answerText = getAnswerButtonText();
           $scope.showGView = true;
           $scope.showCollapseCourseNav = false;
           dataLayer.push({
