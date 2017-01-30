@@ -40,8 +40,8 @@ gulp.task("copy-files", function () {
     gulp.src('./email-templates/**/*')
         .pipe(gulp.dest('./out/services/email-templates'));
 
-    gulp.src('./node_modules/**/*')
-        .pipe(gulp.dest('./out/node_modules/'));
+    //gulp.src('./node_modules/**/*')
+    //    .pipe(gulp.dest('./out/node_modules/'));
 
     gulp.src('./.env.*')
         .pipe(gulp.dest('./out/'));
