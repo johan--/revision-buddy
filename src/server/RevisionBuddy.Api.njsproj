@@ -32,6 +32,7 @@
     <Content Include="package.json" />
     <Content Include="email-templates\welcome-email\style.css" />
     <Content Include="email-templates\welcome-email\html.hbs" />
+    <Content Include="routes\tutorInfo\tutorInfo.manage.route.ts" />
     <Content Include="tsconfig.json" />
     <Content Include="tslint.json" />
     <Content Include="typings.json" />
@@ -44,6 +45,7 @@
     <Folder Include="model\revisionPack\" />
     <Folder Include="model\user\" />
     <Folder Include="email-templates\" />
+    <Folder Include="routes\tutorInfo\" />
     <Folder Include="services\" />
     <Folder Include="routes\account\" />
     <Folder Include="routes\revisionPack\" />
