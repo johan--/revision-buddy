@@ -226,6 +226,7 @@ body {
   border: 0;
   line-height: 1;
   z-index: 500;
+  margin-bottom: 70px;
 }
 
 .coursenav ul,
