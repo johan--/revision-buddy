@@ -17,7 +17,7 @@ import {UserService as UserService}  from "./../../services/userService";
 import {RevisionPackService as RevisionPackService}  from "./../../services/revisionPackService";
 import {LeadSquaredManager as LeadSquaredManager} from "./../../services/leadsquaredManager";
 import RevisionPackEventEmitter from './../../eventEmitter';
-
+import {EnumConstants as EnumConstants} from "./../../enumConstants";
 
 export class RevisionPackController {
 
@@ -193,6 +193,7 @@ export class RevisionPackController {
                                 newUser.parent_lead_id = parentLeadId;
                                 newUser.firstname = parentLeadDetails.FirstName;
                                 newUser.lastname = parentLeadDetails.LastName;
+                                newUser.status = EnumConstants.UserStatus.Activated;
 
                                 newUser.save(function (err, savedUser) {
                                     if (err)
@@ -220,12 +221,17 @@ export class RevisionPackController {
                             }
                             else {
 
+                                user.status = EnumConstants.UserStatus.Activated;
                                 let currentRevisionPackSubscription = _.find(user.revisionpack_subscriptions, function (o) {
                                     return (o.course_id == courseDetails.course_id && o.tutor_id == tutorDetails._id)
                                 });
 
                                 if (currentRevisionPackSubscription == null) {
-                                    user.revisionpack_subscriptions.push({ course_id: courseDetails.course_id, tutor_id: tutorDetails._id });
+
+                                    if (user.revisionpack_subscriptions != null)
+                                        user.revisionpack_subscriptions.push({ course_id: courseDetails.course_id, tutor_id: tutorDetails._id });
+                                    else
+                                        user.revisionpack_subscriptions = [{ course_id: courseDetails.course_id, tutor_id: tutorDetails._id }];
 
                                     User.findByIdAndUpdate(user._id, user, function (err, result) {
                                         if (err)
