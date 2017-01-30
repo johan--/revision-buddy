@@ -33,6 +33,7 @@ angular.module('revisionbuddyApp')
             }
             return defer.promise;
     }
+    
     service.validateUser = function(token) {
             var deferred = $q.defer();
 
@@ -93,16 +94,18 @@ angular.module('revisionbuddyApp')
     service.LogoutUser = function(){
         service.token = null;
         service.userOtpObj = null;
-        $cookies.put('_st', service.token);
-        $cookies.putObject('_ttrobj', service.userOtpObj);
+        $cookies.remove('_st');
+        $cookies.remove('_ttrobj');
         $rootScope.$emit('userLoggedOut');
     }
     service.setLoggedInUser = function(token, userObj) {
-            if (service.token != token) {
+            if (service.token != token ) {
                 service.token = token;
                 service.userOtpObj = userObj;
-                $cookies.put('_st', service.token);
-                $cookies.putObject('_ttrobj', service.userOtpObj);
+                if (service.userLoginData.rememberme) {
+                    $cookies.put('_st', service.token);
+                    $cookies.putObject('_ttrobj', service.userOtpObj);
+                }
                 $rootScope.$emit('userChanged', {
                     data: userObj
                 });

@@ -21,6 +21,10 @@ angular.module('revisionbuddyApp')
                scope.courseList = rPack;
             });
         }
+        scope.logout = function(){
+          buddyapi.LogoutUser();
+          $location.path("/login");
+        }
         scope.userObj = buddyapi.getLoggedInUser();
         scope.changeCourse = function(course){
             courseViewService.selectRevisionPack(course);
