@@ -37,4 +37,35 @@ export class TutorProfileService {
         });
     }
 
+
+    public getTutorTeachLocation(tutorId: string) {
+        return new Promise((resolve, reject) => {
+
+            if (tutorId === null || tutorId === "")
+                reject(new Error("tutorId is empty"));
+
+            let getTutorTeachLocationUrl = Config.tutorProfileManage_EndPoint + "/api/ops/tutorprofile/teachlocation/tutorid/" + tutorId + "/apikey/" + Config.tutorProfile_Ops_ApiKey;
+            logger.info("The base url for getting the tutor teach location details is ", getTutorTeachLocationUrl);
+
+
+            let optionsTutorTeachLocation = {
+                url: getTutorTeachLocationUrl,
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                json: true
+            }
+
+            rp(optionsTutorTeachLocation).then(function (doc) {
+                if (doc != null)
+                    resolve(doc);
+                else
+                    reject(new Error("Unable to fetch the tutor teach location information"));
+            }).catch(function (err) {
+                reject(err);
+            });
+        });
+    }
+
 }

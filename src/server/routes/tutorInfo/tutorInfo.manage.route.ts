@@ -21,12 +21,14 @@ export class TutorInformationController {
             let userService = new UserService();
             let tutorProfileService = new TutorProfileService();
 
-            let p2 = tutorProfileService.getTutorProfile(req.params.id);
             let p1 = userService.getUserById(req.params.id);
+            let p2 = tutorProfileService.getTutorProfile(req.params.id);
+            let p3 = tutorProfileService.getTutorTeachLocation(req.params.id);
 
-            Promise.all([p1, p2]).then(function (results) {
+            Promise.all([p1, p2, p3]).then(function (results) {
                 let userDetails = results[0];
                 let tutorProfileDetails = results[1];
+                let tutorTeachLocationInformation = results[2];
 
                 if (userDetails == null)
                     return res["boom"].notFound("The tutor with the specified id is not found");
@@ -38,7 +40,9 @@ export class TutorInformationController {
                     email: userDetails.email,
                     user_name: userDetails.user_name,
                     lastname: userDetails.lastname,
-                    tutor_personaldetails : tutorProfileDetails
+                    tutor_personaldetails: tutorProfileDetails,
+                    tutor_teachlocation : tutorTeachLocationInformation
+
                 });
 
             }).catch(function (err) {
