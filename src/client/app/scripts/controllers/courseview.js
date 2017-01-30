@@ -76,6 +76,13 @@ angular.module('revisionbuddyApp')
             })
          }
       }
+      $scope.showAnswerAcceptPopup = function(){
+        if(!$scope.showingAnswers){
+          $('#showAnswersModal').modal('show');
+        }
+        else
+          $scope.showAnswers();//this will take student back to Questions. Without alert.
+      }
       function addAnswerGTMTag(eventName,contentname){
         dataLayer.push({
                     'event': eventName,//'contentOpened',
