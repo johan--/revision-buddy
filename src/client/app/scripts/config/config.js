@@ -9,7 +9,7 @@ angular.module('revisionbuddyApp')
           return rbuddy_baseurl+"/api/account/login";
       },
       'accountValidationUrl': function (token) {
-        return rbuddy_baseurl + '/api/account/verify?token=' + token;
+        return rbuddy_baseurl + '/api/account/token?token=' + token;
       },
       getTocUrl: function(course_id){
           return rbuddy_baseurl+'/api/revisionpack/toc/course/'+course_id;
