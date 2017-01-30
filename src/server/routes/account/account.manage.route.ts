@@ -107,6 +107,16 @@ export class AccountController {
             });
         });
 
+        router.get("/account/token/:token", function (req, res) {
+            let jwt = require('jsonwebtoken');
+            jwt.verify(req.params.token, Config.webtokenSignatureSecretKey, (err, decoded) => {
+                if (!decoded)
+                    res["boom"].notFound('Invalid Token');
+                else
+                    res.status(200).send({ 'token': decoded });
+            });
+        });
+
         router.get("/user/useremail/:email", function (req, res, next) {
             let userEmail = req.params.email;
 
