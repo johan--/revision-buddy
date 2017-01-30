@@ -18,12 +18,22 @@ angular.module('revisionbuddyApp')
     $scope.doLogin = function(){
       buddyapi.loginWithUserName($scope.userLoginDeatails)
         .then(function(){
-          dataLayer.push({
-                    'event': 'loginSuccess',
-                    'username': $scope.userLoginDeatails.user_name
-                });
-          //login successful go to home page
-          $location.path("/home");
+          if(!buddyapi.revisionpack_subscriptions || buddyapi.revisionpack_subscriptions.length == 0){
+            dataLayer.push({
+                'event': 'deactivatedUserLogin',
+                'username': $scope.userLoginDeatails.user_name
+            });
+            toastr.error("You haven't subscribed any Revision Pack yet. Please contact Support.","Login failed");
+            //TODO: call clear login once validate api is integrated.
+          }
+          else{
+              dataLayer.push({
+                'event': 'loginSuccess',
+                'username': $scope.userLoginDeatails.user_name
+              });
+            //login successful go to home page
+            $location.path("/home");
+          }
         },
         function(err){
           //handle error
