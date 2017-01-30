@@ -45,11 +45,18 @@ angular
       });
   })
   .run(function($rootScope,$location,buddyapi){
+      buddyapi.getLoggedInUser()
+        .then(function(){
+          $location.path('/home')
+        })
       // register listener to watch route changes
       $rootScope.$on( "$routeChangeStart", function(event, next, current) {   
-        if(!buddyapi.getLoggedInUser()){
-          $location.path('/login')
-        }
+        buddyapi.getLoggedInUser()
+          .then(function(){
+            //nothing let it proceed normally.
+          },function(err){
+            $location.path('/login')
+          })
     });
   })
   .filter('trusted', ['$sce', function ($sce) {

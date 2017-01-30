@@ -17,19 +17,21 @@ angular.module('revisionbuddyApp')
     var service = this;
     service.revisionpacks = [];
     this.getLoggedInUser = function(){
+        var defer = $q.defer();
       if (service.token) {
-                return service.userOtpObj;
+                defer.resolve(service.userOtpObj);
             } else {
                 var token = $cookies.get('_st');
                 if (token) {
                   service.validateUser(token).then(function(result){
-                      return result;
+                      defer.resove(result);
                   }, function(err){
                       console.log("Error : ", err);
+                      defer.reject(err);
                   });
                 }
             }
-            return null;
+            return defer.promise;
     }
     service.validateUser = function(token) {
             var deferred = $q.defer();
@@ -40,9 +42,10 @@ angular.module('revisionbuddyApp')
                     if (response.data == "Invalid Token") {
                         deferred.reject();
                     }
-                    service.user_name = response.data.token.user_name;
-                    //service.setLoggedInUser(token, response.data.token);
-                    deferred.resolve(response);
+                    // service.user_name = response.data.token.user_name;
+                    // //service.setLoggedInUser(token, response.data.token);
+                    // deferred.resolve(response);
+                    processSuccessResponse(response,deferred);
                 }, function(err) {
                     console.log("Error : ", err);
                     deferred.reject(err);
@@ -62,7 +65,18 @@ angular.module('revisionbuddyApp')
                 headers: { 'Content-Type': 'application/json' }
             })
                 .then(function (response) {
-                    service.username = response.data.user.user_name;
+                    processSuccessResponse(response,deferred);
+                },
+                function (err) {
+                    console.log("Error : ", err);
+                    service.otpError = true;
+                    deferred.reject(err);
+                });
+
+            return deferred.promise;
+    }
+    function processSuccessResponse(response,deferred){
+        service.username = response.data.user.user_name;
                     service.firstname =response.data.user.firstname;
                     service.lastname = response.data.user.lastname;
                     service.revisionpack_subscriptions = response.data.user.revisionpack_subscriptions
@@ -75,14 +89,13 @@ angular.module('revisionbuddyApp')
                     getTocContents();
                     console.log("user login successful with username and password");
                     deferred.resolve(response);
-                },
-                function (err) {
-                    console.log("Error : ", err);
-                    service.otpError = true;
-                    deferred.reject(err);
-                });
-
-            return deferred.promise;
+    }
+    service.LogoutUser = function(){
+        service.token = null;
+        service.userOtpObj = null;
+        $cookies.put('_st', service.token);
+        $cookies.putObject('_ttrobj', service.userOtpObj);
+        $rootScope.$emit('userLoggedOut');
     }
     service.setLoggedInUser = function(token, userObj) {
             if (service.token != token) {

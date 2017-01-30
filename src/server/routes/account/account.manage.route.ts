@@ -112,8 +112,22 @@ export class AccountController {
             jwt.verify(req.params.token, Config.webtokenSignatureSecretKey, (err, decoded) => {
                 if (!decoded)
                     res["boom"].notFound('Invalid Token');
-                else
-                    res.status(200).send({ 'token': decoded });
+                else{
+                    //res.status(200).send({ 'token': decoded });
+                    var user_id = decoded.data;
+
+                    let token = jwt.sign({ data: user_id }, Config.webtokenSignatureSecretKey);
+                    User.findOne({ "_id": user_id })
+                        .then(function (userObj) {
+                            var userToReturn = {
+                                "lastname": userObj.lastname,
+                                "firstname": userObj.firstname,
+                                "user_name": userObj.user_name,
+                                "revisionpack_subscriptions": userObj.revisionpack_subscriptions
+                            }
+                            return res.status(200).send({ 'token': token, 'user': userToReturn });
+                        })
+                }//else 
             });
         });
 
