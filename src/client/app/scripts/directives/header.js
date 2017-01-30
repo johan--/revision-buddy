@@ -60,7 +60,7 @@ angular.module('revisionbuddyApp').filter('romanize', function() {
   // We have the ability to support multiple other parameters that can be passed into the filter optionally
   return function(num) {
     if (!+num)
-      return false;
+      return num;
     var digits = String(+num).split(""),
       key = ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM",
         "","X","XX","XXX","XL","L","LX","LXX","LXXX","XC",
