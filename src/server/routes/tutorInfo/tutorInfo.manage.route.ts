@@ -15,12 +15,13 @@ export class TutorInformationController {
 
         let router = express.Router();
 
-        router.get("/details/email/:email", function (req, res, next) {
+        router.get("/details/tutorid/:id", function (req, res, next) {
 
             let userService = new UserService();
-            userService.getUser(req.params.email).then(function (result) {
+            userService.getUserById(req.params.id).then(function (result) {
                 if (result != null)
                     return res.status(200).send({
+                        user_id : result._id,
                         firstname: result.firstname,
                         phone_number: result.phone_number,
                         email: result.email,

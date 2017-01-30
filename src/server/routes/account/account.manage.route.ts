@@ -11,6 +11,7 @@ import {logger as logger} from "./../../utils/logger";
 import {User as User} from "./../../model/user/userDocumentSchema";
 import {Config as Config} from "./../../config";
 import RevisionPackEventEmitter from './../../eventEmitter';
+import {EnumConstants as EnumConstants} from "./../../enumConstants";
 
 export class AccountController {
 
@@ -186,6 +187,55 @@ export class AccountController {
                 });
             });
 
+        });
+
+        router.post("/deactivate/apikey/:apikey", function (req, res, next) {
+
+            let apiKey = req.params.apikey;
+
+            if (apiKey != Config.revisionBuddy_ApiKey)
+                return res["boom"].badRequest("Invalid request. Ensure to pass a proper API Key");
+
+            if (req.body == null || req.body === "" || req.body.length == 0) {
+                let error = new Error("No data received from remote source(LS)");
+                next(error);
+            }
+
+            let requests = req.body.map(function (item) {
+
+                return new Promise((resolve, reject) => {
+
+                    let leadId = item.RelatedProspectId;
+
+                    User.findOne({ "lead_id": leadId }, function (err, doc) {
+                        if (err)
+                            reject(err);
+
+                        if (doc == null)
+                            reject("User with lead_id " + leadId + " not found");
+
+                        doc.active = false;
+                        doc.revisionpack_subscriptions = null;
+                        doc.status = EnumConstants.UserStatus.Deactivated;
+                        doc.save(function (err) {
+                            if (err)
+                                reject(err);
+
+                            else
+                                resolve(doc);
+                        });
+                    });
+
+                });
+
+            });
+
+            Promise.all(requests).then(function (results) {
+                logger.info(" Processed all the requests");
+                res.status(200).send("Processing completed successfully");
+            }).catch(function (err) {
+                next(err);
+            });
         });
 
         return router;
