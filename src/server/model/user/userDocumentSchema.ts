@@ -16,6 +16,12 @@ let userSchema = new mongoose.Schema({
     parent_lead_id: String,
     parent_name: String,
     lead_id: String,
+    status: {
+        type: String,
+        required: false,
+        enum: ["Activated", "Deactivated"],
+        default: "Activated"
+    },
     revisionpack_subscriptions: [
         {
             course_id: String,

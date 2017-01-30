@@ -44,4 +44,40 @@ export class UserService {
             }
         });
     }
+
+
+    public getUserById(userId: string): any {
+
+        return new Promise((resolve, reject) => {
+
+            try {
+                if (userId === null || userId === "")
+                    reject(new Error("User-Id is empty"));
+
+                let getUserInformationUrl = Config.identityEndPoint + "/api/account/user/userid/" + userId + "/apikey/" + Config.identity_ApiKey;
+                logger.info("The base url for updating the user information is ", getUserInformationUrl);
+
+                let optionsGetUserInformation = {
+                    url: getUserInformationUrl,
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    json: true
+                }
+
+                rp(optionsGetUserInformation).then(function (doc) {
+                    if (doc != null)
+                        resolve(doc);
+                    else
+                        reject(new Error("Unable to fetch the user information from identity"));
+                }).catch(function (err) {
+                    reject(err);
+                });
+            }
+            catch (e) {
+                reject(e);
+            }
+        });
+    }
 }
