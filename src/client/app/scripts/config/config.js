@@ -16,5 +16,8 @@ angular.module('revisionbuddyApp')
       },
       getTocpdfUrl:function(filename){
           return rbuddy_baseurl+'/api/revisionpack/s3readrequest/sign?filename='+filename;
+      },
+      getTutorInfoUrl:function(tutor_id){
+          return rbuddy_baseurl+'/api/tutorinformation/details/tutorid/'+tutor_id;
       }
   });

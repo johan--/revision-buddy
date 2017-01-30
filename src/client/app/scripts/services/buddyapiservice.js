@@ -8,7 +8,7 @@
  * Service in the revisionbuddyApp.
  */ 
 angular.module('revisionbuddyApp')
-  .service('buddyapi', function ($rootScope,$http,$location,$q,$cookies,myConfig,courseViewService) {
+  .service('buddyapi', function ($rootScope,$http,$location,$q,$cookies,$filter,myConfig,courseViewService) {
     // AngularJS will instantiate a singleton by calling "new" on this function
     /**
      * details of logged in user if any
@@ -170,6 +170,40 @@ angular.module('revisionbuddyApp')
                     defer.reject();
                     console.log("error fetching TOC PDF");
                 });
+        return defer.promise;
+    }
+    service.getTutorinfo = function(course_id){
+        var defer = $q.defer();
+        // var mockTuturInfo = {
+        //     username:ObiWan,
+        //     profilepicUrl:"",
+        //     phoneNumber:"9988776655",
+        //     email:"ObiWan@starfleet.com"
+        // }
+        // find tutor id from course_id
+        console.log(service.revisionpack_subscriptions);
+        var tutor_id = "";
+        var found = $filter('filter')(service.revisionpack_subscriptions, {'course_id': course_id}, true);
+        if (found.length) {
+            //$scope.selected = JSON.stringify(found[0]);
+            tutor_id = found[0].tutor_id;
+            alert(tutor_id);
+        } else {
+            toastr.error("No tutor info available for this course;");
+            defer.reject(new Error("No tutor mapping found"));
+            return;
+        }
+        $http({
+            method: 'GET',
+            url: myConfig.getTutorInfoUrl(tutor_id)
+        })
+        .then(function(response){
+            defer.resolve(response);
+        },function(err){
+            console.log(err);
+            defer.reject();
+        });
+       // defer.resolve(mockTuturInfo);
         return defer.promise;
     }
   });
