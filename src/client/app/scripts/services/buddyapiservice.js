@@ -210,7 +210,7 @@ angular.module('revisionbuddyApp')
             var data = response.data;
             var infoObj = {
                 profilepic:data.profilepic,
-                name:data.firstname + " "+data.lastname,
+                name:data.firstname + " "+ (data.lastname||""),
                 location:data.location,
                 phoneNumber:data.phone_number,
                 email:data.email
