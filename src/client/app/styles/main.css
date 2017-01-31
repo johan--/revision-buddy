@@ -268,14 +268,24 @@ body {
   width: 100%;
 }
 
-.coursenav ul ul li { float: none; }
+.coursenav ul ul li { 
+  float: none;
+  border-bottom:1px solid #e8e8e8;
+
+  }
 
 .coursenav ul ul ul {
   top: 0;
   right: 0;
 }
 
-.coursenav ul li:hover > ul { visibility: visible; }
+.coursenav ul li:hover > ul { 
+  visibility: visible; 
+  /*border:1px solid gray;*/
+  border-top:1px solid #e8e8e8;
+  border-bottom:1px solid #e8e8e8;
+  border-right:1px solid #e8e8e8;
+  }
 
 .coursenav ul ul {
   top: 0;
@@ -569,7 +579,7 @@ select:-webkit-autofill:focus{
     top: 30px;
     left: 15px;
     font-size: 250%;
-    z-index: 1500;
+    z-index: 1050;
   }
   .coursenav-menu-collapse-container{
     display: block;
