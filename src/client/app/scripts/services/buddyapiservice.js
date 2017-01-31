@@ -208,8 +208,12 @@ angular.module('revisionbuddyApp')
         
         .then(function(response){
             var data = response.data;
+            var profilepicUrl = null;
+            if(data.tutor_personaldetails && data.tutor_personaldetails.profilepic){
+                profilepicUrl = data.tutor_personaldetails.profilepic[0].url;
+            }
             var infoObj = {
-                profilepic:data.profilepic,
+                profilepic:profilepicUrl,
                 name:data.firstname + " "+ (data.lastname||""),
                 location:data.location,
                 phoneNumber:data.phone_number,
