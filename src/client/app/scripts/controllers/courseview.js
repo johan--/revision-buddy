@@ -20,8 +20,14 @@ angular.module('revisionbuddyApp')
           $scope.showCollapseCourseNav = !$scope.showCollapseCourseNav;
       }
       $scope.downloadpdf = function(){
+        var gtmEventName = "contentDownloaded";
+        var contentFileName = $scope.contentNode.file_name;
+        if($scope.showingAnswers){
+          gtmEventName = "answerDownloaded";
+          contentFileName = $scope.contentNode.solution_file;
+        }
         dataLayer.push({
-                    'event': 'contentDownloaded',
+                    'event': gtmEventName,
                     'contenttype': $scope.contentNode.node_type,
                     'contentname': $scope.contentNode.node_name,
                     'rawfile_id': $scope.contentNode.rawfile_id,
@@ -30,12 +36,12 @@ angular.module('revisionbuddyApp')
                     'course_id': $scope.revisionCourse.course_id,
                     'subject':$scope.revisionCourse.subject
                 });
-        buddyapi.getTOCContentUrl($scope.contentNode.file_name)
+        buddyapi.getTOCContentUrl(contentFileName)
             .then(function(pdfUrl){
                 var link = document.createElement('a');
                 link.href = pdfUrl;
                 link.targer = "_self";
-                link.download = $scope.contentNode.file_name+".pdf";
+                link.download = contentFileName+".pdf";
                 document.body.appendChild(link);
                 console.log(link);
                 link.click();
