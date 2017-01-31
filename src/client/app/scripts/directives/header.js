@@ -25,7 +25,13 @@ angular.module('revisionbuddyApp')
           buddyapi.LogoutUser();
           $location.path("/login");
         }
-        scope.userObj = buddyapi.getLoggedInUser();
+        buddyapi.getLoggedInUser()
+          .then(function(userObj){
+            scope.userObj = userObj
+          },function(err){
+            console.log("error fetching user object");
+            console.log(err);
+          })
         scope.changeCourse = function(course){
             courseViewService.selectRevisionPack(course);
             scope.selectedCourse = courseViewService.selectedPack;
