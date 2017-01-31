@@ -651,3 +651,9 @@ select:-webkit-autofill:focus{
   background-color: transparent;
   border: none;
 }
+.error-label{
+  color:red;
+}
+.input-error{
+  border:1px solid red;
+}
