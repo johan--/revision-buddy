@@ -9,12 +9,9 @@
  */
 angular.module('revisionbuddyApp')
   .controller('LoginCtrl', function ($scope,$location,buddyapi) {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-    $scope.userLoginDeatails = {"user_name":"",password:""};
+    //logout the user first it might be possible user reached here by back button
+    //buddyapi.LogoutUser();
+    $scope.userLoginDeatails = {"user_name":"",password:"",rememberme:true}
     $scope.doLogin = function(){
       buddyapi.loginWithUserName($scope.userLoginDeatails)
         .then(function(){

@@ -18,19 +18,28 @@ angular.module('revisionbuddyApp')
     service.revisionpacks = [];
     this.getLoggedInUser = function(){
         var defer = $q.defer();
-      if (service.token) {
-                defer.resolve(service.userOtpObj);
-            } else {
-                var token = $cookies.get('_st');
-                if (token) {
-                  service.validateUser(token).then(function(result){
-                      defer.resolve(result);
-                  }, function(err){
-                      console.log("Error : ", err);
-                      defer.reject(err);
-                  });
-                }
+        if (service.token) {
+            defer.resolve(service.userOtpObj);
+        } 
+        else {
+            var token = $cookies.get('_st');
+            if (token) {
+                //means user wants to be rememberd
+                service.userLoginData = service.userLoginData || {};
+                service.userLoginData.rememberme = true;
+                service.validateUser(token).then(function(result){
+                    defer.resolve(result);
+                }, function(err){
+                    console.log("Error : ", err);
+                    defer.reject(err);
+                });
             }
+            else{
+                //this defer is meant to work auth ngRoute
+                //auth resolve.
+                defer.reject(new Error("No token found. Please relogin."));
+            }
+        }
             return defer.promise;
     }
     
@@ -39,7 +48,6 @@ angular.module('revisionbuddyApp')
 
             $http.get(myConfig.accountValidationUrl(token),{cache: false})
                 .then(function(response) {
-                    console.log(response);
                     if (response.data == "Invalid Token") {
                         deferred.reject();
                     }
@@ -78,18 +86,17 @@ angular.module('revisionbuddyApp')
     }
     function processSuccessResponse(response,deferred){
         service.username = response.data.user.user_name;
-                    service.firstname =response.data.user.firstname;
-                    service.lastname = response.data.user.lastname;
-                    service.revisionpack_subscriptions = response.data.user.revisionpack_subscriptions
-                    console.log(response.data.user);
-                    var userObj = {};
-                    userObj['username'] = service.username;
-                    userObj['firstname'] = service.firstname;
-                    userObj['lastname']  = service.lastname;
-                    service.setLoggedInUser(response.data.token, userObj);
-                    getTocContents();
-                    console.log("user login successful with username and password");
-                    deferred.resolve(response);
+        service.firstname =response.data.user.firstname;
+        service.lastname = response.data.user.lastname;
+        service.revisionpack_subscriptions = response.data.user.revisionpack_subscriptions;
+        var userObj = {};
+        userObj['username'] = service.username;
+        userObj['firstname'] = service.firstname;
+        userObj['lastname']  = service.lastname;
+        service.setLoggedInUser(response.data.token, userObj);
+        getTocContents();
+        console.log("user login successful with username and password");
+        deferred.resolve(response);
     }
     service.LogoutUser = function(){
         service.token = null;
@@ -120,12 +127,8 @@ angular.module('revisionbuddyApp')
     //   //makes call to api server to get course Deatils
     //   //update course list here and in courseViewService
         var tocPromiseChain = service.revisionpack_subscriptions.map(getTocPromise)
-        console.log("promise chain");
-        console.log(tocPromiseChain);
         var defer = $q.defer();
         $q.all(tocPromiseChain).then(function(data) {
-            console.log("ALL INITIAL PROMISES RESOLVED");
-            console.log(data);
             defer.resolve(data);
         });
         return defer.promise;
@@ -140,8 +143,6 @@ angular.module('revisionbuddyApp')
                     }
                 })
                 .then(function(response){
-                    console.log("revision packs");
-                    console.log(response.data);
                     service.revisionpacks.push(response.data);
                     defer.resolve(response.data);
                 },function(err){
@@ -163,8 +164,6 @@ angular.module('revisionbuddyApp')
                     }
                 })
                 .then(function(response){
-                    console.log("get pdf url");
-                    console.log(response.data);
                     defer.resolve(response.data.signed_request);
                 },function(err){
                     defer.reject();
@@ -174,7 +173,6 @@ angular.module('revisionbuddyApp')
     }
     service.getContentPDF = function(pdfurl){
         var defer = $q.defer();
-        console.log("request url --> "+pdfurl);
          $http({
                     method: 'GET',
                     url: pdfurl
@@ -191,7 +189,6 @@ angular.module('revisionbuddyApp')
     service.getTutorinfo = function(course_id){
         var defer = $q.defer();
         // find tutor id from course_id
-        console.log(service.revisionpack_subscriptions);
         var tutor_id = "";
         var found = $filter('filter')(service.revisionpack_subscriptions, {'course_id': course_id}, true);
         if (found.length) {
@@ -213,7 +210,7 @@ angular.module('revisionbuddyApp')
             var data = response.data;
             var infoObj = {
                 profilepic:data.profilepic,
-                name:data.firstname + " "+data.lastname,
+                name:data.firstname + " "+ (data.lastname||""),
                 location:data.location,
                 phoneNumber:data.phone_number,
                 email:data.email

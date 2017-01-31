@@ -19,6 +19,6 @@ angular.module('revisionbuddyApp')
         },function(err){
           console.log("error fetchign tutor info ");
           console.log(err);
-          toastr.error("Error fetching tuto")
+          toastr.error("Error fetching tutor info")
         })
   });
