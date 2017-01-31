@@ -134,6 +134,19 @@ export class RevisionPackController {
             });
         });
 
+        router.post("/contentdownloaded", function (req, res, next) {
+
+            let studentName = req.body.student_name;
+            let tutorEmail = req.body.tutor_email;
+
+            let contentDownloaded = req.body.content_downloaded;
+
+            RevisionPackEventEmitter.event("contentDownloaded").emit(tutorEmail, studentName, contentDownloaded);
+
+            return res.status(200).send("processed");
+
+        });
+
         router.post("/salecompleted/apikey/:apikey", function (req, res, next) {
 
             let apiKey = req.params.apikey;

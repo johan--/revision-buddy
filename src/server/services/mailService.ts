@@ -54,6 +54,54 @@ export class MailService {
         });
     }
 
+
+    public static sendMailForContentDownloaded(tutorEmail, studentName, contentDownloadedDetails) {
+
+        let path = require("path")
+        let templateDir = path.join(__dirname, "email-templates", "content-download");
+
+        let EmailTemplate = require("email-templates").EmailTemplate
+
+        let template = new EmailTemplate(templateDir);
+        let detailsForMailTemplate = {
+            student_name: studentName,
+            content_downloaded: contentDownloadedDetails
+        }
+
+        return new Promise((resolve, reject) => {
+            var result = template.render(detailsForMailTemplate, function (err, result) {
+
+                if (err) {
+                    logger.error(err);
+                    reject(err);
+                }
+
+                let send = gmailSend({
+                    user: Config.smtp_UserName, // Your GMail account used to send emails 
+                    pass: Config.smtp_Password, // Application-specific password 
+                    to: tutorEmail,      // Send back to yourself 
+                    from: Config.default_FromAddress, // from: by default equals to user 
+
+                    subject: result.subject,
+                    text: result.text, // plaintext body
+                    html: result.html
+                });
+
+                send(function (err, res) {
+                    if (err) {
+                        logger.error("Error in sending email to user " + tutorEmail);
+                        reject(new Error("Error in sending email to user" + tutorEmail));
+                    }
+
+                    logger.info("Content Downloaded email sent to user" + tutorEmail);
+                    resolve("Content Downloaded email sent to user " + tutorEmail);
+                });
+
+                resolve("done");
+            });
+        });
+    }
+
     public static sendMailForPasswordReset(user, password) {
         let path = require("path")
         let templateDir = path.join(__dirname, "email-templates", "password-reset");

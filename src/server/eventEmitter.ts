@@ -11,6 +11,7 @@ export interface RevisionPackEventEmitter extends TsEventEmitter {
     event(name: 'newUserCreated'): TsEventEmitter.Event1<this, Object>;
     event(name: 'newRevisionPackSubscribed'): TsEventEmitter.Event1<this, Object>;
     event(name: 'passwordReset'): TsEventEmitter.Event1<this, Object>;
+    event(name: 'contentDownloaded'): TsEventEmitter.Event1<this, Object>;
     event(name: string): TsEventEmitter.Event;
 }
 
@@ -68,4 +69,15 @@ RevisionPackEventEmitter.event("passwordReset").on((user, password) => {
         logger.error(err);
     });
 
+});
+
+RevisionPackEventEmitter.event("contentDownloaded").on((tutorEmail, studentName, contentDownloaded) => {
+
+    logger.info("Writing a custom acitivity on LS. This will be deprecated later");
+    logger.info("Event :: contentDownloaded");
+
+    MailService.sendMailForContentDownloaded(tutorEmail, studentName, contentDownloaded).then(
+        logger.info("mail sent successfully")).catch(function (err) {
+            logger.error(err);
+        });
 });
