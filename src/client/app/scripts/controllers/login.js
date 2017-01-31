@@ -24,7 +24,7 @@ angular.module('revisionbuddyApp')
                 'username': $scope.userLoginDeatails.user_name
             });
             toastr.error("You haven't subscribed any Revision Pack yet. Please contact Support.","Login failed");
-            buddyapi.User();
+            buddyapi.LogoutUser();
           }
           else{
               dataLayer.push({
