@@ -171,19 +171,44 @@ angular.module('revisionbuddyApp')
                 });
         return defer.promise;
     }
-    service.getContentPDF = function(pdfurl){
+    service.downloadContentPDF = function(filename,downloadname){
         var defer = $q.defer();
-         $http({
+
+        service.getTOCContentUrl(filename)
+            .then(function(pdfurl){
+                $http({
                     method: 'GET',
-                    url: pdfurl
+                    url: pdfurl,
+                    responseType: "blob"
                 })
                 .then(function(response){
-                    console.log("PDF blob");
-                    console.log(response);
+                    toastr.info("Donwloading pdf for "+downloadname)
+
+                    var blob = response.data;
+                    var saveBlob = (function (blob,filename) {
+                    var a = document.createElement("a");
+                    document.body.appendChild(a);
+                    a.style = "display: none";
+                    return function (blob, fileName) {
+                        var
+                            url = window.URL.createObjectURL(blob);
+                        a.href = url;
+                        a.download = fileName;
+                        a.click();
+                        window.URL.revokeObjectURL(url);
+                        };
+                    }());
+                    saveBlob(blob,downloadname);
+                    defer.resolve();
                 },function(err){
                     defer.reject();
                     console.log("error fetching TOC PDF");
-                });
+                });       
+            },function(err){
+                toastr.error("Download pdf failed for "+downloadname+"Error downloading pdf");
+            })
+         
+        
         return defer.promise;
     }
     service.getTutorinfo = function(course_id){

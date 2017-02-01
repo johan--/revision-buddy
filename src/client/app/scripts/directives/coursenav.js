@@ -22,20 +22,12 @@ angular.module('revisionbuddyApp')
         //$scope.courseContent = courseViewService.getSelectedRevisionPack();
         $scope.triggerDownload = function(child){
           console.log(child);
-          buddyapi.getTOCContentUrl(child.file_name)
-            .then(function(pdfUrl){
-                var link = document.createElement('a');
-                link.href = pdfUrl;
-                link.targer = "_self";
-                var fname = trim(child.node_name,'"');
-                link.download = fname+".pdf";
-                document.body.appendChild(link);
-                console.log(link);
-                link.click();
-              },
-              function(err){
-
-              });
+            buddyapi.downloadContentPDF(child.file_name,child.node_name+".pdf")
+            .then(function(){
+                toastr.success("Pdf download for :"+child.node_name+" successful.","PDF download successful.");
+            },function(){
+              toastr.error("pdf download failed for "+child.node_name,"Error downloading pdf");
+            })
         }
         function trim(s, mask) {
             while (~mask.indexOf(s[0])) {
