@@ -36,7 +36,12 @@ angular.module('revisionbuddyApp')
                     'course_id': $scope.revisionCourse.course_id,
                     'subject':$scope.revisionCourse.subject
                 });
-         buddyapi.downloadContentPDF(contentFileName,$scope.contentNode.node_name+".pdf")
+         var downloadFileName = $scope.contentNode.node_name;
+         if($scope.contentNode.parent_name){
+            downloadFileName += " - " +$scope.contentNode.parent_name;
+         }
+         downloadFileName+=".pdf";
+         buddyapi.downloadContentPDF(contentFileName,downloadFileName)
             .then(function(){
                 toastr.success("Pdf download for :"+contentFileName+" successful.","PDF download successful.");
             },function(){

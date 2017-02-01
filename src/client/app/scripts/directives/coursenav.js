@@ -22,7 +22,13 @@ angular.module('revisionbuddyApp')
         //$scope.courseContent = courseViewService.getSelectedRevisionPack();
         $scope.triggerDownload = function(child){
           console.log(child);
-            buddyapi.downloadContentPDF(child.file_name,child.node_name+".pdf")
+            var downloadFileName = child.node_name;
+            if(child.parent_name){
+              downloadFileName += " - " +child.parent_name;
+            }
+            downloadFileName+=".pdf";
+
+            buddyapi.downloadContentPDF(child.file_name,downloadFileName)
             .then(function(){
                 toastr.success("Pdf download for :"+child.node_name+" successful.","PDF download successful.");
             },function(){
