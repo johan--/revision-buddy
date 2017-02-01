@@ -42,9 +42,10 @@ angular.module('revisionbuddyApp')
          }
          var downloadDisplayName = $scope.contentNode.node_name;
          if($scope.showingAnswers){
+           downloadFileName += "_answers";
            downloadDisplayName += "_answers";
          }
-         downloadDisplayName += ".pdf";
+         //downloadDisplayName += ".pdf";
          downloadFileName += ".pdf";
          buddyapi.downloadContentPDF(contentFileName,downloadFileName)
             .then(function(){
