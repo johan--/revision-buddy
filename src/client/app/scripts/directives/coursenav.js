@@ -18,23 +18,22 @@ angular.module('revisionbuddyApp')
       controller: function($scope) {
         console.log($scope.courseContent);
         $scope.showGView = false;
+        $scope.contentParent= courseViewService.getActiveContentParentName();
         //$scope.courseContent = courseViewService.getSelectedRevisionPack();
         $scope.triggerDownload = function(child){
           console.log(child);
-          buddyapi.getTOCContentUrl(child.file_name)
-            .then(function(pdfUrl){
-                var link = document.createElement('a');
-                link.href = pdfUrl;
-                link.targer = "_self";
-                var fname = trim(child.node_name,'"');
-                link.download = fname+".pdf";
-                document.body.appendChild(link);
-                console.log(link);
-                link.click();
-              },
-              function(err){
+            var downloadFileName = child.node_name;
+            if(child.parent_name){
+              downloadFileName += " - " +child.parent_name;
+            }
+            downloadFileName+=".pdf";
 
-              });
+            buddyapi.downloadContentPDF(child.file_name,downloadFileName)
+            .then(function(){
+                toastr.success("Pdf download for :"+child.node_name+" successful.","PDF download successful.");
+            },function(){
+              toastr.error("pdf download failed for "+child.node_name,"Error downloading pdf");
+            })
         }
         function trim(s, mask) {
             while (~mask.indexOf(s[0])) {
@@ -46,6 +45,8 @@ angular.module('revisionbuddyApp')
             return s;
         }
         $scope.triggerContentView = function(child){
+          $scope.contentParent = child.parent_name || child.node_name;
+          courseViewService.setActiveContent(child);
           buddyapi.getTOCContentUrl(child.file_name)
             .then(function(pdfUrl){
                 $scope.gViewUrl = "http://docs.google.com/viewer?url="+encodeURIComponent(pdfUrl)+"&embedded=true";
@@ -58,9 +59,8 @@ angular.module('revisionbuddyApp')
         }
         $scope.outerContentView = function(course){
            if(!(course.children && course.children.length > 0)){
-            console.log("will download "+course.file_name);
-            console.log(course);
             if(course.file_name){
+              courseViewService.setActiveContent(course);
               $scope.triggerContentView(course);
             }
             else{
@@ -68,6 +68,9 @@ angular.module('revisionbuddyApp')
             }
            }
         }
+        $rootScope.$on('revisionPackageChanged',function(){
+          $scope.contentParent = null;
+        });
       },
       link: function postLink(scope, element, attrs) {
       }

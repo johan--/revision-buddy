@@ -3,9 +3,9 @@
       <li class="has-sub">
           <div style="height: 50px;">Menu 1</div>
   -->
-  <ul ng-repeat="course in courseContent">
+  <ul ng-repeat="course in courseContent" ng-class="{'selected-menu':course.node_name == contentParent}">
     <li ng-class="{'has-sub':course.children && course.children.length > 0}">
-      <div class="coursenav-tile" ng-click="outerContentView(course);;$event.stopPropagation();" ng-class="{'click': !course.children.length}">
+      <div class="coursenav-tile" ng-click="outerContentView(course);$event.stopPropagation();" ng-class="{'click': !course.children.length}">
         {{course.node_name}}
         <span ng-if="course.children.length > 0" class="glyphicon glyphicon-menu-right pull-right"></span>
         <span ng-if="!course.children || course.children.length == 0"
