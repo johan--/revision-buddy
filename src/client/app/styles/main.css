@@ -173,16 +173,18 @@ body {
   border-radius: 2px;
 }
 .coursenav-parent-title{
-    font-size: 60%;
+    font-size: 70%;
     line-height: 1;
     position: absolute;
-    top: 0px;
+    font-weight: 300;
     left: 10px;
   }
 .heading{
+  padding-top:8px;
   font-size: 120%;
   font-weight: 600;
   width: 95%;
+  font-family: 'Noto Sans', Tahoma, Arial, sans-serif;
 }
 .show-answers{
   margin: 0px 10px 5px 10px;
