@@ -40,12 +40,18 @@ angular.module('revisionbuddyApp')
          if($scope.contentNode.parent_name){
             downloadFileName += " - " +$scope.contentNode.parent_name;
          }
-         downloadFileName+=".pdf";
+         var downloadDisplayName = $scope.contentNode.node_name;
+         if($scope.showingAnswers){
+           downloadFileName += "_answers";
+           downloadDisplayName += "_answers";
+         }
+         //downloadDisplayName += ".pdf";
+         downloadFileName += ".pdf";
          buddyapi.downloadContentPDF(contentFileName,downloadFileName)
             .then(function(){
-                toastr.success("Pdf download for :"+contentFileName+" successful.","PDF download successful.");
+                toastr.success("Pdf download for :" +downloadDisplayName+" successful.","PDF download successful.");
             },function(){
-              toastr.error("pdf download failed for "+contentFileName,"Error downloading pdf");
+              toastr.error("pdf download failed for "+downloadDisplayName,"Error downloading pdf");
             })
       }
 
