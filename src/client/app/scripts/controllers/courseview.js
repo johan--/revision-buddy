@@ -36,19 +36,17 @@ angular.module('revisionbuddyApp')
                     'course_id': $scope.revisionCourse.course_id,
                     'subject':$scope.revisionCourse.subject
                 });
-        buddyapi.getTOCContentUrl(contentFileName)
-            .then(function(pdfUrl){
-                var link = document.createElement('a');
-                link.href = pdfUrl;
-                link.targer = "_self";
-                link.download = contentFileName+".pdf";
-                document.body.appendChild(link);
-                console.log(link);
-                link.click();
-              },
-              function(err){
-
-              });
+         var downloadFileName = $scope.contentNode.node_name;
+         if($scope.contentNode.parent_name){
+            downloadFileName += " - " +$scope.contentNode.parent_name;
+         }
+         downloadFileName+=".pdf";
+         buddyapi.downloadContentPDF(contentFileName,downloadFileName)
+            .then(function(){
+                toastr.success("Pdf download for :"+contentFileName+" successful.","PDF download successful.");
+            },function(){
+              toastr.error("pdf download failed for "+contentFileName,"Error downloading pdf");
+            })
       }
 
       $scope.showingAnswers = false;
