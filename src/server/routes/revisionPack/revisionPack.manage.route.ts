@@ -256,9 +256,10 @@ export class RevisionPackController {
 
             Promise.all(requests).then(function (results) {
                 logger.info(" Processed all the requests");
-                res.status(200).send("Processing completed successfully");
+                return res.status(200).send("Processing completed successfully");
             }).catch(function (err) {
-                next(err);
+                return res.status(200).send("There was an error in processing. The error was ' " + err.message + " '");
+                //next(err);
             });
         });
 
