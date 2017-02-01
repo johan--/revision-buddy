@@ -18,6 +18,7 @@ angular.module('revisionbuddyApp')
       controller: function($scope) {
         console.log($scope.courseContent);
         $scope.showGView = false;
+        $scope.contentParent= courseViewService.getActiveContentParentName();
         //$scope.courseContent = courseViewService.getSelectedRevisionPack();
         $scope.triggerDownload = function(child){
           console.log(child);
@@ -46,6 +47,8 @@ angular.module('revisionbuddyApp')
             return s;
         }
         $scope.triggerContentView = function(child){
+          $scope.contentParent = child.parent_name || child.node_name;
+          courseViewService.setActiveContent(child);
           buddyapi.getTOCContentUrl(child.file_name)
             .then(function(pdfUrl){
                 $scope.gViewUrl = "http://docs.google.com/viewer?url="+encodeURIComponent(pdfUrl)+"&embedded=true";
@@ -58,9 +61,8 @@ angular.module('revisionbuddyApp')
         }
         $scope.outerContentView = function(course){
            if(!(course.children && course.children.length > 0)){
-            console.log("will download "+course.file_name);
-            console.log(course);
             if(course.file_name){
+              courseViewService.setActiveContent(course);
               $scope.triggerContentView(course);
             }
             else{
@@ -68,6 +70,9 @@ angular.module('revisionbuddyApp')
             }
            }
         }
+        $rootScope.$on('revisionPackageChanged',function(){
+          $scope.contentParent = null;
+        });
       },
       link: function postLink(scope, element, attrs) {
       }

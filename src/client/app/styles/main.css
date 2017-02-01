@@ -172,6 +172,13 @@ body {
   padding-left: 10px;
   border-radius: 2px;
 }
+.coursenav-parent-title{
+    font-size: 60%;
+    line-height: 1;
+    position: absolute;
+    top: 0px;
+    left: 10px;
+  }
 .heading{
   font-size: 120%;
   font-weight: 600;
@@ -451,6 +458,10 @@ body {
 .coursenav-download :hover{
   background: #F2F2F2;
 }
+.selected-menu{
+  background:#29ABE2;
+  transform: scale(1.02);
+}
 /** css for side nav ends **/
 
 .bg-white {
@@ -583,12 +594,13 @@ select:-webkit-autofill:focus{
   }
   .coursenav-menu-collapse-container{
     display: block;
-    position: relative;
+    position: absolute;
     z-index: 600;
-    /*top: 5px;*/
+    top: -10px;
+    left: -5px;
     right: 14px;
     font-size: 250%;
-    width: 55%;
+    width: 50%;
   }
   .coursenav ul li{
     line-height: 0.5em;

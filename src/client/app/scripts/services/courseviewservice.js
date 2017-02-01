@@ -12,7 +12,7 @@ angular.module('revisionbuddyApp')
     // see if there is course selected by user
     var revisionPacks = [];
     this.selectedPack = {};
-    
+    var activeContent =null;
     this.updateRevisionPackList = function(rpacks){
       revisionPacks = rpacks;
     }
@@ -24,10 +24,20 @@ angular.module('revisionbuddyApp')
           console.log("pack changed");
           console.log(revisionPack);
           this.selectedPack = revisionPack;
+          activeContent = null;
           $rootScope.$broadcast('revisionPackageChanged');
     }
     this.getSelectedRevisionPack = function(){
       return this.selectedPack;
     }
-    
+    this.setActiveContent = function(contentNode){
+      activeContent = contentNode;
+    }
+    this.getActiveContent = function(){
+      return this.activeContent;
+    }
+    this.getActiveContentParentName = function(){
+      if(!activeContent) return null;
+      return activeContent.parent_name || activeContent.node_name;
+    }
   });
