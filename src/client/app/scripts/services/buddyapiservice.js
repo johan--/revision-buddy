@@ -57,7 +57,7 @@ angular.module('revisionbuddyApp')
                     processSuccessResponse(response,deferred);
                     dataLayer.push({
                         'event': 'loginSuccess',
-                        'username': $scope.userLoginDeatails.user_name
+                        'username': service.username
                     });
                 }, function(err) {
                     console.log("Error : ", err);
