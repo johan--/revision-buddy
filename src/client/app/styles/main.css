@@ -592,9 +592,9 @@ select:-webkit-autofill:focus{
   .coursenav-menu-collapse{
     visibility: visible;
     position: fixed;
-    top: 30px;
+    top: 20px;
     left: 15px;
-    font-size: 250%;
+    font-size: 150%;
     z-index: 1050;
   }
   .coursenav-menu-collapse-container{
@@ -624,7 +624,7 @@ select:-webkit-autofill:focus{
     visibility: visible;
     position: fixed;
     padding:0px;
-    top: 30px;
+    top: 0px;
     right: 10px;
     z-index: 1500;
   }
@@ -677,6 +677,10 @@ select:-webkit-autofill:focus{
 .profile-info {
   background-color: transparent;
   border: none;
+  color:#29ABE2;
+}
+.profile-info :hover{
+  color:#29ABE2;
 }
 .error-label{
   color:red;
