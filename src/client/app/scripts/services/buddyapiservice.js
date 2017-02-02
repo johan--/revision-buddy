@@ -55,6 +55,10 @@ angular.module('revisionbuddyApp')
                     // //service.setLoggedInUser(token, response.data.token);
                     // deferred.resolve(response);
                     processSuccessResponse(response,deferred);
+                    dataLayer.push({
+                        'event': 'loginSuccess',
+                        'username': $scope.userLoginDeatails.user_name
+                    });
                 }, function(err) {
                     console.log("Error : ", err);
                     deferred.reject(err);

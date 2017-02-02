@@ -127,13 +127,6 @@ angular.module('revisionbuddyApp')
         $scope.loadingpdf = false;
         console.log("package changed")
         console.log($scope.revisionCourse);
-        dataLayer.push({
-                    'event': 'courseSelected',
-                    'board': courseViewService.selectedPack.board,
-                    'class': courseViewService.selectedPack.class,
-                    'course_id': courseViewService.selectedPack.course_id,
-                    'subject':courseViewService.selectedPack.subject
-                });
       });
       $rootScope.$on('pdfViewChanged', function (event,data) {
           $scope.loadingpdf = true;
