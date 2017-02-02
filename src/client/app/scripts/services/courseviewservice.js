@@ -25,13 +25,13 @@ angular.module('revisionbuddyApp')
           console.log(revisionPack);
           this.selectedPack = revisionPack;
           activeContent = null;
-          dataLayer.push({
-                    'event': 'courseSelected',
-                    'board': courseViewService.selectedPack.board,
-                    'class': courseViewService.selectedPack.class,
-                    'course_id': courseViewService.selectedPack.course_id,
-                    'subject':courseViewService.selectedPack.subject
-                });
+          // dataLayer.push({
+          //           'event': 'courseSelected',
+          //           'board': courseViewService.selectedPack.board,
+          //           'class': courseViewService.selectedPack.class,
+          //           'course_id': courseViewService.selectedPack.course_id,
+          //           'subject':courseViewService.selectedPack.subject
+          //       });
           $rootScope.$broadcast('revisionPackageChanged');
     }
     this.getSelectedRevisionPack = function(){
