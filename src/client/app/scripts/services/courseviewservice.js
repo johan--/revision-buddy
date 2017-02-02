@@ -10,6 +10,7 @@
 angular.module('revisionbuddyApp')
   .service('courseViewService', function ($rootScope, $filter) {
     // see if there is course selected by user
+    var service = this;
     var revisionPacks = [];
     this.selectedPack = {};
     var activeContent =null;
@@ -21,17 +22,15 @@ angular.module('revisionbuddyApp')
     }
     //TODO: figure out how to select a course
     this.selectRevisionPack = function(revisionPack){
-          console.log("pack changed");
-          console.log(revisionPack);
           this.selectedPack = revisionPack;
           activeContent = null;
-          // dataLayer.push({
-          //           'event': 'courseSelected',
-          //           'board': courseViewService.selectedPack.board,
-          //           'class': courseViewService.selectedPack.class,
-          //           'course_id': courseViewService.selectedPack.course_id,
-          //           'subject':courseViewService.selectedPack.subject
-          //       });
+          dataLayer.push({
+                    'event': 'courseSelected',
+                    'board': service.selectedPack.board,
+                    'class': service.selectedPack.class,
+                    'course_id': service.selectedPack.course_id,
+                    'subject':service.selectedPack.subject
+                });
           $rootScope.$broadcast('revisionPackageChanged');
     }
     this.getSelectedRevisionPack = function(){
