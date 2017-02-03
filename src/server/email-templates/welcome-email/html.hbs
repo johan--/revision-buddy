@@ -1,37 +1,199 @@
-﻿Hello "{{user.firstname}}",
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>[SUBJECT]</title>
+    
+    <script type="colorScheme" class="swatch active">
+        {
+        "name":"Default",
+        "bgBody":"ffffff",
+        "link":"382F2E",
+        "color":"333333",
+        "bgItem":"ffffff",
+        "title":"222222"
+        }
+    </script>
+</head>
+<body paddingwidth="0" paddingheight="0" style="padding-top: 0; padding-bottom: 0; padding-top: 0; padding-bottom: 0; background-repeat: repeat; width: 100% !important; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -webkit-font-smoothing: antialiased;" offset="0" toppadding="0" leftpadding="0">
+    <table bgcolor="#f2f2f2" width="100%" border="0" cellspacing="0" cellpadding="0" class="tableContent" align="center" style='font-family:Helvetica, Arial,serif;'>
+        <tbody>
+            <tr>
+                <td>
+                    <table width="600" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="#ffffff" class="MainContainer">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                            <tr>
+                                                <td valign="top" width="40">&nbsp;</td>
+                                                <td>
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tbody>
+                                                            <!-- =============================== Header ====================================== -->
+                                                            <tr>
+                                                                <td height='25' class="spechide"></td>
 
-<br/>
-<br />
+                                                                <!-- =============================== Body ====================================== -->
+                                                            </tr>
+                                                            <tr>
+                                                                <td class='movableContentContainer ' valign='top'>
+                                                                    <div class="movableContent" style="border: 0px; padding-top: 0px; position: relative;">
+                                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td height="35"></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                                            <tbody>
+                                                                                                <tr>
+                                                                                                    <td valign="top" align="left" class="specbundle">
+                                                                                                        <div class="contentEditableContainer contentTextEditable">
+                                                                                                            <div class="contentEditable">
+                                                                                                                <img src="https://s3.ap-south-1.amazonaws.com/email-templates-artifacts/revision-buddy/welcome-email/vn-logo.png" width="150" height="52" alt="">
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </td>
 
-<h1>Welcome to the Vidyanext family! You've made the right choice for your child.</h1>
+                                                                                                </tr>
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
 
-<br />
-<br />
+                                                                    <div class="movableContent" style="border: 0px; padding-top: 0px; position: relative;">
+                                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+                                                                            <tr><td height='55'></td></tr>
+                                                                            <tr>
+                                                                                <td align='left'>
+                                                                                    <div class="contentEditableContainer contentTextEditable">
+                                                                                        <div class="contentEditable" align='center'>
+                                                                                            <h2>Hello "{{user.firstname}}",</h2>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
 
-Your account details are as follows:
+                                                                            <tr><td height='15'> </td></tr>
 
-<br />
-<br/>
+                                                                            <tr>
+                                                                                <td align='left'>
+                                                                                    <div class="contentEditableContainer contentTextEditable">
+                                                                                        <div class="contentEditable" align='center'>
+                                                                                            <p>
+                                                                                                Welcome to the Vidyanext family! You've made the right choice for your child.
+                                                                                                <br><br>Your account details are as follows:<br><br>Username: <strong>{{user.user_name}}</strong><br>
+                                                                                                Password: <strong>{{password}}</strong>
 
-Username: {{user.user_name}} <br />
-Password: {{password}} 
+                                                                                                <br>
+                                                                                                <br>
+                                                                                                You can access the Revision Buddy package at: <a href="http://revise.vidyanext.com" target="_blank">revise.vidyanext.com.</a>
+                                                                                                <br>
+                                                                                                <br>
+                                                                                                Your Vidyanext Certified Tutor's details:<br>
+                                                                                                Name: {{tutor.firstname}}
+                                                                                                <br>Phone: {{tutor.phone_number}}
+                                                                                                <br><br><strong>Questions?</strong> <br>Please reach out with any doubts at "080 67191900" or send us an email at <a href="mailto:support@vidyanext.com">support@vidyanext.com</a>. <br><br>
+                                                                                                Welcome aboard. Happy learning!<br><br>
 
-<br /><br />
-
-You can access the Revision Buddy package at: http://revise.vidyanext.com.
-
-<br /><br />
-
-Your Vidyanext Certified Tutor's details: <br /><br />
-
-Name: {{tutor.firstname}} <br />
-Phone:{{tutor.phone_number}}
-
-<br /><br />
+                                                                                                <span style='color:#F18528;'><strong>Team Vidyanext</strong></span>
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
 
 
-Questions? Please reach out with any doubts at "080 67191900" or send us an email at “support@vidyanext.com”. <br /><br />
+                                                                        </table>
+                                                                    </div>
+                                                                    <div class="movableContent" style="border: 0px; padding-top: 0px; position: relative;">
+                                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td height='65'>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td style='border-bottom:1px solid #DDDDDD;'></td>
+                                                                                </tr>
+                                                                                <tr><td height='25'></td></tr>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                                            <tbody>
+                                                                                                <tr>
+                                                                                                    <td valign="top" class="specbundle">
+                                                                                                        <div class="contentEditableContainer contentTextEditable">
+                                                                                                            <div class="contentEditable" align='center'>
+                                                                                                                <p style='text-align:left;color:#CCCCCC;font-size:12px;font-weight:normal;line-height:20px;'>
+                                                                                                                    <span style='font-weight:bold;'><a href="http://www.vidyanext.com">www.vidyanext.com</a></span>
+                                                                                                                    <br>
+                                                                                                                    <a target='_blank' href="[FORWARD]">Forward to a friend</a><br>
+                                                                                                                    <br>
+                                                                                                                </p>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </td>
+                                                                                                    <td valign="top" width="100%" class="specbundle">&nbsp;</td>
+                                                                                                    <td valign="top" class="specbundle">
+                                                                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                                                            <tbody>
+                                                                                                                <tr>
+                                                                                                                    <td valign='top' width='52'>
+                                                                                                                        <div class="contentEditableContainer contentFacebookEditable">
+                                                                                                                            <div class="contentEditable">
+                                                                                                                                <a target='_blank' href="https://www.facebook.com/vidyanext"><img src="https://s3.ap-south-1.amazonaws.com/email-templates-artifacts/revision-buddy/welcome-email/facebook.png" width='52' height='53' alt='facebook icon' data-default="placeholder" data-max-width="52" data-customIcon="true"></a>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </td>
+                                                                                                                    <td valign="top" width="16">&nbsp;</td>
+                                                                                                                    <td valign='top' width='52'>
+                                                                                                                        <div class="contentEditableContainer contentTwitterEditable">
+                                                                                                                            <div class="contentEditable">
+                                                                                                                                <a target='_blank' href="https://twitter.com/vidyanext"><img src="https://s3.ap-south-1.amazonaws.com/email-templates-artifacts/revision-buddy/welcome-email/twitter.png" width='52' height='53' alt='twitter icon' data-default="placeholder" data-max-width="52" data-customIcon="true"></a>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </td>
+                                                                                                                </tr>
+                                                                                                            </tbody>
+                                                                                                        </table>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr><td height='88'></td></tr>
+                                                                            </tbody>
+                                                                        </table>
 
-Welcome aboard. Happy learning! <br /><br />
+                                                                    </div>
 
-Team Vidyanext
+                                                                    <!-- =============================== footer ====================================== -->
+
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                                <td valign="top" width="40">&nbsp;</td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
