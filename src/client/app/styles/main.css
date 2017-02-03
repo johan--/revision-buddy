@@ -184,6 +184,9 @@ body {
   font-size: 120%;
   font-weight: 600;
   width: 95%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-family: 'Noto Sans', Tahoma, Arial, sans-serif;
 }
 .show-answers{
@@ -277,7 +280,7 @@ body {
   width: 100%;
 }
 
-.coursenav ul ul li { 
+.coursenav ul ul li {
   float: none;
   border-bottom:1px solid #e8e8e8;
 
@@ -288,8 +291,8 @@ body {
   right: 0;
 }
 
-.coursenav ul li:hover > ul { 
-  visibility: visible; 
+.coursenav ul li:hover > ul {
+  visibility: visible;
   /*border:1px solid gray;*/
   border-top:1px solid #e8e8e8;
   border-bottom:1px solid #e8e8e8;
@@ -678,7 +681,7 @@ select:-webkit-autofill:focus{
   background-color: transparent;
   border: none;
   color:#29ABE2;
-  font:150%;
+  font-size:150%;
 }
 .profile-info :hover{
   color:#29ABE2;
