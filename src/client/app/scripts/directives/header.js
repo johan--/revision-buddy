@@ -21,7 +21,17 @@ angular.module('revisionbuddyApp')
                scope.courseList = rPack;
             });
         }
-        scope.userObj = buddyapi.getLoggedInUser();
+        scope.logout = function(){
+          buddyapi.LogoutUser();
+          $location.path("/login");
+        }
+        buddyapi.getLoggedInUser()
+          .then(function(userObj){
+            scope.userObj = userObj
+          },function(err){
+            console.log("error fetching user object");
+            console.log(err);
+          })
         scope.changeCourse = function(course){
             courseViewService.selectRevisionPack(course);
             scope.selectedCourse = courseViewService.selectedPack;
@@ -29,7 +39,6 @@ angular.module('revisionbuddyApp')
             $location.path("/courseview")
         }
         scope.getSubColor = function(sub){
-          console.log("get sub color "+sub);
           var subject = sub.toLowerCase();
             if(subject == "maths"){
               return "#DF6A59";

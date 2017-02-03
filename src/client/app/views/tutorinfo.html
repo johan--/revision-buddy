@@ -2,30 +2,31 @@
 <div class="conainer-fluid main-container">
     <div class="row-fluid">
         <div class="card" style="width: 27rem; margin: 0 auto;text-align: center">
-            <div style="height: 150px; margin: 0 auto;">
-                <img class="card-img-top img-responsive" src="/images/avatar.png" alt="Tutuor Avatar"
+            <div style="width:150px;height: 150px; margin: 0 auto;">
+                <img class="card-img-top img-responsive img-circle" src="/images/avatar.png" 
+                    ng-src="{{tutorinfo.profilepic}}" alt="Tutuor Avatar"
                   style="height: 100%; margin: 0 auto;">
             </div>
             <div class="card-block">
                 <h4 class="card-title">
-                    <span>Ramesh Kumar</span>
+                    <span>{{tutorinfo.name}}</span>
                     <br>
-                    <div style="display: inline-flex; font-size: 65%">
+                    <div style="display: inline-flex; font-size: 65%; visibility: hidden">
                         <span class="glyphicon glyphicon-map-marker" style="margin-right: 5px;"></span>
-                        <span> Malleshwaram</span>
+                        <span> {{tutorinfo.location}}</span>
                     </div>
                 </h4>
                 <p class="card-text">
                     <div class="tinfo-tile">
                         <img  class="img-responsive img-circle"src ="/images/phone.png" />
                         <span>
-                            + 91 9800003333
+                            {{tutorinfo.phoneNumber}}
                         </span>
                     </div>
                     <div class="tinfo-tile">
                         <img src ="/images/email.png" />
                         <span>
-                            rameshkumar69@gmail.com
+                            {{tutorinfo.email}}
                         </span>
                     </div>                    
                 </p>

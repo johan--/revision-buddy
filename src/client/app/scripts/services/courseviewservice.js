@@ -10,24 +10,40 @@
 angular.module('revisionbuddyApp')
   .service('courseViewService', function ($rootScope, $filter) {
     // see if there is course selected by user
+    var service = this;
     var revisionPacks = [];
-    this.selectedPack = {};
-    
-    this.updateRevisionPackList = function(rpacks){
+    service.selectedPack = {};
+    var activeContent =null;
+    service.updateRevisionPackList = function(rpacks){
       revisionPacks = rpacks;
     }
-    this.getAvailableRevisionPacks = function(){
+    service.getAvailableRevisionPacks = function(){
       return revisionPacks;
     }
     //TODO: figure out how to select a course
-    this.selectRevisionPack = function(revisionPack){
-          console.log("pack changed");
-          console.log(revisionPack);
-          this.selectedPack = revisionPack;
+    service.selectRevisionPack = function(revisionPack){
+          service.selectedPack = revisionPack;
+          activeContent = null;
+          dataLayer.push({
+                    'event': 'courseSelected',
+                    'board': service.selectedPack.board,
+                    'class': service.selectedPack.class,
+                    'course_id': service.selectedPack.course_id,
+                    'subject':service.selectedPack.subject
+                });
           $rootScope.$broadcast('revisionPackageChanged');
     }
-    this.getSelectedRevisionPack = function(){
-      return this.selectedPack;
+    service.getSelectedRevisionPack = function(){
+      return service.selectedPack;
     }
-    
+    service.setActiveContent = function(contentNode){
+      activeContent = contentNode;
+    }
+    service.getActiveContent = function(){
+      return service.activeContent;
+    }
+    service.getActiveContentParentName = function(){
+      if(!activeContent) return null;
+      return activeContent.parent_name || activeContent.node_name;
+    }
   });

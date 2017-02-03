@@ -20,8 +20,14 @@ angular.module('revisionbuddyApp')
           $scope.showCollapseCourseNav = !$scope.showCollapseCourseNav;
       }
       $scope.downloadpdf = function(){
+        var gtmEventName = "contentDownloaded";
+        var contentFileName = $scope.contentNode.file_name;
+        if($scope.showingAnswers){
+          gtmEventName = "answerDownloaded";
+          contentFileName = $scope.contentNode.solution_file;
+        }
         dataLayer.push({
-                    'event': 'contentDownloaded',
+                    'event': gtmEventName,
                     'contenttype': $scope.contentNode.node_type,
                     'contentname': $scope.contentNode.node_name,
                     'rawfile_id': $scope.contentNode.rawfile_id,
@@ -30,19 +36,23 @@ angular.module('revisionbuddyApp')
                     'course_id': $scope.revisionCourse.course_id,
                     'subject':$scope.revisionCourse.subject
                 });
-        buddyapi.getTOCContentUrl($scope.contentNode.file_name)
-            .then(function(pdfUrl){
-                var link = document.createElement('a');
-                link.href = pdfUrl;
-                link.targer = "_self";
-                link.download = $scope.contentNode.file_name+".pdf";
-                document.body.appendChild(link);
-                console.log(link);
-                link.click();
-              },
-              function(err){
-
-              });
+         var downloadFileName = $scope.contentNode.node_name;
+         if($scope.contentNode.parent_name){
+            downloadFileName += " - " +$scope.contentNode.parent_name;
+         }
+         var downloadDisplayName = $scope.contentNode.node_name;
+         if($scope.showingAnswers){
+           downloadFileName += "_answers";
+           downloadDisplayName += "_answers";
+         }
+         //downloadDisplayName += ".pdf";
+         downloadFileName += ".pdf";
+         buddyapi.downloadContentPDF(contentFileName,downloadFileName)
+            .then(function(){
+                toastr.success("Pdf download for :" +downloadDisplayName+" successful.","PDF download successful.");
+            },function(){
+              toastr.error("pdf download failed for "+downloadDisplayName,"Error downloading pdf");
+            })
       }
 
       $scope.showingAnswers = false;
@@ -117,13 +127,6 @@ angular.module('revisionbuddyApp')
         $scope.loadingpdf = false;
         console.log("package changed")
         console.log($scope.revisionCourse);
-        dataLayer.push({
-                    'event': 'courseSelected',
-                    'board': courseViewService.selectedPack.board,
-                    'class': courseViewService.selectedPack.class,
-                    'course_id': courseViewService.selectedPack.course_id,
-                    'subject':courseViewService.selectedPack.subject
-                });
       });
       $rootScope.$on('pdfViewChanged', function (event,data) {
           $scope.loadingpdf = true;

@@ -1,10 +1,10 @@
 <div class="header" style="font-family: 'Noto Sans'">
   <div class="container-fluid">
     <div class="row-fluid">
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-3 text-left nopadding">
+      <div class="col-lg-4 col-md-3 col-sm-4 col-xs-12 text-left nopadding">
         <img class="img-responsive vnlogo-header" src="/images/vidyanext-logo.png"/>
       </div>
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5">
+      <div class="col-lg-4 col-md-3 col-sm-4 col-xs-12">
         <!--conditinal display for subject select-->
         <div ng-if="!isHome" class="header-dropdown center-block">
           <div class="dropdown">
@@ -29,7 +29,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-md-4 col-sm-4 hidden-sm hidden-xs">
+      <div class="col-lg-4 col-md-6 col-sm-4 hidden-sm hidden-xs">
         <div class="row" style="display: initial;margin-top: 1.5em;">
           <div class="pull-right">
             <span style="padding-right:15px">{{userObj.firstname}} {{userObj.lastname}}</span>
@@ -37,24 +37,26 @@
               <span class="underline"><a class="nav-item" href="/#!/home">Home</a></span>|
               <span class="underline" ng-if="!isHome"><a class="nav-item" href="/#!/tutorinfo">Tutor Info </a></span>
               <span ng-if="!isHome">|</span>
-              <span class="underline"><a class="nav-item" href="/#!/login">Logout</a></span>
+              <span class="underline"><a class="nav-item" href="#" ng-click="logout();">Logout</a></span>
             </span>
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 hidden-lg hidden-md" style="margin-top:17px;padding:0px">
+      <!--style="margin-top:17px;padding:0px;position: fixed;top: 0px;right:0px"-->
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 hidden-lg hidden-md header-nav"
+        >
         <div class="pull-right">
           <div class="btn-group">
             <button type="button" class="btn btn-default dropdown-toggle profile-info" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
-              <span class="glyphicon glyphicon-user"></span> <span class="caret"></span>
+              <span class="fa fa-user-o fa-4"></span> <span class="caret"></span>
             </button>
             <ul class="dropdown-menu pull-right">
               <li><a style="text-decoration: none;cursor:default">{{userObj.firstname}} {{userObj.lastname}}</a></li>
               <li><a href="/#!/home">Home</a></li>
               <li><a href="/#!/tutorinfo">Tutor Info</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="/#!/login">Log out</a></li>
+              <li><a ng-click="logout()">Log out</a></li>
             </ul>
           </div>
         </div>
