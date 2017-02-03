@@ -258,7 +258,7 @@ export class RevisionPackController {
                 logger.info(" Processed all the requests");
                 return res.status(200).send("Processing completed successfully");
             }).catch(function (err) {
-                return res.status(200).send("There was an error in processing. The error was ' " + err.message + " '");
+                return res.status(500).send("There was an error in processing. The error was ' " + err.message + " '");
                 //next(err);
             });
         });
