@@ -22,7 +22,7 @@ angular.module('revisionbuddyApp')
             defer.resolve(service.userOtpObj);
         } 
         else {
-            var token = $cookies.get('_st');
+            var token = $cookies.get('_rst');
             if (token) {
                 //means user wants to be rememberd
                 service.userLoginData = service.userLoginData || {};
@@ -105,8 +105,8 @@ angular.module('revisionbuddyApp')
     service.LogoutUser = function(){
         service.token = null;
         service.userOtpObj = null;
-        $cookies.remove('_st');
-        $cookies.remove('_ttrobj');
+        $cookies.remove('_rst');
+        $cookies.remove('_rttrobj');
         $rootScope.$emit('userLoggedOut');
     }
     service.setLoggedInUser = function(token, userObj) {
@@ -114,8 +114,8 @@ angular.module('revisionbuddyApp')
                 service.token = token;
                 service.userOtpObj = userObj;
                 if (service.userLoginData.rememberme) {
-                    $cookies.put('_st', service.token);
-                    $cookies.putObject('_ttrobj', service.userOtpObj);
+                    $cookies.put('_rst', service.token);
+                    $cookies.putObject('_rttrobj', service.userOtpObj);
                 }
                 $rootScope.$emit('userChanged', {
                     data: userObj
