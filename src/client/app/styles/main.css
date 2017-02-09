@@ -440,8 +440,8 @@ body {
   overflow: hidden;
 }
 .coursenav-tile >span{
-  overflow: wrap;
-  max-width: 80%;
+  max-width: 90%;
+  display: inline-block;
 }
 .coursenav-download{
   cursor: pointer;
